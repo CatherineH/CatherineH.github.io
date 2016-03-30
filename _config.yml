@@ -8,13 +8,13 @@ highlighter: pygments
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : Jekyll Bootstrap
-tagline: Site Tagline
+title : Catherine's Auxiliary Brain
+tagline: Mostly Programming stuff
 author :
-  name : Name Lastname
-  email : blah@email.test
-  github : username
-  twitter : username
+  name : Catherine Holloway
+  email : milankie@gmail.com
+  github : CatherineH
+  twitter : femion
   feedburner : feedname
 
 # The production_url is only used when full-domain names are needed
@@ -25,7 +25,8 @@ author :
 # Else if you are pushing to username.github.io, replace with your username.
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
-production_url : http://username.github.io
+url : http://CatherineH.github.io
+production_url : http://CatherineH.github.io
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
@@ -36,7 +37,7 @@ JB :
   # Links in your website should always be prefixed with {{BASE_PATH}}
   # however this value will be dynamically changed depending on your deployment situation.
   #
-  # CNAME (http://yourcustomdomain.com)
+  # CNAME (http://CatherineH.github.io)
   #   DO NOT SET BASE_PATH 
   #   (urls will be prefixed with "/" and work relatively)
   #
@@ -54,7 +55,7 @@ JB :
   #   - Only the following values are falsy: ["", null, false]
   #   - When setting BASE_PATH it must be a valid url.
   #     This means always setting the protocol (http|https) or prefixing with "/"
-  BASE_PATH : false
+  BASE_PATH : http://CatherineH.github.io
 
   # By default, the asset_path is automatically defined relative to BASE_PATH plus the enabled theme.
   # ex: [BASE_PATH]/assets/themes/[THEME-NAME]
