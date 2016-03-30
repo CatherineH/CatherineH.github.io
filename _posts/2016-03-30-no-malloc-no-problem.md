@@ -52,7 +52,7 @@ main(){
 }
 ```
 
-This frustrating, but not totally unworkable. Now let's move on to something
+This is frustrating, but not totally unworkable. Now let's move on to something
 more complicated. Suppose you want an array of strings. Thanks to [this
 StackOverflow answer](http://stackoverflow.com/a/17466642/1437859) we know
 that this code will work in C99:
