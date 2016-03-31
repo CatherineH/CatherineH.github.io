@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 title: Catherine's Auxiliary Brain
 tagline: Mostly Programming stuff
 ---
