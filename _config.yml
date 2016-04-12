@@ -3,6 +3,7 @@
 permalink: /:categories/:year/:month/:day/:title 
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
+markdown: kramdown
 highlighter: pygments
 
 # Themes are encouraged to use these universal variables 
@@ -27,6 +28,7 @@ author :
 #
 url : http://CatherineH.github.io
 production_url : http://CatherineH.github.io
+
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
