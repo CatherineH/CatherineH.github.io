@@ -7,18 +7,17 @@ tags: [python, testing]
 ---
 {% include JB/setup %}
 
-I'm currently increasing the code coverage on my [pyglet_helper](https://github.com/CatherineH/pyglet_helper)
-project up to complete unit test coverage prior to adding new functionality.
+I'm increasing the code coverage on my [pyglet_helper](https://github.com/CatherineH/pyglet_helper)
+project prior to adding new functionality.
 As of right now it is:
 
 
 [![Coverage Status](https://coveralls.io/repos/github/CatherineH/pyglet_helper/badge.svg?branch=master)](https://coveralls.io/github/CatherineH/pyglet_helper?branch=master)
 
-If this is green when you see this, I have succeeded in my task. Go me!
+If this is green, I have succeeded in my task. Go me!
 
-Before I got to this spiffy number, I had to tackle an issue: pyglet_helper project is built on top of OpenGL, but OpenGL needs a display
-to draw to. The continuous intergration system I am using (Travis) does not
-have graphical interfaces.
+Before I got this spiffy number, I had to tackle an issue: pyglet_helper project is built on top of OpenGL, but OpenGL needs a display to draw to. The continuous intergration system I am using (Travis) does not
+have a display.
 
 After embarking on a fool's errand to get [Xdummy](http://xpra
 .org/trac/wiki/Xdummy) working in a docker container, my friend [Steven](http://scasagrande.github.io/) pointed to an easier solution: simply create
@@ -34,9 +33,8 @@ After embarking on a fool's errand to get [Xdummy](http://xpra
 This post details how to replace an entire module in python unit tests,
 since I didn't find it in my initial reading of the mock documentation.
 
-As an example, suppose you have some math that you want to test it on a
-Windows AMD machine. There is no support for numpy on Windows running on AMD
- chips, as I recently learned. Thus, we would like to mock out numpy.
+As an example, suppose we have some math to be tested on a 
+Windows AMD machine[^1]. Thus, we would like to mock out numpy.
 
 As an example, the function to be tested is in the file **one_deep.py**:
 
@@ -107,3 +105,5 @@ Unfortunately, I haven't figured out a good way of making sure that numpy
 gets patched all in every place where it is invoked yet, leading to a lot of
  failed Travis builds as I encover another layer of a pyglet_helper object's
   dependencies which rely on OpenGL.
+
+[^1]: Numpy does not support Windows running on AMD chips, as I recently learned. 
