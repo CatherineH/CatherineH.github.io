@@ -36,7 +36,7 @@ since I didn't find it in my initial reading of the mock documentation.
 As an example, suppose we have some math to be tested on a 
 Windows AMD machine[^1]. Thus, we would like to mock out numpy.
 
-As an example, the function to be tested is in the file **one_deep.py**:
+The function to be tested is in the file **one_deep.py**:
 
 ```
 import numpy
