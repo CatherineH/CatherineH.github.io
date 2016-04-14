@@ -39,6 +39,7 @@ Windows AMD machine. There is no support for numpy on Windows running on AMD
  chips, as I recently learned. Thus, we would like to mock out numpy.
 
 As an example, the function to be tested is in the file **one_deep.py**:
+
 ```
 import numpy
 
