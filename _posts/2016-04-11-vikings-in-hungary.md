@@ -60,7 +60,8 @@ Bathory song, *Vinterbolt*, is off of *Nordland I*:
 In my opinion, Bathory, along with **Gentle Giant** and **Van der Graaf
 Generator**, are examples of bands who didn’t quite have the technical chops
 or creativity to perfect their pioneering ideas. Viking metal was a novel style
-in the early 90s, but unfortunately a twenty year back catalog clouded my first listen of Hammerfall.
+in the early 90s, but unfortunately a twenty year back catalog clouded my
+first listen of Hammerheart.
 
 Of the four styles in the Bathory discography, the Quorthon solo-albums at
 the end of his career hold up the best against the test of time. He was
