@@ -110,6 +110,11 @@ In file included from ~/arduino-1.6.7/hardware/teensy/avr/cores/teensy3/core_pin
  #if (F_CPU == 180000000)
             ^
 ```
+or, alternatively, you may see something like these errors:
+
+```
+arm-none-eabi-g++: error: {build.flags.optimize}: No such file or directory
+```
 
 Resolution
 ----------
