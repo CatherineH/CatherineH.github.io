@@ -10,15 +10,9 @@ My life revolves around three boards: the digi rabbit, an altera FPGA, and a
 teensy (an arduino-compatible microcontroller).
 
 The provided IDE's for each of these boards **suck**, but teensy's **sucks the
-least**. They are ugly to look at and they get in the way of my productivity.
-Over the past month I've pushed towards migrating my digi rabbit and altera
-development to PyCharm, since the code to interface with these boards is all
-written in python so I may as well see it all in one place at once. The
-latest updates to ubuntu (14.04) seem to be incompatible with my version of
-arduino (1.6.7), so rather than debug why the arduino IDE isn't playing nice
-with gnome-desktop, I'd rather move away from that as well.
-
-This post documents the errors encountered using the arduino-builder.
+least**. They are ugly and they get in the way of my productivity. Since the code to interface with the boards 
+written in python I've been migrating my digi rabbit and altera
+development to PyCharm. This post documents the errors encountered moving from the arduino IDE to the arduino-builder.
 
 `index out of range` on Board Resolver
 ======================================
