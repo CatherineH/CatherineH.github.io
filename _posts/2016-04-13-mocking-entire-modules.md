@@ -16,7 +16,7 @@ As of right now it is:
 
 If this is green, I have succeeded in my task. Go me!
 
-Before I got this spiffy number, I had to tackle an issue: pyglet_helper project is built on top of OpenGL, but OpenGL needs a display to draw to. The continuous intergration system I am using (Travis) does not
+Before I got this spiffy number, I had to tackle an issue: pyglet_helper project is built on top of OpenGL, but OpenGL needs a display to draw to. The continuous integration system I am using (Travis) does not
 have a display.
 
 After embarking on a fool's errand to get [Xdummy](http://xpra
