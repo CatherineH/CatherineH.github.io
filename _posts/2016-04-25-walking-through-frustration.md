@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Walking Through Frustration"
+title: "Walking Through Mars and Frustration"
 description: "My Failure at SpaceApps 2016"
 category: programming
 tags: [python, cpp]
@@ -57,7 +57,7 @@ For reasons my sleep-deprived post-hackathon brain can’t remember, the mesh tu
 
 I intended that my Unreal Engine mesh generator code would check the tile cache for the desired section of Mars to render, and if it didn’t exist, execute the python script for pulling down the missing tiles. I encountered a problem implementing this: the windows C SDK does not play nicely with the Unreal Engine API. This is for good reason - Unreal Engine wants to be cross-platform, so they have re-implemented all the standard functionality of C independent of each operating system. If you attempt to include both the Unreal Engine and the Windows SDK in the same application, Visual Studio will bug out because it’s not sure which version of *int* you want to use.
 
-I scrapped that idea. Luckily, I wasn’t totally out of luck for feeding data into Unreal Engine at runtime because networking is required for multiplayer games. So, after another four hours, I had a python server communicating with my Unreal Engine application. My first ground meshes looked like this: 
+I scrapped that idea. Luckily, reading and writing files isn't the only way to get data into the Unreal Engine at runtime because networking is required for multiplayer games. After another four hours, I had a python server communicating with my Unreal Engine application. My first ground meshes looked like this: 
 
 ![mesh screenshot](https://pbs.twimg.com/media/Cg08v0AU8AAymmo.jpg:large)
 
