@@ -21,7 +21,7 @@ Electonics Side
 The optical switch I use is a [DiCon 2x2 prism switch](http://www.diconfiberoptics.com/products/scd0009/scd0009f.pdf),
 which is essentially a little piece of glass on a motor.
 
-![A picture of a DiCon fiber optic switch]({{ site.url }}/_posts/images/dicon_switch.jpg)
+![A picture of a DiCon fiber optic switch](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/dicon_switch.jpg)
 
 This switch will operate in several modes, but in every mode the first two (blue and purple) pins are used to set the
 position and the second two (red and green) pins are used to read the position of the switch.
@@ -32,7 +32,7 @@ I chose to put the two pins that should never change in control mode (purple sho
 be +5V) and the two pins with changing values (blue and green) on the other. This led to a lot of initial confusion, but
  I believe it was a good decision to because it allows me to keep the two pins that need to be hooked up to some external logic together.
 
-![A picture of the headers going into the teensy]({{ site.url }}/_posts/images/teensy_switch.jpg)
+![A picture of the headers going into the teensy](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/teensy_switch.jpg)
 
 The threshold voltage for switching is above 3.3V, which is the maximum that the Teensy's output pins can supply. Thus,
 I chose to use a solid state relay to bump the signal up to 5V. I use Sharp Microelectronics
@@ -41,7 +41,7 @@ they're super cheap (25.65$ for 50) and I have a tendency to accidentally blow e
 
 My prototype board looks like this:
 
-![Fritzing image of breadboard]({{ site.url }}/_posts/images/teensy_switch.jpg)
+![Fritzing image of breadboard](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/switch_bb.png)
 
 Imagine the Sharp SSR on the breadboard instead of the Omron SSR. You'll notice that I have left the green pin
 unconnected. The switch has always activated when 5V, thus the position information isn't useful right now.
@@ -57,7 +57,7 @@ connection.
 
 My .ino code looks like this:
 
-'''
+```
 #include "scpi_comm.h"
 #include "optical_switch.h"
 int switch_led_pin = 13;
@@ -78,11 +78,12 @@ void loop()
     comm_protocol(Serial.read(), &_settings);
   }
 }
-'''
+```
 
 My *scpi_comm.h* contains an internal state machine which collects characters into a string until the termination
 character is received, then attempts to parse the string:
-'''
+
+```
 typedef struct {
   int switch_setting;
 } settings;
@@ -131,12 +132,12 @@ void comm_protocol(byte incomingByte, settings *settings){
      line[0] = '\0';
    }
 }
-'''
+```
 
 Lastly, my *optical_switch.h* code simply reads the settings and makes the Teensy's indicator LED also go high when the
 switch position is high:
 
-'''
+```
 void update_optical_switch(int optical_state, int switch_pin, int led_pin)
 {
   if(optical_state==1)
@@ -150,7 +151,7 @@ void update_optical_switch(int optical_state, int switch_pin, int led_pin)
     digitalWrite(led_pin, LOW);
   }
 }
-'''
+```
 
 Python (Computer) Side
 ======================
@@ -158,7 +159,7 @@ Python (Computer) Side
 I used the fantastic [InstrumentKit](https://github.com/Galvant/InstrumentKit) to incorporate the control into my
 experimental software:
 
-'''
+```
 #!/usr/bin/env python
 from instruments.abstract_instruments import Instrument
 from time import sleep
@@ -195,9 +196,7 @@ class Switch(Instrument):
             response = self.query(":OUTP 1")
 
 def main():
-    """
-    Runs the switch program on its own, as a test
-    """
+   # Runs the switch program on its own, as a test
     if platform == "linux" or platform == "linux2":
         port = "/dev/ttyACM0"
     else:
@@ -216,7 +215,7 @@ def main():
 
 if __name__ == "__main__":
     main()
-'''
+```
 
 While the coding side of this application may seem a bit over-engineered, it is because I want to apply the
 [principle of least astonishment](https://en.wikipedia.org/wiki/Principle_of_least_astonishment) to everything I do; by
