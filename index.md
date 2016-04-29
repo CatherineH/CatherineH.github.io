@@ -14,24 +14,8 @@ tagline: Mostly Programming stuff
       <span>{{ post.date | date_to_long_string }}</span>
     </div>
     <div class="content">
-      {{ content }}
+      {{ post.content }}
     </div>
-
-  {% unless post.categories == empty %}
-    <ul class="tag_box inline">
-      <li><i class="glyphicon glyphicon-open"></i></li>
-      {% assign categories_list = post.categories %}
-      {% include JB/categories_list %}
-    </ul>
-  {% endunless %}
-
-  {% unless post.tags == empty %}
-    <ul class="tag_box inline">
-      <li><i class="glyphicon glyphicon-tags"></i></li>
-      {% assign tags_list = post.tags %}
-      {% include JB/tags_list %}
-    </ul>
-  {% endunless %}
 
   </div>
 </div>
