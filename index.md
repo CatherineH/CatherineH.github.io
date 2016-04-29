@@ -5,7 +5,9 @@ tagline: Mostly Programming stuff
 ---
 {% for post in site.posts %}
 <div class="page-header">
-  <h1>{{ post.title }} {% if post.tagline %}<small>{{post.tagline}}</small>{% endif %}</h1>
+  <h1><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{
+  post.title }} {% if post.tagline %}<small>{{post.tagline}}</small>{% endif
+  %}</a></h1>
 </div>
 
 <div class="row post-full">
