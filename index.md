@@ -3,22 +3,35 @@ layout: default
 title: Catherine's Auxiliary Brain
 tagline: Mostly Programming stuff
 ---
-<div class="home">
+{% for post in site.posts %}
+<div class="page-header">
+  <h1>{{ post.title }} {% if post.tagline %}<small>{{post.tagline}}</small>{% endif %}</h1>
+</div>
 
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>{{ post.date | date_to_long_string }}</span>
+    </div>
+    <div class="content">
+      {{ content }}
+    </div>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+  {% unless post.categories == empty %}
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      {% assign categories_list = post.categories %}
+      {% include JB/categories_list %}
+    </ul>
+  {% endunless %}
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-        {% if post.excerpt %}{{ post.excerpt | strip_html | strip_newlines | truncate: 160 }} {% endif %}
-      </li>
-    {% endfor %}
-  </ul>
+  {% unless post.tags == empty %}
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      {% assign tags_list = post.tags %}
+      {% include JB/tags_list %}
+    </ul>
+  {% endunless %}
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
+  </div>
 </div>

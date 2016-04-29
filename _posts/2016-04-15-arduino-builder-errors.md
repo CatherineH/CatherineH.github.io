@@ -6,6 +6,7 @@ category: programming
 tags: [arduino, teensy, C]
 ---
 {% include JB/setup %}
+
 My life revolves around three boards: the digi rabbit, an altera FPGA, and a
 teensy (an arduino-compatible microcontroller).
 
