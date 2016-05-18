@@ -2,7 +2,7 @@
 layout: post
 title: "Music People Recommend to me"
 description: "vikings, Canadian dad rock and metal for Oprah fans"
-category: Music 
+category: music 
 tags: [steve vai, ensiferum, loxley, music, recommendation]
 ---
 {% include JB/setup %}
