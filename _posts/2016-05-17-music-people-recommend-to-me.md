@@ -14,7 +14,7 @@ Ensiferum
 
 In response to my *Bathory* review, Alex M. suggested Finnish Viking metal band Ensiferum. Their debut album appeared in 2001, a full 13 years after Bathory’s **Blood Fire Death**. Their sound doesn’t explore new territory, but it is cleaner and more listenable than Bathory.
 
-Though the Ensiferum discography is fairly consistent it quality, there were a few albums I didn’t like. **Dragonheads** (2006) was too ambitious, and is not quite polished. They use canned instruments, the singing is out of tune, the songs change tone all the time, the volumes aren’t balanced in a way to make the hard groves work. I thought their latest album, **One Man Army** (2015), which alternates between some lame country-western style and rage songs, was boring.
+Though the Ensiferum discography is fairly consistent it quality, there were a few albums I didn’t like. **Dragonheads** (2006) was too ambitious, and is not quite polished. They used synthesized wind instruments, the singing is out of tune, the songs change tone all the time, the volumes aren’t balanced in a way to make the hard groves work. I thought their latest album, **One Man Army** (2015), which alternates between some lame country-western style and rage songs, was boring.
 
 However, the albums where Ensiferum embraces the camp and fun of pretending to be vikings with electric guitars are really fun. I normally don’t like covers, but their cover of **Battery** has usurped the original in my brain. It’s amusing to hear such traditional pop melodies mixed with power metal - the melody of **Vanderum** reminds me of the chorus of **Doesn’t Really Matter** by *Janet Jackson*, but so far no one agrees with me:
 
