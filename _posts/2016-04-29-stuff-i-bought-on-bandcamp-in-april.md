@@ -12,7 +12,7 @@ Here’s the stuff I bought on Bandcamp for the month of April:
 Tengger Cavalry - Mountain Side EP
 ==================================
 
-[![Tengger Cavalry Mountain Side](https://f4.bcbits.com/img/a0624661730_16.jpg)](https://tenggercavalry.bandcamp.com/album/mountain-side-ep)
+[![Tengger Cavalry Mountain Side](https://f4.bcbits.com/img/a0624661730_14.jpg)](https://tenggercavalry.bandcamp.com/album/mountain-side-ep)
 
 
 **Tengger Cavalry** is a New York-based metal band that incorporates traditional mongolian instruments and throat singing into some very fast metal. I first heard of them when their 2014 album **Ancient Call** was released, instantly fell in love with the band, and forced it on anyone in my social circle with even a passing interest in metal.
@@ -28,7 +28,7 @@ The Mountain Side EP is not a particularly good value for money, but I have gott
 Sourvein - Aquatic Occult
 =========================
 
-[![Sourvein Aquatic Occult](https://f4.bcbits.com/img/a2799975375_16.jpg)](https://sourvein.bandcamp.com/album/aquatic-occult)
+[![Sourvein Aquatic Occult](https://f4.bcbits.com/img/a2799975375_14.jpg)](https://sourvein.bandcamp.com/album/aquatic-occult)
 
 Sourvein is a sludge metal band (which as far as I can tell is slower, more distorted stoner metal) from North Carolina. I loved their last album **Black Fangs**.
 
@@ -41,9 +41,9 @@ However, there are few tracks with harsher vocals which are quite good. **Ocypus
 Fall of Every Sparrow - Ophir EP & Beautiful Fiction Single
 ===========================================================
 
-[![FOES Beautiful Fiction](http://f4.bcbits.com/img/a3462608377_16.jpg)](http://music.basickrecords.com/album/beautiful-fiction)
+[![FOES Beautiful Fiction](http://f4.bcbits.com/img/a3462608377_14.jpg)](http://music.basickrecords.com/album/beautiful-fiction)
 
-[![FOES Ophir](https://f4.bcbits.com/img/a0096047644_16.jpg)](https://fallofeverysparrow.bandcamp.com/album/ophir)
+[![FOES Ophir](https://f4.bcbits.com/img/a0096047644_14.jpg)](https://fallofeverysparrow.bandcamp.com/album/ophir)
 
 Last month the music video for **Beautiful Fiction** by a band called **FOES** (Fall of Every Sparrow) caught my eye, so this month I bought the single and FOES other bandcamp release, an EP released in 2014 called **Ophir**. This EP is an unexpected gem. It reminds me of post-Porcupine Tree **Steve Wilson**, though as a Canadian that might be influenced by the accent.
 
