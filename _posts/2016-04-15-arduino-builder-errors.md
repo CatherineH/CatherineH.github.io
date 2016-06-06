@@ -18,6 +18,8 @@ development to PyCharm. This post documents the errors encountered moving from t
 `index out of range` on Board Resolver
 ======================================
 
+A [merged pull request on arduino-builder](https://github.com/arduino/arduino-builder/pull/141) should prevent this error from occuring in future.
+
  The arduino-builder requires the full board name to be specified as
  something like package_name:platform_name:board_name . The colons are
  essential and the arduino-builder will not check to make sure the full board
@@ -44,9 +46,6 @@ main.main()
 
 ```
 
-It would be helpful if **target_board_resolver.go** first checked to make
-sure your board follows the format required, instead of giving this unhelpful
- error.
 
 Resolution
 ----------
@@ -125,3 +124,21 @@ teensyLC.build.usbtype=USB_SERIAL
 ```
 
 to my **boards.txt** file.
+
+Ctags file does not exist
+=========================
+
+The following error may occur when compiling for arduino-branded (i.e., uno, mega, etc) boards: 
+
+```
+exec: "{runtime.tools.ctags.path}/ctags": file does not exist
+```
+
+Resolution
+----------
+
+When executing arduino-builder, add the argument:
+
+```
+-tools ~/arduino-1.6.7/tools-builder
+```
