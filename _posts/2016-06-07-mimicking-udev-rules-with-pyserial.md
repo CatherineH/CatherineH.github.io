@@ -26,7 +26,7 @@ I had reverted back to plugging and unplugging cables, until the other experimen
 physicist at work switched out the hardware in my experimental setup overnight. After
 I had calmed down, decided to find another way.
 
-Here's my solution. (PySerial)[http://pyserial.readthedocs.io/] has a lovely tool
+Here's my solution. [PySerial](http://pyserial.readthedocs.io/) has a lovely tool
 called *list_ports* which will list a
  bunch of handy information about the available com ports. By matching the vendor and
  product IDs, I can guess the devices:
@@ -62,8 +62,8 @@ for key in ports.keys():
     handles[key] = Serial(ports[key], HARDWARE[key][2])
 ```
 
-This is a simplification. I import modules from (InstrumentKit)
-[https://github.com/Galvant/InstrumentKit} to
+This is a simplification. I import modules from [InstrumentKit]
+(https://github.com/Galvant/InstrumentKit) to
  do the actual communication rather than writing the commands directly to the handles.
 
 [^1]: Brendon, if you're reading, I'm still sorry about this.
