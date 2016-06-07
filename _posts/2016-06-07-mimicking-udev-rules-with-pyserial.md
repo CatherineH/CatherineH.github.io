@@ -36,9 +36,9 @@ called *list_ports* which will list a
 from serial import Serial
 from serial.tools import list_ports
 
-# hardware is represented as a tuple of (vid, pid, baud_rate)
-HARDWARE = {'temperature_controller': (1027, 24577, 115200),
-            'counter': (1027, 24577, 19200),
+# hardware is represented as a tuple of (vid, pid, serial_number (if needed), baud_rate)
+HARDWARE = {'temperature_controller': (1027, 24577, 'serial1', 115200),
+            'counter': (1027, 24577, 'serial2', 19200),
             'motor_controller': (5824, 1155, 9600),
             'laser': (10682, 2, 115200)}
 
@@ -47,10 +47,16 @@ def map_hardware():
     for key, value in HARDWARE_IDS.items():
         found_port = False
         for port in list_ports.comports():
-            if port.vid == value[0] and port.pid == value[1]:
-                found_port = True
-                com_ports[key] = port.device
-                break
+            if len(value) > 3:
+                if port.vid == value[0] and port.pid == value[1] and port.serial_number == value[2]:
+                   found_port = True
+                   com_ports[key] = port.device
+                   break
+            else:
+                if port.vid == value[0] and port.pid == value[1]:
+                   found_port = True
+                   com_ports[key] = port.device
+                   break
         if not found_port:
             raise RuntimeError("device matching ids for key: ", key, " not found")
     return com_ports
@@ -59,7 +65,7 @@ ports = map_hardware()
 handles = dict()
 
 for key in ports.keys():
-    handles[key] = Serial(ports[key], HARDWARE[key][2])
+    handles[key] = Serial(ports[key], HARDWARE[key][-1])
 ```
 
 This is a simplification. I import modules from [InstrumentKit]
