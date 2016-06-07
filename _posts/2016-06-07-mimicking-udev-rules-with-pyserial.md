@@ -29,7 +29,8 @@ I had calmed down, decided to find another way.
 Here's my solution. [PySerial](http://pyserial.readthedocs.io/) has a lovely tool
 called *list_ports* which will list a
  bunch of handy information about the available com ports. By matching the vendor and
- product IDs, I can guess the devices:
+ product IDs, (or in the case of devices that both use the FTDI FT232R chip, also the 
+ serial number) I can guess the devices:
 
 
 ```
