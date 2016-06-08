@@ -69,8 +69,7 @@ for key in ports.keys():
     handles[key] = Serial(ports[key], HARDWARE[key][-1])
 ```
 
-This is a simplification. I import modules from [InstrumentKit]
-(https://github.com/Galvant/InstrumentKit) to
+This is a simplification. I import modules from [InstrumentKit](https://github.com/Galvant/InstrumentKit) to
  do the actual communication rather than writing the commands directly to the handles.
 
 [^1]: Brendon, if you're reading, I'm still sorry about this.
