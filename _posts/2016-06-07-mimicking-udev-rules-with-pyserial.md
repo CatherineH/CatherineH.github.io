@@ -2,7 +2,7 @@
 layout: post
 title: "Mimicking udev rules with PySerial"
 description: "Because unfortunately Windows"
-category: Programming
+category: programming
 tags: [python, serial, experimental automation]
 ---
 {% include JB/setup %}
