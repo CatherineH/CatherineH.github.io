@@ -45,7 +45,7 @@ HARDWARE = {'temperature_controller': (1027, 24577, 'serial1', 115200),
 
 def map_hardware():
     com_ports = dict()
-    for key, value in HARDWARE_IDS.items():
+    for key, value in HARDWARE.items():
         found_port = False
         for port in list_ports.comports():
             if len(value) > 3:
