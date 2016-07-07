@@ -6,7 +6,7 @@ category: programming
 tags: [electronics, C, python, InstrumentKit]
 ---
 {% include JB/setup %}
-    
+
 Aside from fingerprints, there is nothing more annoying, or more damaging to optics equipment than unplugging and
 plugging in fiber optics. Every time a fiber tip or port is exposed to air, there's a chance of getting gross human skin
  cells on places where tightly focused high-power light might incinerate them, yet, so many experiments require routing
@@ -45,3 +45,109 @@ My prototype board looks like this:
 
 Imagine the Sharp SSR on the breadboard instead of the Omron SSR. You'll notice that I have left the green pin
 unconnected. The switch has always activated when 5V, thus the position information isn't useful right now.
+
+Arduino Code
+============
+
+This teensy is also used to control several other pieces of experimental hardware, so I've excerpted it here.
+
+I want to be able to read the current position state and write a new position state using a SCPI-compliant serial
+connection.
+
+My .ino code looks like this:
+
+```
+#include "scpi_comm.h"
+#include "optical_switch.h"
+int switch_led_pin = 13;
+int out_pin = 9;
+settings _settings = {.switch_setting = 1, .motor = _state};
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(switch_led_pin, OUTPUT);
+  pinMode(out_pin, OUTPUT);
+}
+
+void loop()
+{
+  update_optical_switch(_settings.switch_setting, out_pin, switch_led_pin);
+  if (Serial.available() > 0) {
+    comm_protocol(Serial.read(), &_settings);
+  }
+}
+```
+
+My *scpi_comm.h* contains an internal state machine which collects characters into a string until the termination
+character is received, then attempts to parse the string:
+
+```
+typedef struct {
+  int switch_setting;
+} settings;
+
+char terminationByte = '\r';
+int incomingByte = 0;
+int string_pos = 0;
+int current_state = 1;
+char line[15];
+char serialsecond[5];
+char input_str[8];
+char output_str[8];
+
+void comm_protocol(byte incomingByte, settings *settings){
+   line[string_pos] = incomingByte;
+   string_pos += 1;
+   if(incomingByte == terminationByte)
+   {
+     if(strncmp(line, ":OUTP", 5)==0)
+     {
+         char * loc = strchr(line, ':');
+          loc = strchr(loc+1, ' ');
+          memcpy(serialsecond, loc+1, 3);
+          if(strncmp(serialsecond, "1", 1) == 0)
+          {
+             settings->switch_setting = 1;
+          }
+          else
+          {
+            settings->switch_setting = 0;
+          }
+          sprintf(output_str, "Set Switch to %d%c", settings->switch_setting, terminationByte);
+          Serial.write(output_str);
+     }
+     else if(strncmp(line, "OUTP", 4)==0 && strpbrk(line, "?") != 0)
+     {
+         sprintf(output_str, "%d%c",  settings->switch_setting, terminationByte);
+         Serial.write(output_str);
+     }
+     else{
+        sprintf(output_str, "Unknown command%c", terminationByte);
+        Serial.write(output_str);
+     }
+     // reset the string
+     string_pos = 0;
+     line[0] = '\0';
+   }
+}
+```
+
+Lastly, my *optical_switch.h* code simply reads the settings and makes the Teensy's indicator LED also go high when the
+switch position is high:
+
+```
+void update_optical_switch(int optical_state, int switch_pin, int led_pin)
+{
+  if(optical_state==1)
+  {
+    digitalWrite(switch_pin, HIGH);
+    digitalWrite(led_pin, HIGH);
+  }
+  else
+  {
+    digitalWrite(switch_pin, LOW);
+    digitalWrite(led_pin, LOW);
+  }
+}
+```
