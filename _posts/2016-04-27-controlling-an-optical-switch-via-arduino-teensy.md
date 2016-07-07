@@ -164,6 +164,16 @@ experimental software:
 from instruments.abstract_instruments import Instrument
 from time import sleep
 from sys import platform
+
+class Switch(Instrument):
+    """
+    An interface to the teensy-controlled optical switch
+    """
+    def __init__(self, filelike, increment=200):
+        super(Switch, self).__init__(filelike)
+        self.terminator = "\r"
+        self.increment = increment
+
 ```
 
 While the coding side of this application may seem a bit over-engineered, it is because I want to apply the
