@@ -1,0 +1,1352 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+        <title>Catherine&#39;s Auxiliary Brain</title>
+        <description>Catherine&#39;s Auxiliary Brain - Catherine Holloway</description>
+        <link>CatherineH.github.io</link>
+        <atom:link href="CatherineH.github.io/rss.xml" rel="self" type="application/rss+xml" />
+        <lastBuildDate>Thu, 07 Jul 2016 10:24:12 -0700</lastBuildDate>
+        <pubDate>Thu, 07 Jul 2016 10:24:12 -0700</pubDate>
+        <ttl>60</ttl>
+
+
+        <item>
+                <title>Troubleshooting Windows dll imports in Python</title>
+                <description>
+&lt;p&gt;I stumbled over some fairly obvious things when importing a Windows dll in python this
+ morning. I’m writing this post to shorten the amount of time I spend reading Stack
+ Overflow next time.&lt;/p&gt;
+
+&lt;p&gt;The code I will be using for this post is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;from ctypes import cdll
+lib = cdll.LoadLibrary(&quot;mydll.dll&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&quot;are-you-using-the-static-version-of-the-library-instead-of-the-dynamic-version&quot;&gt;Are you using the static version of the library instead of the dynamic version?&lt;/h1&gt;
+
+&lt;p&gt;ctypes can only import dynamic libraries. If you attempt to load a static library, you
+ will get the error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  File &quot;Python35\Lib\ctypes\__init__.py&quot;, line 425, in LoadLibrary
+    return self._dlltype(name)
+  File &quot;Python35\Lib\ctypes\__init__.py&quot;, line 347, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: [WinError 193] %1 is not a valid Win32 application
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Make sure the dynamic &lt;em&gt;.dll&lt;/em&gt; file is loaded, not the static &lt;em&gt;.lib&lt;/em&gt; file. If only
+static libraries are provided, it might be possible to recompile as a dynamic library,
+but I did not try this.&lt;/p&gt;
+
+&lt;h1 id=&quot;are-you-using-32-bit-python-with-a-64-bit-library&quot;&gt;Are you using 32 bit python with a 64 bit library?&lt;/h1&gt;
+
+&lt;p&gt;Using a 64-bit dll with 32 bit python results in the error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;   File &quot;Python35\lib\ctypes\__init__.py&quot;, line 429, in LoadLibrary
+    return self._dlltype(name)
+  File &quot;Python35\lib\ctypes\__init__.py&quot;, line 351, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: [WinError 193] %1 is not a valid Win32 application
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To solve this, download the &lt;a href=&quot;https://www.python.org/downloads&quot;&gt;Windows x86-64&lt;/a&gt; version
+ of python, and configure your IDE to use this python interpreter.&lt;/p&gt;
+
+&lt;h1 id=&quot;are-you-using-the-32-bit-version-of-ctypes-with-a-64-bit-version-of-python&quot;&gt;Are you using the 32 bit version of ctypes with a 64 bit version of python?&lt;/h1&gt;
+
+&lt;p&gt;If you install the 64 bit version of python alongside the 32 bit version, it is likely
+ that your environment variables will still be set up to point the PYTHONPATH to the
+ 32 bit versions of the python libraries.&lt;/p&gt;
+
+&lt;p&gt;This will result in the error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;   File &quot;example.py&quot;, line 1, in &amp;lt;module&amp;gt;
+    from ctypes import cdll
+  File &quot;Python35\lib\ctypes\__init__.py&quot;, line 7, in &amp;lt;module&amp;gt;
+    from _ctypes import Union, Structure, Array
+ImportError: DLL load failed: %1 is not a valid Win32 application.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To fix this, I set the PYTHONPATH in my IDE to be &lt;em&gt;Python35\Lib\;Python35\libs;
+Python35\DLLs&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;On Windows, with python &amp;gt; 3.5, it is important to add the DLL folder; the &lt;em&gt;_ctypes&lt;/em&gt;
+module lives in there now.&lt;/p&gt;
+
+</description>
+                <link>CatherineH.github.io/programming/2016/07/07/troubleshooting-windows-dll-imports-in-python</link>
+                <guid>CatherineH.github.io/programming/2016/07/07/troubleshooting-windows-dll-imports-in-python</guid>
+                <pubDate>Thu, 07 Jul 2016 00:00:00 -0700</pubDate>
+        </item>
+
+        <item>
+                <title>Mimicking udev rules with PySerial</title>
+                <description>
+&lt;p&gt;My research group in grad school had an unfortunate culture of stealing equipment from
+other people’s experiments when they weren’t around. I participated in this culture as well,
+ but I tried to replace the things I took before they returned. However, this did not
+ spare me from the ire of a Postdoc&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; who pointed out that windows assigns
+  device names by serial number, thus my replacing a power meter with an identical
+  copy had caused him an hour of debugging time until he opened up the device manager.&lt;/p&gt;
+
+&lt;p&gt;Later, out of grad school and working on robots with even more hardware, I discovered
+the joy of writing udev rules and spared myself many hours of plugging in usb cables to
+see what they enumerate as.&lt;/p&gt;
+
+&lt;p&gt;I’m now out of robotics and back in experimental physics. Most
+experimental physicists aren’t linux users, so a lot of scientific equipment is sold with
+ drivers which are only functional on Windows.&lt;/p&gt;
+
+&lt;p&gt;I had reverted back to plugging and unplugging cables, until the other experimental
+physicist at work switched out the hardware in my experimental setup overnight. After
+I had calmed down, decided to find another way.&lt;/p&gt;
+
+&lt;p&gt;Here’s my solution. &lt;a href=&quot;http://pyserial.readthedocs.io/&quot;&gt;PySerial&lt;/a&gt; has a lovely tool
+called &lt;em&gt;list_ports&lt;/em&gt; which will list a
+ bunch of handy information about the available com ports. By matching the vendor and
+ product IDs, (or in the case of devices that both use the FTDI FT232R chip, also the 
+ serial number) I can guess the devices:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;from serial import Serial
+from serial.tools import list_ports
+
+# hardware is represented as a tuple of (vid, pid, serial_number (if needed), baud_rate)
+HARDWARE = {&#39;temperature_controller&#39;: (1027, 24577, &#39;serial1&#39;, 115200),
+            &#39;counter&#39;: (1027, 24577, &#39;serial2&#39;, 19200),
+            &#39;motor_controller&#39;: (5824, 1155, 9600),
+            &#39;laser&#39;: (10682, 2, 115200)}
+
+def map_hardware():
+    com_ports = dict()
+    for key, value in HARDWARE.items():
+        found_port = False
+        for port in list_ports.comports():
+            if len(value) &amp;gt; 3:
+                if port.vid == value[0] and port.pid == value[1] and port.serial_number == value[2]:
+                   found_port = True
+                   com_ports[key] = port.device
+                   break
+            else:
+                if port.vid == value[0] and port.pid == value[1]:
+                   found_port = True
+                   com_ports[key] = port.device
+                   break
+        if not found_port:
+            raise RuntimeError(&quot;device matching ids for key: &quot;, key, &quot; not found&quot;)
+    return com_ports
+
+ports = map_hardware()
+handles = dict()
+
+for key in ports.keys():
+    handles[key] = Serial(ports[key], HARDWARE[key][-1])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is a simplification. I import modules from &lt;a href=&quot;https://github.com/Galvant/InstrumentKit&quot;&gt;InstrumentKit&lt;/a&gt; to
+ do the actual communication rather than writing the commands directly to the handles.&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;Brendon, if you’re reading, I’m still sorry about this. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+                <link>CatherineH.github.io/programming/2016/06/07/mimicking-udev-rules-with-pyserial</link>
+                <guid>CatherineH.github.io/programming/2016/06/07/mimicking-udev-rules-with-pyserial</guid>
+                <pubDate>Tue, 07 Jun 2016 00:00:00 -0700</pubDate>
+        </item>
+
+        <item>
+                <title>Hacking Seaborn Grid Plots</title>
+                <description>
+&lt;p&gt;Seaborn is a wonderful python package for creating statistical plots like 
+those found in R. Although the documentation and API does not expose much, 
+the modules are built on top of matplotlib, a versatile plotting library. 
+Matplotlib has an incredible amount of customization, if you’re willing to 
+dig far enough. My goal with this post is simply to document the 
+customizations I have encountered. The changes are made on the ‘iris’ demo.&lt;/p&gt;
+
+&lt;h2 id=&quot;empty-axes&quot;&gt;Empty Axes&lt;/h2&gt;
+
+&lt;p&gt;Using seaborn with the default ubuntu matplotlib package (python-matplotlib) 
+will result in plots with empty axes:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/seaborn_plots/empty_axes.png&quot; alt=&quot;empty axes example&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To resolve this, matplotlib must be updated past version 1.3:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo apt-get install libfreetype6-dev
+$ sudo pip install --upgrade matplotlib
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;custom-data-labels&quot;&gt;Custom Data Labels&lt;/h2&gt;
+
+&lt;p&gt;Seaborn will take the keys from the dataframe as the x and y axes labels, and
+ assign labels only if the subplots are around the left and bottom sides of 
+ the grid. Replacing them means dipping down to the axes level:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import seaborn as sns; sns.set(style=&quot;ticks&quot;, color_codes=True)
+iris = sns.load_dataset(&quot;iris&quot;)
+g = sns.pairplot(iris, hue=&#39;species&#39;)
+replacements = {&#39;sepal_length&#39;: r&#39;$\alpha$&#39;, &#39;sepal_width&#39;: &#39;sepal&#39;,
+                &#39;petal_length&#39;: r&#39;$\beta$&#39;, &#39;petal_width&#39;: &#39;petal&#39;,
+                &#39;versicolor&#39;: &#39;bloop&#39;}
+
+for i in range(4):
+    for j in range(4):
+        xlabel = g.axes[i][j].get_xlabel()
+        ylabel = g.axes[i][j].get_ylabel()
+        if xlabel in replacements.keys():
+            g.axes[i][j].set_xlabel(replacements[xlabel])
+        if ylabel in replacements.keys():
+            g.axes[i][j].set_ylabel(replacements[ylabel])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Similarly, the hue categories are taken from the values in the dataframe. 
+Most of the template graphs (such as pairplot), add a legend to the top level
+ figure on being called, and this makes it difficult to edit.&lt;/p&gt;
+
+&lt;p&gt;In addition, the matplotlib &lt;em&gt;Figure&lt;/em&gt; object does not provide a &lt;em&gt;get_legend()&lt;/em&gt;
+ method. Instead, it is possible to access via &lt;em&gt;get_children()&lt;/em&gt;. The legend 
+ is the last artist added, so it will be at index -1:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for i in range(len(g.fig.get_children()[-1].texts)):
+    label = g.fig.get_children()[-1].texts[i].get_text()
+    if label in replacements.keys():
+        g.fig.get_children()[-1].texts[i].set_text(replacements[label])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is the resulting graph:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/seaborn_plots/labels_output.png&quot; alt=&quot;renaming labels example&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;moving-the-legend&quot;&gt;Moving the Legend&lt;/h2&gt;
+
+&lt;p&gt;There are plenty of ways to place a legend in a figure when it is created, 
+but moving the legend once it is already in the figure is a different story. 
+The one method I’ve found is to move the legend’s anchor using 
+&lt;em&gt;set_bbox_to_anchor&lt;/em&gt;. These numbers seem to be expressed as a function of the
+ size of the total figure, and are expressed as (left, bottom, width, height)
+ . Since the figure expands to fill the required space of all the artists, 
+ width and height can be zero. So, the following code will put the legend in 
+ the middle in the y direction but over right edge of the figure:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;g.fig.get_children()[-1].set_bbox_to_anchor((1.1, 0.5, 0, 0))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/seaborn_plots/legend_moved_output.png&quot; alt=&quot;moved legend example&quot; /&gt;&lt;/p&gt;
+
+</description>
+                <link>CatherineH.github.io/programming/2016/05/24/seaborn-pairgrid-tips</link>
+                <guid>CatherineH.github.io/programming/2016/05/24/seaborn-pairgrid-tips</guid>
+                <pubDate>Tue, 24 May 2016 00:00:00 -0700</pubDate>
+        </item>
+
+        <item>
+                <title>Stuff I bought on Bandcamp in May</title>
+                <description>
+&lt;p&gt;This month I bought three fantastic albums an an EP on my favourite DRM-free platform:&lt;/p&gt;
+
+&lt;h1 id=&quot;sunburst---fragments-of-creation&quot;&gt;Sunburst - Fragments of Creation&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://innerwound.bandcamp.com/album/fragments-of-creation&quot;&gt;&lt;img src=&quot;https://f4.bcbits.com/img/a1507589857_14.jpg&quot; alt=&quot;Sunburst - Fragments of Creation&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I am aware of only three things that my husband loves that I think are worse than
+&lt;a href=&quot;http://fivethirtyeight.com/features/how-do-you-put-out-a-subterranean-fire-in-a-mountain-of-trash&quot;&gt;subterranean trash fires&lt;/a&gt;:
+Slaughterhouse Five, Jupiter Ascending, and &lt;em&gt;Dream Theater&lt;/em&gt;’s latest album, &lt;strong&gt;The Astonishing&lt;/strong&gt;. I love Dream Theater,
+and think that their other two albums since Portnoy’s departure rank just under Images and Words, but listening to
+&lt;strong&gt;The Astonishing&lt;/strong&gt; gave me DT fatigue. So I was hesitant to listen to &lt;strong&gt;Fragments of Creation&lt;/strong&gt; by &lt;em&gt;Sunburst&lt;/em&gt; when I
+read that it was marketed as an album for DT fans.&lt;/p&gt;
+
+&lt;p&gt;But &lt;strong&gt;Fragments of Creation&lt;/strong&gt; was worth waking up for - it’s like the frenetic playing of &lt;em&gt;Fleshgod Apocalypse&lt;/em&gt; with
+triumphant DT melodies, guitar work and Labrie’s singing style. There are quite a few other progressive and metal influences:
+the fast synthesizer arpeggios that sound like songs off of &lt;em&gt;Asia&lt;/em&gt;’s &lt;strong&gt;Aura&lt;/strong&gt;, &lt;em&gt;TesseracT&lt;/em&gt; djent, and &lt;em&gt;Rhapsody of Fire&lt;/em&gt;
+choral breaks. There are still some fresh ideas - I really like the xylophones in the background.&lt;/p&gt;
+
+&lt;p&gt;The singing often verges on Celine Dion-level corniness with all of the tremolos, or descends into &lt;em&gt;Disturbed&lt;/em&gt; whining.
+The lyrics aren’t worth paying attention to: a lot of it is generic nu-metal stuff about pain and abandonment. The key
+change in &lt;strong&gt;Lullaby&lt;/strong&gt; attempts to keep a song that had already expressed all of its ideas going for another 30 seconds.
+Finally, the playing isn’t quite tight, but the songs are fun enough that it doesn’t detract from the whole product.&lt;/p&gt;
+
+&lt;p&gt;The album is not perfect, but it is a much better DT album than DT’s last. Ravenskill who?&lt;/p&gt;
+
+&lt;h1 id=&quot;vektor---terminal-redux&quot;&gt;Vektor - Terminal Redux&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://vektor.bandcamp.com/album/terminal-redux&quot;&gt;&lt;img src=&quot;https://f4.bcbits.com/img/a0144143476_14.jpg&quot; alt=&quot;Vektor - Terminal Redux&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Vektor&lt;/em&gt;, the band that made me a thrash-metal convert, released &lt;strong&gt;Terminal Redux&lt;/strong&gt;, a gothic space-opera concept album.
+ It is as technical, ferocious and fascinating as their last two albums, but the addition of a cohesive storyline makes this album special.&lt;/p&gt;
+
+&lt;p&gt;The story is about some unspeakable evil plotting revenge on the civilization that punished it for previous crimes. Like
+ the last &lt;em&gt;Ghost&lt;/em&gt; album, several tracks have gospel choir singing in a positive key about the reincarnation of this
+ great evil, which is utterly delightful. Vektor venture into slower territory on &lt;strong&gt;Collapse&lt;/strong&gt;, which don’t quite hold
+ my attention at slower speeds, though the interaction between counter melodies are still interesting.&lt;/p&gt;
+
+&lt;p&gt;But &lt;strong&gt;Collapse&lt;/strong&gt; is the one weak song on a substantial album.&lt;/p&gt;
+
+&lt;h1 id=&quot;bent-knee---say-so&quot;&gt;Bent Knee - Say So&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://bentknee.bandcamp.com/album/say-so&quot;&gt;&lt;img src=&quot;https://f4.bcbits.com/img/a2913975342_14.jpg&quot; alt=&quot;Bent Knee - Say So&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Say So&lt;/strong&gt; is a more pop, accessible, and fantastic sequel to &lt;em&gt;Bent Knee&lt;/em&gt;’s 2014 album &lt;strong&gt;Shiny Eyed Babies&lt;/strong&gt;. Although
+Bent Knee are called art-rock, I think of them as more like progressive pop/jazz music. The lead singer Courtney Swain
+can channel powerful Chanson emotions like &lt;em&gt;Edith Piaf&lt;/em&gt;, but with all of the avant-garde, modern flourishes of a singer
+like &lt;em&gt;Kimbra&lt;/em&gt;. The album starts off with a deeply unsettling song reminiscent of Shiny Eyed Babies’ &lt;strong&gt;Way Too Long&lt;/strong&gt;,
+about foreign liquids covering or flowing uncontrollably out of your body, except this time tar instead of oil and toxic
+gas, then delves into very female-centric themes. There are songs about the pre-pubescent angst of female childhood: I
+think the song &lt;strong&gt;Leak Water&lt;/strong&gt; is about feeling like one of the peeing dolls that were popular in the 90s and the song
+&lt;strong&gt;Counsellor&lt;/strong&gt; evokes memories of the emotional distance and bullying of my childhood peers. Other songs cover
+dissatisfaction with domestic life; lyrics on multiple songs mention dreaming of love and adventure while doing mundane
+things like driving kids around. &lt;strong&gt;Commercial&lt;/strong&gt; and &lt;strong&gt;Good Girl&lt;/strong&gt; are deeply sympathetic feminist anthems that should show
+ &lt;em&gt;Meghan Trainor&lt;/em&gt; and &lt;em&gt;Jennifer Lopez&lt;/em&gt; how it’s done.&lt;/p&gt;
+
+&lt;p&gt;This album should be taken as a blueprint for a modern pop masterpiece - the songs can make you feel as excited as a
+&lt;em&gt;Carly Rae Jepsen&lt;/em&gt; song, but the lyrics are as clever as something written by &lt;em&gt;Sloan&lt;/em&gt;. This album combines the
+melancholy plaints of &lt;em&gt;Melanie Martinez&lt;/em&gt; with the experimentation of &lt;em&gt;Zappa&lt;/em&gt;, and the end result is simply flawless.&lt;/p&gt;
+
+&lt;p&gt;If nothing else, the album is worth it to hear a sung five-note arpeggio of the word hyperloop.&lt;/p&gt;
+
+&lt;h1 id=&quot;gorguts---pleiades-dust&quot;&gt;Gorguts - Pleiades’ Dust&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://gorguts.bandcamp.com/album/pleiades-dust&quot;&gt;&lt;img src=&quot;https://f4.bcbits.com/img/a1779181077_14.jpg&quot; alt=&quot;Gorguts - Pleiades’ Dust&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;All your favourite &lt;em&gt;Gorguts&lt;/em&gt; elements are back in this 30-minute track: discordant guitar chords, growling vocals, and
+anxious drumming. Gorguts have been pretty consistent with their sound and quality over the past 25 years, if you liked
+&lt;strong&gt;Obscura&lt;/strong&gt;, you’ll like this. The track runs a gamut of emotions, or at least emotions defined by Gorguts, which makes
+up for it not being a full album.&lt;/p&gt;
+
+</description>
+                <link>CatherineH.github.io/music/2016/05/20/stuff-i-bought-on-bandcamp-in-may</link>
+                <guid>CatherineH.github.io/music/2016/05/20/stuff-i-bought-on-bandcamp-in-may</guid>
+                <pubDate>Fri, 20 May 2016 00:00:00 -0700</pubDate>
+        </item>
+
+        <item>
+                <title>Music People Recommend to me</title>
+                <description>
+&lt;p&gt;Being a snobby music fan, I love music recommendations even when inevitably don’t love it as much as the recommender. Here are my thoughts on music people have recommended to me recently; please send me more recommendations!&lt;/p&gt;
+
+&lt;h1 id=&quot;ensiferum&quot;&gt;Ensiferum&lt;/h1&gt;
+
+&lt;p&gt;In response to my &lt;em&gt;Bathory&lt;/em&gt; review, Alex M. suggested Finnish Viking metal band Ensiferum. Their debut album appeared in 2001, a full 13 years after Bathory’s &lt;strong&gt;Blood Fire Death&lt;/strong&gt;. Their sound doesn’t explore new territory, but it is cleaner and more listenable than Bathory.&lt;/p&gt;
+
+&lt;p&gt;Though the Ensiferum discography is fairly consistent it quality, there were a few albums I didn’t like. &lt;strong&gt;Dragonheads&lt;/strong&gt; (2006) was too ambitious, and is not quite polished. They used synthesized wind instruments, the singing is out of tune, the songs change tone all the time, the volumes aren’t balanced in a way to make the hard groves work. I thought their latest album, &lt;strong&gt;One Man Army&lt;/strong&gt; (2015), which alternates between some lame country-western style and rage songs, was boring.&lt;/p&gt;
+
+&lt;p&gt;However, the albums where Ensiferum embraces the camp and fun of pretending to be vikings with electric guitars are really fun. I normally don’t like covers, but their cover of &lt;strong&gt;Battery&lt;/strong&gt; has usurped the original in my brain. It’s amusing to hear such traditional pop melodies mixed with power metal - the melody of &lt;strong&gt;Vanderum&lt;/strong&gt; reminds me of the chorus of &lt;strong&gt;Doesn’t Really Matter&lt;/strong&gt; by &lt;em&gt;Janet Jackson&lt;/em&gt;, but so far no one agrees with me:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=ld_UXfJEXMU&quot;&gt;&lt;img src=&quot;http://img.youtube.com/vi/ld_UXfJEXMU/0.jpg&quot; alt=&quot;Youtube ScreenShot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I’m definitely going to see this band live the next time they’re in SoCal.&lt;/p&gt;
+
+&lt;h1 id=&quot;loxley&quot;&gt;Loxley&lt;/h1&gt;
+
+&lt;p&gt;Thomas E. recommended a one-EP heavy metal band  out of Ottawa called Loxley. Thomas bought their 1991 EP Better Late than Never off of one of his coworkers, who was related to someone in the band. It pains me to say, because I want to support Canadian music, it’s not very good. It’s not inventive for the time, and it sounds like it was recorded in a cathedral. If any members of Loxley are reading this, though I didn’t like this EP, Thomas clearly loved it and listened to the EP many times over the years, enough to recommend it in 2016.&lt;/p&gt;
+
+&lt;h1 id=&quot;steve-vai&quot;&gt;Steve Vai&lt;/h1&gt;
+
+&lt;p&gt;I probably should have known about guitar prodigy Steve Vai prior to Ben C.’s recommendation, but 80s and 90s solo acts are a big gap in my musical awareness. Although I was initially dismissive of Vai, I’m glad I revisited his discography.&lt;/p&gt;
+
+&lt;p&gt;My favourite album in Vai’s discography is &lt;strong&gt;Fire Garden&lt;/strong&gt; (1996), though its greatness is due to pulling in the best ideas of other contemporary bands. &lt;strong&gt;Aching Hunger&lt;/strong&gt; uses the synthetic music sampling &lt;em&gt;Yes&lt;/em&gt; introduced in the 80s. &lt;strong&gt;Brother&lt;/strong&gt; is a dramatic ballad that could have come from &lt;em&gt;Toto&lt;/em&gt;. The oddest cut is an &lt;em&gt;accidental&lt;/em&gt; cover of &lt;strong&gt;One Night in Bangkok&lt;/strong&gt; from the &lt;em&gt;ABBA/Tim Rice&lt;/em&gt; musical &lt;em&gt;Chess&lt;/em&gt;. According to the internet, David Lee Roth asked Vai to transcribe the guitar solo intro, which he didn’t end up using until a decade later when he dug it out, forgot that he hadn’t composed the solo, and turned it into a full song. The resulting song is honestly better than the original because it isn’t immediately followed by campy sing-talking about liking chess more than sex.&lt;/p&gt;
+
+&lt;p&gt;Although Vai’s instrumentals are fantastic, there’s a lot of garbage in his discography. Vai’s managers need to lock the sound samples out of his mixing computer. Vai is a fan of letting animals (like on &lt;strong&gt;Bad Horsie&lt;/strong&gt;), children (like on &lt;strong&gt;Ya Yo Gek&lt;/strong&gt;), and people with bad vocal fry (like on &lt;strong&gt;Kill the Guy&lt;/strong&gt;) onto his tracks. On his interludes, he either regresses to the maturity level of a ten year old, or espouses a very un-metal philosophy of positive thinking. He preaches being happy and nice all the time, then makes fun of Britney Spears while playing live. I guess negativity is only bad when it’s not directed at you? His singing is passable, but at its worst is like the singing of the B52’s &lt;em&gt;Fred Schneider&lt;/em&gt; without any of the charm.&lt;/p&gt;
+
+&lt;p&gt;Steve Vai is one of these talented guys with a career since the early 80s who appears in all sorts of interesting places. He played with &lt;em&gt;Zappa&lt;/em&gt;, collaborated with &lt;em&gt;Ozzy&lt;/em&gt;, and has appeared most recently on the new &lt;em&gt;M83&lt;/em&gt; album &lt;strong&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=U3YZTYXftzg&quot;&gt;Junk&lt;/a&gt;&lt;/strong&gt;. Listening to his discography is like a talented, curated tour of  rock guitar of the 80s and 90s, and I hope he continues to pop up in unusual places well into the future.&lt;/p&gt;
+
+</description>
+                <link>CatherineH.github.io/music/2016/05/17/music-people-recommend-to-me</link>
+                <guid>CatherineH.github.io/music/2016/05/17/music-people-recommend-to-me</guid>
+                <pubDate>Tue, 17 May 2016 00:00:00 -0700</pubDate>
+        </item>
+
+        <item>
+                <title>Stuff I bought on Bandcamp in April</title>
+                <description>
+&lt;p&gt;Here’s the stuff I bought on Bandcamp for the month of April:&lt;/p&gt;
+
+&lt;h1 id=&quot;tengger-cavalry---mountain-side-ep&quot;&gt;Tengger Cavalry - Mountain Side EP&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://tenggercavalry.bandcamp.com/album/mountain-side-ep&quot;&gt;&lt;img src=&quot;https://f4.bcbits.com/img/a0624661730_14.jpg&quot; alt=&quot;Tengger Cavalry Mountain Side&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tengger Cavalry&lt;/strong&gt; is a New York-based metal band that incorporates traditional mongolian instruments and throat singing into some very fast metal. I first heard of them when their 2014 album &lt;strong&gt;Ancient Call&lt;/strong&gt; was released, instantly fell in love with the band, and forced it on anyone in my social circle with even a passing interest in metal.&lt;/p&gt;
+
+&lt;p&gt;Although I skipped over their 2015 album &lt;strong&gt;Blood Sacrifice Shaman&lt;/strong&gt;, their new Mountain Side EP, and it fit within my bandcamp budget for April. For 9 USD you get 11 tracks, but only two are full &lt;em&gt;new&lt;/em&gt; songs. Both new songs focus more on the folk side of folk-metal Tengger Cavalry’s previous albums, and the recording and production quality is better. However, the songs sound a little too similar, and don’t have a good ending: &lt;strong&gt;Mountain Side&lt;/strong&gt; ends abruptly and &lt;strong&gt;Krutaya Gora&lt;/strong&gt; fades out.&lt;/p&gt;
+
+&lt;p&gt;The other songs in the EP are not even worth including: there’s a club mix of &lt;strong&gt;Mountain Side&lt;/strong&gt; that isn’t fast enough to dance to, an instrumental version which adds nothing because the throat singing on Tengger Cavalry tracks is practically a sixth instrument, a live version with a distracting yell of “everybody fucking move”, and an acoustic version that turns what was metal into country-western.&lt;/p&gt;
+
+&lt;p&gt;The highlights on this album are the new version of War Horse, which sounds to me like a completely different (but better!) song, and the bonus jam tracks.&lt;/p&gt;
+
+&lt;p&gt;The Mountain Side EP is not a particularly good value for money, but I have gotten so much enjoyment out of &lt;strong&gt;Ancient Call&lt;/strong&gt; and I like the direction Tengger Cavalry seems to be heading in so I don’t mind contributing towards their next release.&lt;/p&gt;
+
+&lt;h1 id=&quot;sourvein---aquatic-occult&quot;&gt;Sourvein - Aquatic Occult&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://sourvein.bandcamp.com/album/aquatic-occult&quot;&gt;&lt;img src=&quot;https://f4.bcbits.com/img/a2799975375_14.jpg&quot; alt=&quot;Sourvein Aquatic Occult&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Sourvein is a sludge metal band (which as far as I can tell is slower, more distorted stoner metal) from North Carolina. I loved their last album &lt;strong&gt;Black Fangs&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Aquatic Occult&lt;/strong&gt; is 14 nautical-themed track. The singing style on this album is different than Sourvein’s older albums, it seems more anemic and doesn’t quite match the tone or beat of the instrumentals.&lt;/p&gt;
+
+&lt;p&gt;However, there are few tracks with harsher vocals which are quite good. &lt;strong&gt;Ocypuss&lt;/strong&gt; and especially &lt;strong&gt;Aquanaut&lt;/strong&gt; are absolutely hypnotic. &lt;strong&gt;Urchins&lt;/strong&gt; contains some awesome atmospheric guitar melodies like those that &lt;strong&gt;Baroness&lt;/strong&gt; has become famous for, but the track is far too short.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Aquatic Occult&lt;/strong&gt; has a few highlights, but &lt;strong&gt;Black Fangs&lt;/strong&gt; was better.&lt;/p&gt;
+
+&lt;h1 id=&quot;fall-of-every-sparrow---ophir-ep--beautiful-fiction-single&quot;&gt;Fall of Every Sparrow - Ophir EP &amp;amp; Beautiful Fiction Single&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://music.basickrecords.com/album/beautiful-fiction&quot;&gt;&lt;img src=&quot;http://f4.bcbits.com/img/a3462608377_14.jpg&quot; alt=&quot;FOES Beautiful Fiction&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://fallofeverysparrow.bandcamp.com/album/ophir&quot;&gt;&lt;img src=&quot;https://f4.bcbits.com/img/a0096047644_14.jpg&quot; alt=&quot;FOES Ophir&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Last month the music video for &lt;strong&gt;Beautiful Fiction&lt;/strong&gt; by a band called &lt;strong&gt;FOES&lt;/strong&gt; (Fall of Every Sparrow) caught my eye, so this month I bought the single and FOES other bandcamp release, an EP released in 2014 called &lt;strong&gt;Ophir&lt;/strong&gt;. This EP is an unexpected gem. It reminds me of post-Porcupine Tree &lt;strong&gt;Steve Wilson&lt;/strong&gt;, though as a Canadian that might be influenced by the accent.&lt;/p&gt;
+
+&lt;p&gt;Like post-Porcupine Tree &lt;strong&gt;Steve Wilson&lt;/strong&gt;, this music is introspective and immediately emotionally relatable, which is uncommon from an alternative progressive rock band. The tracks sound a bit sonically full, verging on shoe-gazy. The unclean vocal bits effectively emotionally compliment the clean bits and are used sparingly. The melodies are accessible, but there’s enough complexity in the counter melodies and rhythm to keep the songs interesting.&lt;/p&gt;
+
+&lt;p&gt;However, this emotional accessibility occasionally goes overboard. The opening lyrics on &lt;strong&gt;The First Rook To…&lt;/strong&gt; are trite. It’s a shame, because the rest of the song’s lyrics are bit more subtle and poetic. I think the song would have been better without lyrics in the first section, because the rest of the song is fantastic. I especially liked the triplets in the piano counter melody.&lt;/p&gt;
+
+&lt;p&gt;Their latest output &lt;strong&gt;Beautiful Fiction&lt;/strong&gt; is also great, it sounds like the band are experimenting a bit with syncopation, but kept a lot of the elements that I liked from &lt;strong&gt;Ophir&lt;/strong&gt;. I’m looking forward to whatever comes next from FOES.&lt;/p&gt;
+
+&lt;p&gt;On another note, it drives me crazy when bands change the punctuation in their titles. I take great, possibly neurotic, care in keeping my music organized and now the FOES tracks don’t stack up nicely in VLC.&lt;/p&gt;
+</description>
+                <link>CatherineH.github.io/music/2016/04/29/stuff-i-bought-on-bandcamp-in-april</link>
+                <guid>CatherineH.github.io/music/2016/04/29/stuff-i-bought-on-bandcamp-in-april</guid>
+                <pubDate>Fri, 29 Apr 2016 00:00:00 -0700</pubDate>
+        </item>
+
+        <item>
+                <title>Controlling an Optical Switch via Arduino (Teensy)</title>
+                <description>
+&lt;p&gt;Aside from fingerprints, there is nothing more annoying, or more damaging to optics equipment than unplugging and
+plugging in fiber optics. Every time a fiber tip or port is exposed to air, there’s a chance of getting gross human skin
+ cells on places where tightly focused high-power light might incinerate them, yet, so many experiments require routing
+ light. Wouldn’t it be nicer if a robot did the switching for you at 2 am while your gross dust and sweat producing body
+  is sleeping?&lt;/p&gt;
+
+&lt;p&gt;In experiments, I accomplish this using a teensy LC and a DiCon optical switch.&lt;/p&gt;
+
+&lt;h1 id=&quot;electonics-side&quot;&gt;Electonics Side&lt;/h1&gt;
+
+&lt;p&gt;The optical switch I use is a &lt;a href=&quot;http://www.diconfiberoptics.com/products/scd0009/scd0009f.pdf&quot;&gt;DiCon 2x2 prism switch&lt;/a&gt;,
+which is essentially a little piece of glass on a motor.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/dicon_switch.jpg&quot; alt=&quot;A picture of a DiCon fiber optic switch&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This switch will operate in several modes, but in every mode the first two (blue and purple) pins are used to set the
+position and the second two (red and green) pins are used to read the position of the switch.&lt;/p&gt;
+
+&lt;p&gt;I chose to operate the switch in &lt;em&gt;Non-latching 2-pin Control&lt;/em&gt; mode, because it was the least complicated.&lt;/p&gt;
+
+&lt;p&gt;I chose to put the two pins that should never change in control mode (purple should always be ground, red should always
+be +5V) and the two pins with changing values (blue and green) on the other. This led to a lot of initial confusion, but
+ I believe it was a good decision to because it allows me to keep the two pins that need to be hooked up to some external logic together.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/teensy_switch.jpg&quot; alt=&quot;A picture of the headers going into the teensy&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The threshold voltage for switching is above 3.3V, which is the maximum that the Teensy’s output pins can supply. Thus,
+I chose to use a solid state relay to bump the signal up to 5V. I use Sharp Microelectronics
+&lt;a href=&quot;http://www.digikey.com/product-detail/en/sharp-microelectronics/PR22MA11NTZF/425-2602-5-ND/856883&quot;&gt;R22MA1&lt;/a&gt; because
+they’re super cheap (25.65$ for 50) and I have a tendency to accidentally blow electronics up.&lt;/p&gt;
+
+&lt;p&gt;My prototype board looks like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/switch_bb.png&quot; alt=&quot;Fritzing image of breadboard&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Imagine the Sharp SSR on the breadboard instead of the Omron SSR. You’ll notice that I have left the green pin
+unconnected. The switch has always activated when 5V, thus the position information isn’t useful right now.&lt;/p&gt;
+
+&lt;h1 id=&quot;arduino-code&quot;&gt;Arduino Code&lt;/h1&gt;
+
+&lt;p&gt;This teensy is also used to control several other pieces of experimental hardware, so I’ve excerpted it here.&lt;/p&gt;
+
+&lt;p&gt;I want to be able to read the current position state and write a new position state using a SCPI-compliant serial
+connection.&lt;/p&gt;
+
+&lt;p&gt;My .ino code looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#include &quot;scpi_comm.h&quot;
+#include &quot;optical_switch.h&quot;
+int switch_led_pin = 13;
+int out_pin = 9;
+settings _settings = {.switch_setting = 1, .motor = _state};
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(switch_led_pin, OUTPUT);
+  pinMode(out_pin, OUTPUT);
+}
+
+void loop()
+{
+  update_optical_switch(_settings.switch_setting, out_pin, switch_led_pin);
+  if (Serial.available() &amp;gt; 0) {
+    comm_protocol(Serial.read(), &amp;amp;_settings);
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;My &lt;em&gt;scpi_comm.h&lt;/em&gt; contains an internal state machine which collects characters into a string until the termination
+character is received, then attempts to parse the string:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;typedef struct {
+  int switch_setting;
+} settings;
+
+char terminationByte = &#39;\r&#39;;
+int incomingByte = 0;
+int string_pos = 0;
+int current_state = 1;
+char line[15];
+char serialsecond[5];
+char input_str[8];
+char output_str[8];
+
+void comm_protocol(byte incomingByte, settings *settings){
+   line[string_pos] = incomingByte;
+   string_pos += 1;
+   if(incomingByte == terminationByte)
+   {
+     if(strncmp(line, &quot;:OUTP&quot;, 5)==0)
+     {
+         char * loc = strchr(line, &#39;:&#39;);
+          loc = strchr(loc+1, &#39; &#39;);
+          memcpy(serialsecond, loc+1, 3);
+          if(strncmp(serialsecond, &quot;1&quot;, 1) == 0)
+          {
+             settings-&amp;gt;switch_setting = 1;
+          }
+          else
+          {
+            settings-&amp;gt;switch_setting = 0;
+          }
+          sprintf(output_str, &quot;Set Switch to %d%c&quot;, settings-&amp;gt;switch_setting, terminationByte);
+          Serial.write(output_str);
+     }
+     else if(strncmp(line, &quot;OUTP&quot;, 4)==0 &amp;amp;&amp;amp; strpbrk(line, &quot;?&quot;) != 0)
+     {
+         sprintf(output_str, &quot;%d%c&quot;,  settings-&amp;gt;switch_setting, terminationByte);
+         Serial.write(output_str);
+     }
+     else{
+        sprintf(output_str, &quot;Unknown command%c&quot;, terminationByte);
+        Serial.write(output_str);
+     }
+     // reset the string
+     string_pos = 0;
+     line[0] = &#39;\0&#39;;
+   }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Lastly, my &lt;em&gt;optical_switch.h&lt;/em&gt; code simply reads the settings and makes the Teensy’s indicator LED also go high when the
+switch position is high:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;void update_optical_switch(int optical_state, int switch_pin, int led_pin)
+{
+  if(optical_state==1)
+  {
+    digitalWrite(switch_pin, HIGH);
+    digitalWrite(led_pin, HIGH);
+  }
+  else
+  {
+    digitalWrite(switch_pin, LOW);
+    digitalWrite(led_pin, LOW);
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&quot;python-computer-side&quot;&gt;Python (Computer) Side&lt;/h1&gt;
+
+&lt;p&gt;I used the fantastic &lt;a href=&quot;https://github.com/Galvant/InstrumentKit&quot;&gt;InstrumentKit&lt;/a&gt; to incorporate the control into my
+experimental software:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
+from instruments.abstract_instruments import Instrument
+from time import sleep
+from sys import platform
+
+class Switch(Instrument):
+    &quot;&quot;&quot;
+    An interface to the teensy-controlled optical switch
+    &quot;&quot;&quot;
+    def __init__(self, filelike, increment=200):
+        super(Switch, self).__init__(filelike)
+        self.terminator = &quot;\r&quot;
+        self.increment = increment
+
+    @property
+    def setting(self):
+        &quot;&quot;&quot;
+        Get the current output setting
+        :return: int, representing the currently active channel
+        &quot;&quot;&quot;
+        response = self.query(&quot;OUTP?&quot;)
+        return int(response)
+
+    @setting.setter
+    def setting(self, new_val):
+        &quot;&quot;&quot;
+        Set the current output setting
+        :param new_val: the output channel number, either 0 or 1
+        :return:
+        &quot;&quot;&quot;
+        if new_val == 0:
+            response = self.query(&quot;:OUTP 0&quot;)
+        elif new_val == 1:
+            response = self.query(&quot;:OUTP 1&quot;)
+
+def main():
+   # Runs the switch program on its own, as a test
+    if platform == &quot;linux&quot; or platform == &quot;linux2&quot;:
+        port = &quot;/dev/ttyACM0&quot;
+    else:
+        port = &quot;COM11&quot;
+    switch = Switch.open_serial(port, 9600, timeout=1)
+    print(&quot;switch tests&quot;)
+
+    iteration = 0
+    for i in range(0, 50):
+        print(&quot;Iteration: &quot;+str(iteration))
+        iteration += 1
+        switch.setting = 0
+        sleep(2)
+        switch.setting = 1
+        sleep(2)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;While the coding side of this application may seem a bit over-engineered, it is because I want to apply the
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Principle_of_least_astonishment&quot;&gt;principle of least astonishment&lt;/a&gt; to everything I do; by
+labeling everything I don’t have to guess at some convention I decided on several months ago. This switch is a simple
+piece of a much more complex testing organism, and I want it to be the least complicated organ.&lt;/p&gt;
+</description>
+                <link>CatherineH.github.io/programming/2016/04/27/controlling-an-optical-switch-via-arduino-teensy</link>
+                <guid>CatherineH.github.io/programming/2016/04/27/controlling-an-optical-switch-via-arduino-teensy</guid>
+                <pubDate>Wed, 27 Apr 2016 00:00:00 -0700</pubDate>
+        </item>
+
+        <item>
+                <title>Walking Through Mars and Frustration</title>
+                <description>
+&lt;p&gt;Six months ago I participated in a hackathon for the City of Waterloo. I built a WebGL application that built a little model of Waterloo that you could tilt and zoom in a browser. I used the building footprint data to find the base of the models, then used the latest aerial laser scan data minus the elevation data to estimate the height of the buildings. I coloured the buildings based on what their reported purpose and size were - one color for commercial buildings, one for municipal buildings, and one for residential buildings, then within that sub-shades for the types of buildings - apartment buildings, duplexes, single family dwellings.&lt;/p&gt;
+
+&lt;p&gt;My desire to build this model came from my own curiosity - between the time that I moved to Waterloo in 2010 and left in 2015, an entire neighborhood transformed from 1950’s style bungalows to high-rise student housing, and I wanted to be able to see those buildings spring out of the ground. Also, I wanted an excuse to learn WebGL. The end result was a stylized version of google maps:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pbs.twimg.com/media/CSMy-TbWoAAUefs.png:large&quot; alt=&quot;ower screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I was proud of what I’d put together in 48 hours, but it didn’t win anything. An app that for tracking trees won. It wasn’t technically impressive - Apple and Android both provide sample apps that allow you to add data to maps, and the tree data was provided by the city. City maintenance apps like this have been implemented by cities larger than Waterloo since 2010. But, the guys who won were funny teenagers, and it was impressive for their level of experience.&lt;/p&gt;
+
+&lt;p&gt;After that hackathon I came to a fairly obvious conclusion: hackathons are about showmanship rather than technical ability, but I would rather impress myself than impress a judge. I’ve won hackathons on the basis of good presentations, but they’re not the things I brag about later.&lt;/p&gt;
+
+&lt;p&gt;Last weekend was SpaceApps 2016 - a yearly coding challenge organized by NASA. Communities around the world organize events for SpaceApps, and in previous years I’d attended the ones in Kitchener-Waterloo and Toronto. There is no event - at least open to the public - in San Diego, so I signed up for the “everywhere” event. Knowing that there was no competition with a pitch at the end, I decided to go for the most technically challenging project I could find: procedurally generating game environments using web map tile service files of Mars.&lt;/p&gt;
+
+&lt;p&gt;The most obvious way to solve the challenge - even cited in the challenge description, was to build something in Minecraft, but I went with the Unreal Engine instead. My reasons were two-fold: modding Minecraft is so easy that it is taught to elementary-aged kids, and secondly: I don’t like Minecraft. I have plenty of creative outlets in my everyday life, so when I sit down to play a video game I want to indulge my destructive impulses. I’d prefer to play first person shooters, hence my interest in building something in the Unreal Engine.&lt;/p&gt;
+
+&lt;h1 id=&quot;getting-the-data&quot;&gt;Getting the data&lt;/h1&gt;
+&lt;p&gt;NASA is gradually improving their data services. My first encounter with them was in high school, where for a science fair project I downloaded their database of asteroid impact crafters to correlate the size and age using deeply flawed statistics to validate a hypothesis about Jupiter being the solar system’s asteroid dust-buster. Back then, I had to use ftp and some text macros to extract the desired data. It was painful.&lt;/p&gt;
+
+&lt;p&gt;These days they’re moving to web-based APIs, but it’s still not as good as it could be. They claim that their datasets are WTMS-compliant, but I could not get a python WTMS library working with any of the datasets I wanted. I had two possible options - use the HiRISE data, which involves downloading large binary files via FTP, and then writing my own scripts to parse the binary data to a format I could use just as I had in high school, or going through the NASA  API to pull down much lower-resolution data sets and pulling them down one image at a time. This being a hackathon, I went with the second option.&lt;/p&gt;
+
+&lt;p&gt;I used the Mars Orbital Laser Altimeter to get grayscale png images for elevation, then pulled down the images from the Viking missions for colors and texture information. The highest resolution for both datasets were different, so I had to stitch together images, but thanks to the urllib and pillow python libraries, this was trivially easy.&lt;/p&gt;
+
+&lt;p&gt;Unreal Editor can turn grayscale images into level landscapes, and then generate the textures from images. Within four hours of starting my git repo, I had this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pbs.twimg.com/media/CgvhX-3UcAAzd38.jpg:large&quot; alt=&quot;false hope screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Great! Challenge solved, time to hand in my solution and spend the rest of the weekend playing Borderlands. I just needed to programmatically spawn the process to generate landscapes and since Unreal Engine and Editor is open-source, I thought it couldn’t be that hard.&lt;/p&gt;
+
+&lt;p&gt;Spoiler Alert: I was &lt;em&gt;super&lt;/em&gt; wrong.&lt;/p&gt;
+
+&lt;h1 id=&quot;failure-1-automating-landscape-generation&quot;&gt;Failure 1: Automating Landscape Generation&lt;/h1&gt;
+
+&lt;p&gt;The problem is that landscapes are built into the level on build, and are impossible to change at run time. I’m trying to think of any FPS that have terrain that changes while you’re playing through a level or environment, and I can’t really think of any. Unlike top-down RPGs like Diablo, FPS’s rely on a lot of physics and not falling through things that are much harder to guarantee with a procedurally-generated world. Also, the load times on new levels are much faster if you have a pre-baked, compressed description of the landscape.&lt;/p&gt;
+
+&lt;p&gt;At this point I considered giving up, but I kept going because the solution was so tantalizingly close: I could extract the compressed files that contained the landscape information, and somewhere in the source code for the Unreal Editor was the functionality to generate these files.&lt;/p&gt;
+
+&lt;p&gt;After three hours of poking through the Unreal Editor in Visual Studio with IntelliSense (I don’t recommend this, Visual Studio crashed five times during this time), I identified the sections that did the importing and then writing to a file. I attempted to pull them out and build a standalone C++ application that could convert grayscale images to Unreal Editor map files.&lt;/p&gt;
+
+&lt;p&gt;However, this code wasn’t intended to operate on its own. As time went on, I was pulling in more and more of the unreal editor - first the menus for generating landscapes, then the new level editor, then the editor gui itself. Basically, I was re-implementing the Unreal Editor with no end in sight.&lt;/p&gt;
+
+&lt;p&gt;At this point, 13 hours in, I considered giving up again. I was tired of Visual Studio crashing, and feeling cheated out of what I thought was a simple operation. But John sent me a tutorial on procedurally generating meshes at runtime and I had a crazy idea - why don’t I just delete the landscape and use a spawned mesh object instead?&lt;/p&gt;
+
+&lt;h1 id=&quot;success-1-generating-meshes&quot;&gt;Success 1: Generating Meshes&lt;/h1&gt;
+
+&lt;p&gt;For reasons my sleep-deprived post-hackathon brain can’t remember, the mesh tutorial code didn’t work with Unreal Engine 4.11, but did with 4.7. So, after spending an hour removing 4.11/Visual Studio 2015 and installing 4.7/Visual Studio 2013, I was back in business.&lt;/p&gt;
+
+&lt;p&gt;I intended that my Unreal Engine mesh generator code would check the tile cache for the desired section of Mars to render, and if it didn’t exist, execute the python script for pulling down the missing tiles. I encountered a problem implementing this: the windows C SDK does not play nicely with the Unreal Engine API. This is for good reason - Unreal Engine wants to be cross-platform, so they have re-implemented all the standard functionality of C independent of each operating system. If you attempt to include both the Unreal Engine and the Windows SDK in the same application, Visual Studio will bug out because it’s not sure which version of &lt;em&gt;int&lt;/em&gt; you want to use.&lt;/p&gt;
+
+&lt;p&gt;I scrapped that idea. Luckily, reading and writing files isn’t the only way to get data into the Unreal Engine at runtime because networking is required for multiplayer games. After another four hours, I had a python server communicating with my Unreal Engine application. My first ground meshes looked like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pbs.twimg.com/media/Cg08v0AU8AAymmo.jpg:large&quot; alt=&quot;mesh screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s off the ground because I hadn’t sorted out the math yet, and it suddenly turns into a giant vertical wall because it turns out a TCP packet is not large enough to store the raw data required to render a 400 km-across section of Mars. So, I wrote the first compression method I could think of, and was able to serve mars up 3 Kbytes at a time. The result looked like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pbs.twimg.com/media/Cg1TEqbUYAAk8Vr.jpg:large&quot; alt=&quot;final mesh screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That red planet sure is… red.&lt;/p&gt;
+
+&lt;h1 id=&quot;failure-2-colouring-the-ground&quot;&gt;Failure 2: Colouring the ground&lt;/h1&gt;
+
+&lt;p&gt;Like landscape files, textures are compressed and baked into the levels prior to runtime. No problem, I’d solve that issue like I had with the meshes: change the color of the triangles in the mesh to match the corresponding pixel in the images.&lt;/p&gt;
+
+&lt;p&gt;I had all of this implemented two hours before the deadline, but then shit started crashing. I was hitting a breakpoint in the memory allocation functionality of Unreal Engine. In addition, color images aren’t as smooth as surface data, so my poorly-implemented compression method wasn’t cutting it anymore. I would guess that these two issues are related. At this point, frustrated and exhausted, I decided to pack up and submit what I had.&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;So that was it. In the end, I tracked 29 hours working on SpaceApps this year, compared to 15 hours in 2015, and this year was way more stick-your-head-through-your-keyboard inducing than last year.&lt;/p&gt;
+
+&lt;p&gt;For reference, this is what John and I together were able to create at the end of SpaceApps 2015:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pbs.twimg.com/media/CCZY3zHUAAAOsVm.png:large&quot; alt=&quot;DBNN.NASA screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That project was much less frustrating than this one because it involved 
+machine-learning analysis of experimental data in python, which is pretty 
+much what John and I do for work. All of the code was built on existing tools
+ used by scientists, who, despite what people may think, maintain their code 
+ better than video game developers. Game developers are under constant pressure to release the next big game and thus don’t have much time or incentive to contribute back to the community, whereas (good) scientists’ reputation depends on other people being able to use the frameworks they create.&lt;/p&gt;
+
+&lt;p&gt;Throughout this challenge, I was often attempting to use things in ways 
+they weren’t meant to be used: using meshes as landscapes the player could walk on, using the networking protocol to serve massive texture data instead of the locations of other players.&lt;/p&gt;
+
+&lt;p&gt;Since my project crashed with two hours left on the clock, I wasn’t able to make a video of what it looks like to walk around in my generated Mars. This means the project likely won’t win anything. That’s fine: like with the Waterloo hackathon, impressing myself was more important than impressing a judge, and in that goal I succeeded. Not because of what I learned: though I learned a lot about how the unity engine and editor work, the real takeaway was that I really don’t want to be a AAA game developer if these are the tools they have to use. I’m impressed with myself because several times this weekend in the face of a problem - like automating the landscape generation - I was miserable and had decided to quit. But every time I did, I would go nap on the couch for a bit, wake up, and go right back to banging my head through the keyboard.&lt;/p&gt;
+</description>
+                <link>CatherineH.github.io/programming/2016/04/25/walking-through-frustration</link>
+                <guid>CatherineH.github.io/programming/2016/04/25/walking-through-frustration</guid>
+                <pubDate>Mon, 25 Apr 2016 00:00:00 -0700</pubDate>
+        </item>
+
+        <item>
+                <title>Gendered Electrons and Hiding Under Tables</title>
+                <description>
+&lt;p&gt;In high school I was the one girl in a group of seven students who would hang out at the town ‘science center’ after school twice a week. ‘Science Center’ is in quotes because it was the disorganized office of a retired experimental physicist with some no-budget-physics demonstrations. I often left the ‘science center’ more confused than educated, but I loved physics so I stubbornly kept attending.&lt;/p&gt;
+
+&lt;p&gt;The primary factor in my confusion was that the experiments were not well 
+explained, but there were other contributing factors. Maybe it was the 
+learning style: as a teenager I would read undergrad-level physics textbooks,
+ daydream about how to turn what I’d learned into an episode
+  of &lt;em&gt;Star Trek&lt;/em&gt;, and then struggle with the end chapter problems, and this
+   worked better than a lecture and a demonstration. Maybe it was the 
+   non-physics content: more time was spent arguing over politics and 
+   religion than learning about physics, and I, a liberal atheist in a 
+   town referred to as the ‘little vatican’ and in the riding of Peter MacKay, was always wrong. Or maybe it was the weird analogies: electrons were boys, protons were girls, because boys have no mass and can’t stand to be in the same state together? &lt;em&gt;No homo&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;The men running the science center had the best of intentions, but they were quirky. The retired physicist was devoted to an obscure interpretation of quantum mechanics that had its last death throes in the early nineties. Explanations subtly included this interpretation, which didn’t mesh with the things I was reading. There were religious (Catholic) and cultish undertones: he insinuated that if I studied physics I would realize the importance of all life and never get an abortion. Studying physics at school was ‘mickey mouse’ compared to the education I was promised at the science center.&lt;/p&gt;
+
+&lt;p&gt;And they were unnecessarily critical. One afternoon I gave a summary of a textbook on cosmology I’d recently read. I was so excited about how the heavier elements fused together in the sun that my mouth went faster than my brain and I repeatedly said carbon monoxide instead of carbon dioxide. One of the men running the science center picked up on this, and interrupted to correct me using the socratic method. The socratic method is a fantastic way to introduce new students to knowledge just outside their understanding, but if you do this to a 16 year old girl who has 98-99% grades in her high school chemistry classes and surely knows the difference between carbon dioxide and monoxide, it is extremely condescending.&lt;/p&gt;
+
+&lt;p&gt;My reaction was not, &lt;em&gt;Oh right, carbon dioxide, whatever&lt;/em&gt; but rather to think 
+&lt;em&gt;he thinks I’m dumb and it’s true what am I doing here&lt;/em&gt; and then hide under 
+the table to cry. This memory is not a metaphor for how I felt at the time: 
+&lt;em&gt;I actually hid under the table and cried&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;The boys in the group tried to cheer me up by saying things like “more men are geniuses but women are smarter on average”, and “you may not be good at math but you’re really good at explaining things”, the implication being: you’re not special like us but you’re still smarter than most people we know. It didn’t make me feel any much better.&lt;/p&gt;
+
+&lt;p&gt;I wish I could say that these experiences made me stronger, but there’s no 
+evidence they did. I had many more hiding-under-the-table incidents in 
+undergrad, through graduate school, and in my post-school career, and will 
+probably continue reacting to things this way because I am a coward who would 
+rather read physics papers alone and not have to prove I’m smart to anyone.&lt;/p&gt;
+
+&lt;p&gt;But over a decade on, only one of those seven students ended up in a career in physics.&lt;/p&gt;
+
+&lt;p&gt;It was me.&lt;/p&gt;
+
+</description>
+                <link>CatherineH.github.io/physics/2016/04/19/gendered-electrons-and-hiding-under-tables</link>
+                <guid>CatherineH.github.io/physics/2016/04/19/gendered-electrons-and-hiding-under-tables</guid>
+                <pubDate>Tue, 19 Apr 2016 00:00:00 -0700</pubDate>
+        </item>
+
+        <item>
+                <title>arduino builder errors</title>
+                <description>
+&lt;p&gt;My life revolves around three boards: the digi rabbit, an altera FPGA, and a
+teensy (an arduino-compatible microcontroller).&lt;/p&gt;
+
+&lt;p&gt;The provided IDE’s for each of these boards &lt;strong&gt;suck&lt;/strong&gt;, but teensy’s &lt;strong&gt;sucks the
+least&lt;/strong&gt;. They are ugly and they get in the way of my productivity. Since the code to interface with the boards 
+written in python I’ve been migrating my digi rabbit and altera
+development to PyCharm. This post documents the errors encountered moving from the arduino IDE to the arduino-builder.&lt;/p&gt;
+
+&lt;h1 id=&quot;index-out-of-range-on-board-resolver&quot;&gt;&lt;code&gt;index out of range&lt;/code&gt; on Board Resolver&lt;/h1&gt;
+
+&lt;p&gt;A &lt;a href=&quot;https://github.com/arduino/arduino-builder/pull/141&quot;&gt;merged pull request on arduino-builder&lt;/a&gt; should prevent this error from occuring in future.&lt;/p&gt;
+
+&lt;p&gt;The arduino-builder requires the full board name to be specified as
+ something like package_name:platform_name:board_name . The colons are
+ essential and the arduino-builder will not check to make sure the full board
+  name follows this pattern. If you don’t specify the board in that form, you
+   will get the error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ arduino-builder -fqbn teensyLC -hardware ~/arduino-1.6.7/hardware/ -tools ~/arduino-1.6.7/tools experiment_control.ino
+panic: runtime error: index out of range
+
+goroutine 1 [running]:
+arduino.cc/builder.(*TargetBoardResolver).Run(0x6c3050, 0xc20803c4e0, 0x0, 0x0)
+	~/arduino-builder/src/arduino.cc/builder/target_board_resolver.go:46 +0xf44
+arduino.cc/builder.(*ContainerSetupHardwareToolsLibsSketchAndProps).Run(0x6c3050, 0xc20803c4e0, 0x0, 0x0)
+	~/arduino-builder/src/arduino.cc/builder/container_setup.go:59 +0x6b8
+arduino.cc/builder.runCommands(0xc20803c4e0, 0xc20802db90, 0x1d, 0x1d, 0x418001, 0x0, 0x0)
+	~/arduino-builder/src/arduino.cc/builder/builder.go:187 +0x139
+arduino.cc/builder.(*Builder).Run(0xc20802dd88, 0xc20803c4e0, 0x0, 0x0)
+	~/arduino-builder/src/arduino.cc/builder/builder.go:118 +0xef7
+arduino.cc/builder.RunBuilder(0xc20803c4e0, 0x0, 0x0)
+	~/arduino-builder/src/arduino.cc/builder/builder.go:218 +0x49
+main.main()
+	~/arduino-builder/main.go:333 +0x1eb2
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;resolution&quot;&gt;Resolution&lt;/h2&gt;
+
+&lt;p&gt;Change the &lt;em&gt;-fqbn&lt;/em&gt; parameter to the &lt;em&gt;package_name:platform_name:board_name&lt;/em&gt;
+format. You can guess what this needs to be by looking at the arduino folder
+structure. For example, my folder structure has:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;arduino-1.6.7
+└── hardware
+    ├── arduino
+    └── teensy
+        └── avr
+            └── boards.txt
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;em&gt;boards.txt&lt;/em&gt; specifies the available boards for that platform. Opening up
+ the file, I can see teensy30, teensy31, and so on. If I change the board
+ name to &lt;strong&gt;teensy:avr:teensyLC&lt;/strong&gt;, the error no longer occurs. Note that this
+ string is case sensitive!&lt;/p&gt;
+
+&lt;h1 id=&quot;not-finding-the-arm-compiler&quot;&gt;Not finding the arm compiler&lt;/h1&gt;
+
+&lt;p&gt;You may get the error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;fork/exec /../arm/bin/arm-none-eabi-g++: no such file or directory
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;resolution-1&quot;&gt;Resolution&lt;/h2&gt;
+
+&lt;p&gt;Set the &lt;strong&gt;-tools&lt;/strong&gt; argument to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; -tools ~/arduino-1.6.7/hardware/tools/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&quot;missing-build-variables&quot;&gt;Missing build variables&lt;/h1&gt;
+
+&lt;p&gt;Because we’re no longer in the arduino IDE, a bunch of menu-specified 
+variables won’t be set. This will result in errors like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;command-line&amp;gt;:0:1: error: macro names must be identifiers
+In file included from ~/arduino-1.6.7/hardware/teensy/avr/cores/teensy3/core_pins.h:34:0,
+                 from ~/arduino-1.6.7/hardware/teensy/avr/cores/teensy3/wiring.h:33,
+                 from ~/arduino-1.6.7/hardware/teensy/avr/cores/teensy3/WProgram.h:15,
+                 from ~/arduino-1.6.7/hardware/teensy/avr/cores/teensy3/Arduino.h:1,
+                 from /tmp/arduino-sketch-55293F9A6EDF8EF849C232A18F1833A8/sketch/experiment_control.ino.cpp:1:
+~/arduino-1.6.7/hardware/teensy/avr/cores/teensy3/kinetis.h:568:12: error: operator &#39;==&#39; has no left operand
+ #if (F_CPU == 180000000)
+            ^
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;or, alternatively, you may see something like these errors:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;arm-none-eabi-g++: error: {build.flags.optimize}: No such file or directory
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;resolution-2&quot;&gt;Resolution&lt;/h2&gt;
+
+&lt;p&gt;This is a hack (&lt;em&gt;build systems people avert your eyes&lt;/em&gt;), but I’ve added:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;teensyLC.build.fcpu=48000000
+teensyLC.build.flags.optimize=-Os
+teensyLC.build.flags.ldspecs=--specs=nano.specs
+teensyLC.build.keylayout=US_ENGLISH
+teensyLC.build.usbtype=USB_SERIAL
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to my &lt;strong&gt;boards.txt&lt;/strong&gt; file.&lt;/p&gt;
+
+&lt;h1 id=&quot;ctags-file-does-not-exist&quot;&gt;Ctags file does not exist&lt;/h1&gt;
+
+&lt;p&gt;The following error may occur when compiling for arduino-branded (i.e., uno, mega, etc) boards:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec: &quot;{runtime.tools.ctags.path}/ctags&quot;: file does not exist
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;resolution-3&quot;&gt;Resolution&lt;/h2&gt;
+
+&lt;p&gt;When executing arduino-builder, add the argument:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;-tools ~/arduino-1.6.7/tools-builder
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+                <link>CatherineH.github.io/programming/2016/04/15/arduino-builder-errors</link>
+                <guid>CatherineH.github.io/programming/2016/04/15/arduino-builder-errors</guid>
+                <pubDate>Fri, 15 Apr 2016 00:00:00 -0700</pubDate>
+        </item>
+
+        <item>
+                <title>Mocking Entire Modules</title>
+                <description>
+&lt;p&gt;I’m increasing the code coverage on my &lt;a href=&quot;https://github.com/CatherineH/pyglet_helper&quot;&gt;pyglet_helper&lt;/a&gt;
+project prior to adding new functionality.
+As of right now it is:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://coveralls.io/github/CatherineH/pyglet_helper?branch=master&quot;&gt;&lt;img src=&quot;https://coveralls.io/repos/github/CatherineH/pyglet_helper/badge.svg?branch=master&quot; alt=&quot;Coverage Status&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;If this is green, I have succeeded in my task. Go me!&lt;/p&gt;
+
+&lt;p&gt;Before I got this spiffy number, I had to tackle an issue: pyglet_helper project is built on top of OpenGL, but OpenGL needs a display to draw to. The continuous integration system I am using (Travis) does not
+have a display.&lt;/p&gt;
+
+&lt;p&gt;After embarking on a fool’s errand to get &lt;a href=&quot;http://xpra
+.org/trac/wiki/Xdummy&quot;&gt;Xdummy&lt;/a&gt; working in a docker container, my friend &lt;a href=&quot;http://scasagrande.github.io/&quot;&gt;Steven&lt;/a&gt; pointed to an easier solution: simply create
+ a fakeGL module and then run the tests using that instead of OpenGL. This
+ is not an ideal solution, as my unit tests will only check to make sure
+ that the math is correct, and not that things are being drawn to the screen
+  without glitching, but at the moment I’m okay with that. I’m not trying to
+   test the functionality of OpenGL; I want to test that my math and the
+   inheritance of the objects in pyglet_helper works out. My own math
+   mistakes, and not OpenGL, are responsible for 99% of the weird visual
+   glitches in pyglet_helper.&lt;/p&gt;
+
+&lt;p&gt;This post details how to replace an entire module in python unit tests,
+since I didn’t find it in my initial reading of the mock documentation.&lt;/p&gt;
+
+&lt;p&gt;As an example, suppose we have some math to be tested on a 
+Windows AMD machine&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. Thus, we would like to mock out numpy.&lt;/p&gt;
+
+&lt;p&gt;The function to be tested is in the file &lt;strong&gt;one_deep.py&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import numpy
+
+def sum_array(lower, upper):
+    return sum(numpy.arange(lower, upper))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This module uses the arange function in numpy, so the file &lt;strong&gt;fake_numpy.py&lt;/strong&gt;
+ contains the code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;def arange(lower, upper):
+    return range(lower, upper)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Essentially, the range is now a list instead of a numpy array.&lt;/p&gt;
+
+&lt;p&gt;The unit test, which replaces &lt;strong&gt;numpy&lt;/strong&gt; with &lt;strong&gt;fake_numpy&lt;/strong&gt; is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;from mock import patch
+import fake_numpy
+
+
+@patch(&#39;one_deep.numpy&#39;, new=fake_numpy)
+def test_sum_to_hundred():
+    from one_deep import sum_array
+    result = sum_array(4, 16)
+    assert result == 114
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, suppose we need to go deeper. A second function is in the file
+&lt;strong&gt;two_deep.py&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;from one_deep import sum_array
+import numpy
+
+
+def sum_array_again(lower, upper):
+    return sum(numpy.arange(lower, sum_array(lower, upper)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In our unit tests, if only &lt;strong&gt;two_deep&lt;/strong&gt; is patched, when &lt;strong&gt;sum_array&lt;/strong&gt; is
+called, it will still use &lt;strong&gt;numpy.arange&lt;/strong&gt; instead of &lt;strong&gt;fake_numpy.arange&lt;/strong&gt;.
+ This can produce some interesting errors if &lt;strong&gt;numpy&lt;/strong&gt; is expecting to
+ operate on &lt;strong&gt;numpy&lt;/strong&gt; types.&lt;/p&gt;
+
+&lt;p&gt;Thus, the module must be patched all the way down:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;from mock import patch
+import fake_numpy
+
+
+@patch(&#39;one_deep.numpy&#39;, new=fake_numpy)
+@patch(&#39;two_deep.numpy&#39;, new=fake_numpy)
+def test_sum_to_hundred():
+    from two_deep import sum_array_again
+    result = sum_array_again(4, 16)
+    assert result == 6435
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Unfortunately, I haven’t figured out a good way of making sure that numpy
+gets patched all in every place where it is invoked yet, leading to a lot of
+ failed Travis builds as I encover another layer of a pyglet_helper object’s
+  dependencies which rely on OpenGL.&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;Numpy does not support Windows running on AMD chips, as I recently learned. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+                <link>CatherineH.github.io/programming/2016/04/13/mocking-entire-modules</link>
+                <guid>CatherineH.github.io/programming/2016/04/13/mocking-entire-modules</guid>
+                <pubDate>Wed, 13 Apr 2016 00:00:00 -0700</pubDate>
+        </item>
+
+        <item>
+                <title>Vikings in Hungary</title>
+                <description>
+&lt;p&gt;Six months ago, one of my co-workers (Matthew from Clearpath) enlightened
+me to the existence of Viking metal. Since then I’d watched the occasional
+viking metal youtube video for the lols, but was not further tempted.
+However, a few weeks ago I went to an &lt;strong&gt;Abbath&lt;/strong&gt; concert and the &lt;strong&gt;Bathory&lt;/strong&gt;
+logo had almost as much real estate on patches and T-shirts as &lt;strong&gt;Immortal&lt;/strong&gt;,
+so I
+caved and listened to their entire discography. These are my thoughts on Bathory.&lt;/p&gt;
+
+&lt;p&gt;Bathory&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;’s discography can be split into four categories: the extreme
+metal 80s, proto-Viking metal early 90s, generic thrash metal in the mid 90s, and
+Quorthon’s (the lead singer) one man viking concept albums of the early 00s.
+Of these periods, the extreme metal and the generic thrash metal albums
+are totally skipable. The thrash metal albums were dated when they came
+out; &lt;strong&gt;Pantera&lt;/strong&gt; had already done it better. The lyrics from one song in this
+period merely list political or religious ideologies ending with the y-sound.&lt;/p&gt;
+
+&lt;p&gt;I don’t like their extreme metal phase because of the lo-fi recording and
+the drumming that is played too fast to land the hits on target. I’m mildly
+anxious about calling their first 4 albums skipable, because the technical
+things I don’t like are probably part of the attraction for fans of 80’s death metal.&lt;/p&gt;
+
+&lt;p&gt;The proto-Viking metal albums are what the band are most known for, and they
+are worth a listen. The epic lyrics, the folk-style singing, and the
+acoustic guitars all make for a (mostly) pleasant listening experience.
+However, the albums are flawed. Quorthon was not a strong singer and often
+ventures out of his range. The ballads are a little boring, and the songs
+are often too verbose to let the melodies breath. The song &lt;em&gt;Hammerheart&lt;/em&gt;
+from &lt;em&gt;Twilight of the Gods&lt;/em&gt; is a particularly egregious example. It’s a
+‘‘cover’’ of Holst’s Jupiter with mismatched lyrics sung out of key. I don’t think I’ll be going back to these albums.&lt;/p&gt;
+
+&lt;p&gt;In the early 00s, Quorthon produced three albums alone under the Bathory
+name. The first, &lt;em&gt;Destroyer of Worlds&lt;/em&gt;, is an interesting mix of contemporary
+influences. Some songs have guitar licks reminiscent of &lt;strong&gt;Frusciante&lt;/strong&gt;, another
+song sounds a lot like stoner metal. There’s a male rage-type thrash metal
+song that would have fit right in on &lt;em&gt;Reinventing the Steel&lt;/em&gt;, and Quorthon’s
+rough vocals lend it an authenticity that make it a lot more tolerable than
+Pantera. Although I like this album, there are a few obvious flaws, the
+largest being that Quorthon needed to step away from the sound effect
+machine&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;. I wasn’t expecting a hockey arena organ in metal.&lt;/p&gt;
+
+&lt;p&gt;Quorthon’s next two albums, &lt;em&gt;Nordland I&lt;/em&gt; and &lt;em&gt;II&lt;/em&gt;, revisit viking metal and are
+better this time around: the lyrics mesh with the rhythm, the melodies have
+space to shine, and the ballads don’t get boring. Quorthon even makes
+synthetic horns pleasant, which I thought was impossible. My favourite
+Bathory song, &lt;em&gt;Vinterbolt&lt;/em&gt;, is off of &lt;em&gt;Nordland I&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www
+.youtube
+.com/watch?v=4B1YDPE20Ss&quot;&gt;&lt;img src=&quot;http://img.youtube.com/vi/4B1YDPE20Ss/0.jpg&quot; alt=&quot;Vinterland Link&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In my opinion, Bathory, along with &lt;strong&gt;Gentle Giant&lt;/strong&gt; and &lt;strong&gt;Van der Graaf
+Generator&lt;/strong&gt;, are examples of bands who didn’t quite have the technical chops
+or creativity to perfect their pioneering ideas. Viking metal was a novel style
+in the early 90s, but unfortunately a twenty year back catalog clouded my
+first listen of Hammerheart.&lt;/p&gt;
+
+&lt;p&gt;Of the four styles in the Bathory discography, the Quorthon solo-albums at
+the end of his career hold up the best against the test of time. He was
+experimenting with the latest sounds at the time across multiple genres, and
+seemed to be trying to fix issues from record to record. Quorthon planned
+another two albums to his Nordland series but died young before they were completed, and that is a shame. He was just getting good.&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;Countess Bathory is to Metal and Gothic Fantasy RPGs as Ada Lovelace is to computing: they are very interesting women who are not commonly known to the general public, but their story has been retold ad nauseum. Bathory’s song about Countess Bathory is one of the better exemplars, but surely the genres can find other lady serial killers to idolize. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;Panzer Division Marduk used the same World War 2 bombing sound two years earlier; Quorthon should have known better. &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+                <link>CatherineH.github.io/music/2016/04/11/vikings-in-hungary</link>
+                <guid>CatherineH.github.io/music/2016/04/11/vikings-in-hungary</guid>
+                <pubDate>Mon, 11 Apr 2016 00:00:00 -0700</pubDate>
+        </item>
+
+        <item>
+                <title>Libraries in Dynamic C</title>
+                <description>
+&lt;p&gt;2000+ line &lt;strong&gt;main&lt;/strong&gt; functions are no fun, but Dynamic C does not make
+modularization easy. In this post, I’ll document all of the details of using
+library functions and the problems I’ve encountered using them.&lt;/p&gt;
+
+&lt;h1 id=&quot;linking-libraries&quot;&gt;Linking Libraries&lt;/h1&gt;
+
+&lt;p&gt;The Dynamic C compiler will look for libraries in the directory structure
+detailed in the file &lt;strong&gt;C:\DCRABBIT_XX\LIB.DIR&lt;/strong&gt;. After a default
+installation, this file will point towards &lt;strong&gt;C:\DCRABBIT_XX\LIB&lt;/strong&gt; and certain
+ &lt;strong&gt;SAMPLES&lt;/strong&gt; directories. Since &lt;strong&gt;C:\DCRABBIT_XX&lt;/strong&gt; is read-only, I prefer to
+ create a link between the location of my source and the
+ &lt;strong&gt;C:\DCRABBIT_XX\LIB&lt;/strong&gt; directory, rather than either copying the files to
+ this directory or editing the &lt;strong&gt;LIB.DIR&lt;/strong&gt;. On Windows, this can be done using:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mklink C:\DCRabbit_9.62\Lib\starship.lib
+C:\Users\catherine\Rabbit3400\lib\starship.lib
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This needs to be done as administrator, which can either be done by running
+the command prompt as administrator, or by using runas:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;runas /noprofile /user:pink-beast-windows\catherine &quot;mklink C:\DCRabbit_9
+.62\Lib\starship.lib C:\Users\catherine\Rabbit3400\lib\starship.lib&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However, this results in the error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;The system cannot find the file specified.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and my windows-file-system-fu is not strong enough to figure out what I’m
+doing wrong. Maybe when ubuntu comes to windows 10 I’ll be able to ignore my
+ignorance.&lt;/p&gt;
+
+&lt;h1 id=&quot;a-sample-library&quot;&gt;A Sample Library&lt;/h1&gt;
+
+&lt;p&gt;The following is an example project in Dynamic C with two libraries. The
+first library is called &lt;em&gt;starship.lib&lt;/em&gt; and contains the source:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/*** BeginHeader StarshipCrew */
+struct StarshipCrew{
+    char captain[10];
+    char first_officer[10];
+    char chief_engineer[10];
+    char chief_medical_officer[10];
+};
+/*** EndHeader */
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The second library is called &lt;em&gt;starship_functions.lib&lt;/em&gt; and contains the source:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/*** BeginHeader assignCaptain */
+void assignCaptain(struct StarshipCrew * starship, char * captain);
+/*** EndHeader */
+void assignCaptain(struct StarshipCrew * starship, char * captain)
+{
+    sprintf(starship-&amp;gt;captain, &quot;%s&quot;, captain);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And main looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#use &quot;starship.lib&quot;
+#use &quot;starship_functions.lib&quot;
+
+main(){
+    struct StarshipCrew enterprise;
+    char captain[10];
+    sprintf(captain, &quot;Picard&quot;);
+    assignCaptain(&amp;amp;enterprise, captain);
+    printf(&quot;Captain of the Enterprise is %s\n&quot;, enterprise.captain);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This program compiles correctly once the links to the libraries are created
+in the library directory.&lt;/p&gt;
+
+&lt;h1 id=&quot;troubleshooting&quot;&gt;Troubleshooting&lt;/h1&gt;
+
+&lt;p&gt;Although I’ve just shown you works, there are many, many ways that libraries
+can be broken, and the compiler messages are not terribly useful.&lt;/p&gt;
+
+&lt;h2 id=&quot;use-statements-do-not-chain&quot;&gt;#use statements do not chain&lt;/h2&gt;
+
+&lt;p&gt;If you move the &lt;em&gt;#use “starship.lib”&lt;/em&gt; line to the &lt;em&gt;starship_functions.lib&lt;/em&gt;,
+the main won’t be able to find the struct definition. The compiler will
+report the error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;line    5 : ERROR a_starship_test.c   : Struct use before definition.
+line    9 : ERROR a_starship_test.c   : ) is missing/expected.
+line    9 : ERROR a_starship_test.c   : Invalid struct reference.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Solution&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Keep all use statements in your main() file.&lt;/p&gt;
+
+&lt;h2 id=&quot;missing-beginheader-statements&quot;&gt;Missing BeginHeader statements&lt;/h2&gt;
+
+&lt;p&gt;Although they look superfluous, the &lt;em&gt;BeginHeader&lt;/em&gt; statements are essential.
+Without the BeginHeader statement on the struct, this will create the error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;line    4 : ERROR a_starship_test.c   : Struct use before definition.
+line    8 : ERROR a_starship_test.c   : ) is missing/expected.
+line    8 : ERROR a_starship_test.c   : Invalid struct reference.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Without the BeginHeader statement on the function, the error is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;line    7 : WARNING a_starship_test.c   : Reference to &#39;assignCaptain&#39; has no corresponding prototype.
+line    7 : ERROR a_starship_test.c   : Undefined (but used) global label assignCaptain
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It is important that the function name matches the function. For example, if
+the &lt;em&gt;BeginHeader&lt;/em&gt; statement is changed to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/*** BeginHeader assignCap */
+void assignCaptain(struct StarshipCrew * starship, char * captain);
+/*** EndHeader */
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then the compiler error is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;line    2 : ERROR STARSHIP_FUNCTIONS.LIB   : Undefined (but used) global label assignCaptain
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Solution&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;All structs, typedefs and functions need &lt;em&gt;BeginHeader functionName&lt;/em&gt; statement
+ around the prototype, and &lt;em&gt;functionName&lt;/em&gt; must match the struct or function
+ name.&lt;/p&gt;
+
+&lt;h2 id=&quot;cleaning-out-compiled-libraries&quot;&gt;Cleaning out compiled libraries&lt;/h2&gt;
+
+&lt;p&gt;When a program with the &lt;em&gt;#use&lt;/em&gt; statement is compiled, the compiler will look
+for the compiled library files for the used library. These are the files with
+ the extension &lt;em&gt;HX1&lt;/em&gt; and &lt;em&gt;MD1&lt;/em&gt;. If it can’t find these files, it will first
+ compile the library, if it does find the files, it will ignore the &lt;em&gt;lib&lt;/em&gt;
+ file. This means that if you fix an error in your &lt;em&gt;lib&lt;/em&gt; file, the next time
+ you compile your project, you will get the &lt;em&gt;super helpful&lt;/em&gt; error of:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;line    2 : ERROR STARSHIP_FUNCTIONS.LIB   : Need function definition or declaration.
+line    2 : ERROR STARSHIP_FUNCTIONS.LIB   : Syntax error - or garbage at end of program.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Solution&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Before compiling your program, delete the HX1 and MD1 files for each library
+changed.&lt;/p&gt;
+
+&lt;h2 id=&quot;order-of-import-errors&quot;&gt;Order of Import Errors&lt;/h2&gt;
+
+&lt;p&gt;I’m not sure exactly how to replicate this error, but I have occasionally
+encountered compiler errors like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;line  333 : ERROR LCD_FUNCTIONS.LIB   : Redefinition of parameter 1 different.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I’m not sure what causes this, but it typically happens when a library
+function uses a struct defined in another library, and this library is
+imported before the library with the function is imported in the &lt;em&gt;main()&lt;/em&gt;
+function.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Solution&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I’ve fixed this error by switching the order of imports from:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#use &quot;lcd_functions.lib&quot;
+#use &quot;library_with_struct.lib&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#use &quot;library_with_struct.lib&quot;
+#use &quot;lcd_functions.lib&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+</description>
+                <link>CatherineH.github.io/programming/2016/03/31/libraries-in-dynamic-c</link>
+                <guid>CatherineH.github.io/programming/2016/03/31/libraries-in-dynamic-c</guid>
+                <pubDate>Thu, 31 Mar 2016 00:00:00 -0700</pubDate>
+        </item>
+
+        <item>
+                <title>No malloc, No problem</title>
+                <description>
+&lt;p&gt;Although AVR now dominates the microcontroller landscape, some hardware
+projects still rely on older chips with quirky, proprietary versions of C.
+When working with these chips, many of C standard library functions are
+either unavailable or implemented… &lt;em&gt;creatively&lt;/em&gt;. In this case: how to use
+arrays of strings in &lt;a href=&quot;http://www.digi.com/support/productdetail?pid=4978&quot;&gt;Digi’s Dynamic C&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Dynamic C has no &lt;em&gt;malloc&lt;/em&gt; function. Instead, memory is allocated by declaring
+variables, such as:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;char my_string[8];
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All variables must be declared at the start of functions. For example, the
+perfectly valid C99 code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;main(){
+    int a;
+    a = 5;
+    int b;
+    b = a;
+    printf(&quot;b is: %d&quot;, b);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Results in the error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;line    4 : ERROR a_test.c     : int is out of scope/ not declared.
+line    4 : ERROR a_test.c     : b is out of scope/ not declared.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The working code for Dynamic C is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;main(){
+    int a;
+    int b;
+    a = 5;
+    b = a;
+    printf(&quot;b is: %d&quot;, b);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is frustrating, but not totally unworkable. Now let’s move on to something
+more complicated. Suppose you want an array of strings. Thanks to &lt;a href=&quot;http://stackoverflow.com/a/17466642/1437859&quot;&gt;this
+StackOverflow answer&lt;/a&gt; we know
+that this code will work in C99:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;main(){
+    char * point_names[5];
+    int i;
+    for(i=0;i&amp;lt;5;i++) {
+        point_names[i] = malloc(100);
+        sprintf(point_names[i], &quot;number %d&quot;, i);
+    }
+    for(i=0;i&amp;lt;5;i++){
+        puts(point_names[i]);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that without the malloc() statement, the program will seg fault. In
+Dynamic C, the program won’t seg fault, but it will print out gibberish.
+Since malloc() does not exist in Dynamic C, we’ll have to
+declare a variable with the size we want, put the data there, and then copy
+the pointer to our array of pointers:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;main(){
+    char names[5][100];
+    char * point_names[5];
+    int i;
+    for(i=0;i&amp;lt;5;i++) {
+        sprintf(names[i], &quot;number %d&quot;, i);
+        point_names[i] = names[i];
+    }
+    for(i=0;i&amp;lt;5;i++){
+        puts(point_names[i]);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If point_names is declared right after names, then sprintf’ing right to
+point_names will work. This is getting into risky territory, however.&lt;/p&gt;
+
+</description>
+                <link>CatherineH.github.io/programming/2016/03/30/no-malloc-no-problem</link>
+                <guid>CatherineH.github.io/programming/2016/03/30/no-malloc-no-problem</guid>
+                <pubDate>Wed, 30 Mar 2016 00:00:00 -0700</pubDate>
+        </item>
+
+
+</channel>
+</rss>

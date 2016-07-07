@@ -1,0 +1,370 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>arduino builder errors</title>
+    <meta name="description" content="ditching the arduino IDE">
+    <meta name="author" content="Catherine Holloway">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="http://CatherineH.github.io/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="http://CatherineH.github.io/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="http://CatherineH.github.io/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+    
+    <!-- Custom styles -->
+    <link href="http://CatherineH.github.io/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images
+      <link rel="shortcut icon" href="images/favicon.ico">
+      <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    -->
+
+    <!-- atom & rss feed -->
+    <link href="http://CatherineH.github.io/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="http://CatherineH.github.io/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Catherine's Auxiliary Brain</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="http://CatherineH.github.io/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="http://CatherineH.github.io/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="http://CatherineH.github.io/pages">Pages</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="http://CatherineH.github.io/tags">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+      <div class="container">
+        
+<div class="page-header">
+  <h1>arduino builder errors </h1>
+</div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>15 April 2016</span>
+    </div>
+    <div class="content">
+      
+<p>My life revolves around three boards: the digi rabbit, an altera FPGA, and a
+teensy (an arduino-compatible microcontroller).</p>
+
+<p>The provided IDE’s for each of these boards <strong>suck</strong>, but teensy’s <strong>sucks the
+least</strong>. They are ugly and they get in the way of my productivity. Since the code to interface with the boards 
+written in python I’ve been migrating my digi rabbit and altera
+development to PyCharm. This post documents the errors encountered moving from the arduino IDE to the arduino-builder.</p>
+
+<h1 id="index-out-of-range-on-board-resolver"><code>index out of range</code> on Board Resolver</h1>
+
+<p>A <a href="https://github.com/arduino/arduino-builder/pull/141">merged pull request on arduino-builder</a> should prevent this error from occuring in future.</p>
+
+<p>The arduino-builder requires the full board name to be specified as
+ something like package_name:platform_name:board_name . The colons are
+ essential and the arduino-builder will not check to make sure the full board
+  name follows this pattern. If you don’t specify the board in that form, you
+   will get the error:</p>
+
+<pre><code>$ arduino-builder -fqbn teensyLC -hardware ~/arduino-1.6.7/hardware/ -tools ~/arduino-1.6.7/tools experiment_control.ino
+panic: runtime error: index out of range
+
+goroutine 1 [running]:
+arduino.cc/builder.(*TargetBoardResolver).Run(0x6c3050, 0xc20803c4e0, 0x0, 0x0)
+	~/arduino-builder/src/arduino.cc/builder/target_board_resolver.go:46 +0xf44
+arduino.cc/builder.(*ContainerSetupHardwareToolsLibsSketchAndProps).Run(0x6c3050, 0xc20803c4e0, 0x0, 0x0)
+	~/arduino-builder/src/arduino.cc/builder/container_setup.go:59 +0x6b8
+arduino.cc/builder.runCommands(0xc20803c4e0, 0xc20802db90, 0x1d, 0x1d, 0x418001, 0x0, 0x0)
+	~/arduino-builder/src/arduino.cc/builder/builder.go:187 +0x139
+arduino.cc/builder.(*Builder).Run(0xc20802dd88, 0xc20803c4e0, 0x0, 0x0)
+	~/arduino-builder/src/arduino.cc/builder/builder.go:118 +0xef7
+arduino.cc/builder.RunBuilder(0xc20803c4e0, 0x0, 0x0)
+	~/arduino-builder/src/arduino.cc/builder/builder.go:218 +0x49
+main.main()
+	~/arduino-builder/main.go:333 +0x1eb2
+
+</code></pre>
+
+<h2 id="resolution">Resolution</h2>
+
+<p>Change the <em>-fqbn</em> parameter to the <em>package_name:platform_name:board_name</em>
+format. You can guess what this needs to be by looking at the arduino folder
+structure. For example, my folder structure has:</p>
+
+<pre><code>arduino-1.6.7
+└── hardware
+    ├── arduino
+    └── teensy
+        └── avr
+            └── boards.txt
+
+</code></pre>
+
+<p>The <em>boards.txt</em> specifies the available boards for that platform. Opening up
+ the file, I can see teensy30, teensy31, and so on. If I change the board
+ name to <strong>teensy:avr:teensyLC</strong>, the error no longer occurs. Note that this
+ string is case sensitive!</p>
+
+<h1 id="not-finding-the-arm-compiler">Not finding the arm compiler</h1>
+
+<p>You may get the error:</p>
+
+<pre><code>fork/exec /../arm/bin/arm-none-eabi-g++: no such file or directory
+</code></pre>
+
+<h2 id="resolution-1">Resolution</h2>
+
+<p>Set the <strong>-tools</strong> argument to:</p>
+
+<pre><code> -tools ~/arduino-1.6.7/hardware/tools/
+</code></pre>
+
+<h1 id="missing-build-variables">Missing build variables</h1>
+
+<p>Because we’re no longer in the arduino IDE, a bunch of menu-specified 
+variables won’t be set. This will result in errors like:</p>
+
+<pre><code>&lt;command-line&gt;:0:1: error: macro names must be identifiers
+In file included from ~/arduino-1.6.7/hardware/teensy/avr/cores/teensy3/core_pins.h:34:0,
+                 from ~/arduino-1.6.7/hardware/teensy/avr/cores/teensy3/wiring.h:33,
+                 from ~/arduino-1.6.7/hardware/teensy/avr/cores/teensy3/WProgram.h:15,
+                 from ~/arduino-1.6.7/hardware/teensy/avr/cores/teensy3/Arduino.h:1,
+                 from /tmp/arduino-sketch-55293F9A6EDF8EF849C232A18F1833A8/sketch/experiment_control.ino.cpp:1:
+~/arduino-1.6.7/hardware/teensy/avr/cores/teensy3/kinetis.h:568:12: error: operator '==' has no left operand
+ #if (F_CPU == 180000000)
+            ^
+</code></pre>
+<p>or, alternatively, you may see something like these errors:</p>
+
+<pre><code>arm-none-eabi-g++: error: {build.flags.optimize}: No such file or directory
+</code></pre>
+
+<h2 id="resolution-2">Resolution</h2>
+
+<p>This is a hack (<em>build systems people avert your eyes</em>), but I’ve added:</p>
+
+<pre><code>teensyLC.build.fcpu=48000000
+teensyLC.build.flags.optimize=-Os
+teensyLC.build.flags.ldspecs=--specs=nano.specs
+teensyLC.build.keylayout=US_ENGLISH
+teensyLC.build.usbtype=USB_SERIAL
+</code></pre>
+
+<p>to my <strong>boards.txt</strong> file.</p>
+
+<h1 id="ctags-file-does-not-exist">Ctags file does not exist</h1>
+
+<p>The following error may occur when compiling for arduino-branded (i.e., uno, mega, etc) boards:</p>
+
+<pre><code>exec: "{runtime.tools.ctags.path}/ctags": file does not exist
+</code></pre>
+
+<h2 id="resolution-3">Resolution</h2>
+
+<p>When executing arduino-builder, add the argument:</p>
+
+<pre><code>-tools ~/arduino-1.6.7/tools-builder
+</code></pre>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="http://CatherineH.github.io/categories.html#programming-ref">
+    		programming <span>9</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="http://CatherineH.github.io/tags.html#arduino-ref">arduino <span>1</span></a></li>
+     
+    	<li><a href="http://CatherineH.github.io/tags.html#teensy-ref">teensy <span>1</span></a></li>
+     
+    	<li><a href="http://CatherineH.github.io/tags.html#C-ref">C <span>2</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="http://CatherineH.github.io/programming/2016/04/13/mocking-entire-modules" title="Mocking Entire Modules">&laquo; Previous</a></li>
+    
+      <li><a href="http://CatherineH.github.io/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="http://CatherineH.github.io/physics/2016/04/19/gendered-electrons-and-hiding-under-tables" title="Gendered Electrons and Hiding Under Tables">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'catherineh'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2016 Catherine Holloway
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+
+    
+
+
+
+
+
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://CatherineH.github.io/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
