@@ -56,8 +56,9 @@ If you install the 64 bit version of python alongside the 32 bit version, it is 
  that your environment variables will still be set up to point the PYTHONPATH to the
  32 bit versions of the python libraries.
 
- This will result in the error:
- ```
+This will result in the error:
+
+```
    File "example.py", line 1, in <module>
     from ctypes import cdll
   File "Python35\lib\ctypes\__init__.py", line 7, in <module>
