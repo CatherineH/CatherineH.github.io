@@ -183,17 +183,6 @@ class Switch(Instrument):
         response = self.query("OUTP?")
         return int(response)
 
-    @setting.setter
-    def setting(self, new_val):
-        """
-        Set the current output setting
-        :param new_val: the output channel number, either 0 or 1
-        :return:
-        """
-        if new_val == 0:
-            response = self.query(":OUTP 0")
-        elif new_val == 1:
-            response = self.query(":OUTP 1")
 ```
 
 While the coding side of this application may seem a bit over-engineered, it is because I want to apply the
