@@ -174,7 +174,7 @@ class Switch(Instrument):
         self.terminator = "\r"
         self.increment = increment
 
-    \@property
+    property
     def setting(self):
         response = self.query("OUTP?")
         return int(response)
