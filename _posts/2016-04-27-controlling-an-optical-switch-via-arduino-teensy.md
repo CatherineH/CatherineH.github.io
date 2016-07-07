@@ -151,3 +151,73 @@ void update_optical_switch(int optical_state, int switch_pin, int led_pin)
   }
 }
 ```
+
+
+Python (Computer) Side
+======================
+
+I used the fantastic [InstrumentKit](https://github.com/Galvant/InstrumentKit) to incorporate the control into my
+experimental software:
+
+```
+#!/usr/bin/env python
+from instruments.abstract_instruments import Instrument
+from time import sleep
+from sys import platform
+
+class Switch(Instrument):
+    """
+    An interface to the teensy-controlled optical switch
+    """
+    def __init__(self, filelike, increment=200):
+        super(Switch, self).__init__(filelike)
+        self.terminator = "\r"
+        self.increment = increment
+
+    @property
+    def setting(self):
+        """
+        Get the current output setting
+        :return: int, representing the currently active channel
+        """
+        response = self.query("OUTP?")
+        return int(response)
+
+    @setting.setter
+    def setting(self, new_val):
+        """
+        Set the current output setting
+        :param new_val: the output channel number, either 0 or 1
+        :return:
+        """
+        if new_val == 0:
+            response = self.query(":OUTP 0")
+        elif new_val == 1:
+            response = self.query(":OUTP 1")
+
+def main():
+    # Runs the switch program on its own, as a test
+    if platform == "linux" or platform == "linux2":
+        port = "/dev/ttyACM0"
+    else:
+        port = "COM11"
+    switch = Switch.open_serial(port, 9600, timeout=1)
+    print("switch tests")
+
+    iteration = 0
+    for i in range(0, 50):
+        print("Iteration: "+str(iteration))
+        iteration += 1
+        switch.setting = 0
+        sleep(2)
+        switch.setting = 1
+        sleep(2)
+
+if __name__ == "__main__":
+    main()
+```
+
+While the coding side of this application may seem a bit over-engineered, it is because I want to apply the
+[principle of least astonishment](https://en.wikipedia.org/wiki/Principle_of_least_astonishment) to everything I do; by
+labeling everything I don't have to guess at some convention I decided on several months ago. This switch is a simple
+piece of a much more complex testing organism, and I want it to be the least complicated organ.
