@@ -18,7 +18,8 @@ from ctypes import cdll
 lib = cdll.LoadLibrary("mydll.dll")
 ```
 
-# Are you using the static version of the library instead of the dynamic version?
+Are you using the static version of the library instead of the dynamic version?
+===============================================================================
 
 ctypes can only import dynamic libraries. If you attempt to load a static library, you
  will get the error:
@@ -35,7 +36,8 @@ Make sure the dynamic *.dll* file is loaded, not the static *.lib* file. If only
 static libraries are provided, it might be possible to recompile as a dynamic library,
 but I did not try this.
 
-# Are you using 32 bit python with a 64 bit library?
+Are you using 32 bit python with a 64 bit library?
+==================================================
 
 Using a 64-bit dll with 32 bit python results in the error:
 
@@ -50,7 +52,8 @@ OSError: [WinError 193] %1 is not a valid Win32 application
 To solve this, download the [Windows x86-64](https://www.python.org/downloads) version
  of python, and configure your IDE to use this python interpreter.
 
-# Are you using the 32 bit version of ctypes with a 64 bit version of python?
+Are you using the 32 bit version of ctypes with a 64 bit version of python?
+===========================================================================
 
 If you install the 64 bit version of python alongside the 32 bit version, it is likely
  that your environment variables will still be set up to point the PYTHONPATH to the
