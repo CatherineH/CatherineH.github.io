@@ -176,10 +176,6 @@ class Switch(Instrument):
 
     @property
     def setting(self):
-        """
-        Get the current output setting
-        :return: int, representing the currently active channel
-        """
         response = self.query("OUTP?")
         return int(response)
 
