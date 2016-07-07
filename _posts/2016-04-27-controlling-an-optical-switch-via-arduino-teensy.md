@@ -176,9 +176,45 @@ class Switch(Instrument):
 
     property
     def setting(self):
+        """
+        Get the current output setting
+        :return: int, representing the currently active channel
+        """
         response = self.query("OUTP?")
         return int(response)
 
+    setting.setter
+    def setting(self, new_val):
+        """
+        Set the current output setting
+        :param new_val: the output channel number, either 0 or 1
+        :return:
+        """
+        if new_val == 0:
+            response = self.query(":OUTP 0")
+        elif new_val == 1:
+            response = self.query(":OUTP 1")
+
+def main():
+    # Runs the switch program on its own, as a test
+    if platform == "linux" or platform == "linux2":
+        port = "/dev/ttyACM0"
+    else:
+        port = "COM11"
+    switch = Switch.open_serial(port, 9600, timeout=1)
+    print("switch tests")
+
+    iteration = 0
+    for i in range(0, 50):
+        print("Iteration: "+str(iteration))
+        iteration += 1
+        switch.setting = 0
+        sleep(2)
+        switch.setting = 1
+        sleep(2)
+
+if __name__ == "__main__":
+    main()
 ```
 
 While the coding side of this application may seem a bit over-engineered, it is because I want to apply the
