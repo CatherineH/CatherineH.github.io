@@ -159,7 +159,7 @@ Python (Computer) Side
 I used the fantastic [InstrumentKit](https://github.com/Galvant/InstrumentKit) to incorporate the control into my
 experimental software:
 
-```
+``` python
 #!/usr/bin/env python
 from instruments.abstract_instruments import Instrument
 from time import sleep
@@ -174,7 +174,7 @@ class Switch(Instrument):
         self.terminator = "\r"
         self.increment = increment
 
-    property
+    @property
     def setting(self):
         """
         Get the current output setting
@@ -183,7 +183,7 @@ class Switch(Instrument):
         response = self.query("OUTP?")
         return int(response)
 
-    setting.setter
+    @setting.setter
     def setting(self, new_val):
         """
         Set the current output setting
