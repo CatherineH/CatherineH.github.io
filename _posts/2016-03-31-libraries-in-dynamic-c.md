@@ -51,7 +51,7 @@ A Sample Library
 The following is an example project in Dynamic C with two libraries. The
 first library is called *starship.lib* and contains the source:
 
-```
+```objective_c
 /*** BeginHeader StarshipCrew */
 struct StarshipCrew{
     char captain[10];
@@ -63,7 +63,7 @@ struct StarshipCrew{
 ```
 The second library is called *starship_functions.lib* and contains the source:
 
-```
+```objective_c
 /*** BeginHeader assignCaptain */
 void assignCaptain(struct StarshipCrew * starship, char * captain);
 /*** EndHeader */
@@ -74,7 +74,7 @@ void assignCaptain(struct StarshipCrew * starship, char * captain)
 ```
 And main looks like this:
 
-```
+```objective_c
 #use "starship.lib"
 #use "starship_functions.lib"
 
@@ -134,7 +134,7 @@ line    7 : ERROR a_starship_test.c   : Undefined (but used) global label assign
 It is important that the function name matches the function. For example, if
 the *BeginHeader* statement is changed to:
 
-```
+```objective_c
 /*** BeginHeader assignCap */
 void assignCaptain(struct StarshipCrew * starship, char * captain);
 /*** EndHeader */
@@ -191,14 +191,14 @@ function.
 
 I've fixed this error by switching the order of imports from:
 
-```
+``` objective_c
 #use "lcd_functions.lib"
 #use "library_with_struct.lib"
 ```
 
 to:
 
-```
+``` objective_c
 #use "library_with_struct.lib"
 #use "lcd_functions.lib"
 ```

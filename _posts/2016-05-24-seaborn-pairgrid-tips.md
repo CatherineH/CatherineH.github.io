@@ -38,7 +38,7 @@ Seaborn will take the keys from the dataframe as the x and y axes labels, and
  the grid. Replacing them means dipping down to the axes level:
 
  
-```
+``` python
 import seaborn as sns; sns.set(style="ticks", color_codes=True)
 iris = sns.load_dataset("iris")
 g = sns.pairplot(iris, hue='species')
@@ -64,7 +64,7 @@ In addition, the matplotlib *Figure* object does not provide a *get_legend()*
  method. Instead, it is possible to access via *get_children()*. The legend 
  is the last artist added, so it will be at index -1:
 
-```
+``` python
 for i in range(len(g.fig.get_children()[-1].texts)):
     label = g.fig.get_children()[-1].texts[i].get_text()
     if label in replacements.keys():
@@ -87,7 +87,7 @@ The one method I've found is to move the legend's anchor using
  width and height can be zero. So, the following code will put the legend in 
  the middle in the y direction but over right edge of the figure:
    
-```
+``` python
 g.fig.get_children()[-1].set_bbox_to_anchor((1.1, 0.5, 0, 0))
 ```
 

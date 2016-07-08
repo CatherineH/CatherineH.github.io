@@ -38,7 +38,7 @@ Windows AMD machine[^1]. Thus, we would like to mock out numpy.
 
 The function to be tested is in the file **one_deep.py**:
 
-```
+```python
 import numpy
 
 def sum_array(lower, upper):
@@ -48,7 +48,7 @@ def sum_array(lower, upper):
 This module uses the arange function in numpy, so the file **fake_numpy.py**
  contains the code:
 
-```
+```python
 def arange(lower, upper):
     return range(lower, upper)
 ```
@@ -57,7 +57,7 @@ Essentially, the range is now a list instead of a numpy array.
 
 The unit test, which replaces **numpy** with **fake_numpy** is:
 
-```
+```python
 from mock import patch
 import fake_numpy
 
@@ -72,7 +72,7 @@ def test_sum_to_hundred():
 Now, suppose we need to go deeper. A second function is in the file
 **two_deep.py**:
 
-```
+```python
 from one_deep import sum_array
 import numpy
 
@@ -88,7 +88,7 @@ called, it will still use **numpy.arange** instead of **fake_numpy.arange**.
 
 Thus, the module must be patched all the way down:
 
-```
+```python
 from mock import patch
 import fake_numpy
 

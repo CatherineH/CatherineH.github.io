@@ -13,7 +13,7 @@ I stumbled over some fairly obvious things when importing a Windows dll in pytho
 
 The code I will be using for this post is:
 
-```
+```python
 from ctypes import cdll
 lib = cdll.LoadLibrary("mydll.dll")
 ```

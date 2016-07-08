@@ -33,7 +33,7 @@ called *list_ports* which will list a
  serial number) I can guess the devices:
 
 
-```
+``` python
 from serial import Serial
 from serial.tools import list_ports
 
