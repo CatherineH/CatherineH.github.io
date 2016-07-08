@@ -56,7 +56,7 @@ connection.
 
 My .ino code looks like this:
 
-```
+```arduino
 #include "scpi_comm.h"
 #include "optical_switch.h"
 int switch_led_pin = 13;
