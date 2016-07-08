@@ -43,18 +43,26 @@ style: |
 5. Conclusion: other resurrections
 6. Goofing off
 
-## A Caveat
-
-1. …I am a physicist
-2. …I learned programming by accident
-3. …This presentation has (probably bad) code
-4. …Suggestions appreciated, but I have feelings too
 
 ## Drawing Options
 
 1. …Processing + Python
 
 ## Processing + Python
+
+```python
+angle = 0
+def setup():
+    size(640, 480, P3D)
+def draw():
+    global angle
+    clear()
+    translate(320, 240)
+    rotate(angle, 1, 1, 0)
+    fill(255, 0, 0)
+    box(100)
+    angle += PI/100.0
+```
 
 ## Drawing Options
 
