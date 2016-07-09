@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+
+
+<html lang="en">
+<head>
+    <title>Resurrecting VPython</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=792, user-scalable=no">
+    <link rel="stylesheet" href="themes/bright/styles/screen.css">
+    <style>
+#CodeSmallArduino h2,  #CodeSmallpyOpenGL h2, #CodeSmallpyOpenGL2 h2,
+#CodeSmallpyOpenGL2 h2, #CodeSmallpyOpenGL3 h2, #CodeSmallpyglet h2,
+#CodeSmallpyglet2 h2, #CodeSmallpyglet3 h2, #CodeSmallpyglet4 h2{
+    margin:0px 0 0;
+    text-align:center;
+    font-size:0px;
+    }
+
+
+#Cover h2 {
+    margin:30px 0 0;
+    color:#FFF;
+    text-align:center;
+    font-size:70px;
+    }
+#Cover p {
+    margin:10px 0 0;
+    text-align:center;
+    color:#FFF;
+    font-style:italic;
+    font-size:20px;
+    }
+    #Cover p a {
+        color:#FFF;
+        }
+</style>
+</head>
+<body class="list">
+    <header class="caption">
+        <h1>Resurrecting VPython</h1>
+        <p>Catherine Holloway, Qubitekk</p>
+
+    </header>
+
+    <section id="Cover" class="slide slide cover w"><div><h2>Resurrecting VPython</h2>
+
+<p><img src="https://raw.githubusercontent.com/CatherineH/pyglet_helper/master/doc/examples/all_objects.gif" alt="" /></p>
+
+</div></section>
+<section class="slide" id="outline"><div><h2>Outline</h2>
+
+<ol>
+  <li>Drawing options in Python</li>
+  <li>VPython, and why it needed resurrecting</li>
+  <li>Resurrection problems</li>
+  <li>Functionality</li>
+  <li>Conclusion: other resurrections</li>
+  <li>Goofing off</li>
+</ol>
+
+</div></section>
+<section class="slide" id="d-drawing-options"><div><h2>3D Drawing Options</h2>
+
+<ol>
+  <li class="next">Processing + Python</li>
+</ol>
+
+</div></section>
+<section class="slide" id="CodeSmallArduino"><div><h2>Processing + Python Code</h2>
+
+<pre><code>angle = 0</code><code>def setup():</code><code>    size(640, 480, P3D)</code><code>def draw():</code><code>    global angle</code><code>    clear()</code><code>    translate(320, 240)</code><code>    rotate(angle, 1, 1, 0)</code><code>    fill(255, 0, 0)</code><code>    box(100)</code><code>    angle += PI/100.0</code></pre>
+
+</div></section>
+<section class="slide slide cover w" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationsprocessinganimationgif"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/processing_animation.gif" alt="" /></h2>
+
+</div></section>
+<section class="slide" id="d-drawing-options-1"><div><h2>3D Drawing Options</h2>
+
+<ol>
+  <li>Processing + Python</li>
+  <li class="next">PyOpenGL</li>
+</ol>
+
+</div></section>
+<section class="slide" id="pyopengl-code"><div><h2>pyOpenGL Code</h2>
+
+<pre><code>from OpenGL.GL import *</code><code>from OpenGL.GLUT import *</code><code>from OpenGL.GLU import *</code></pre>
+
+</div></section>
+<section class="slide" id="CodeSmallpyOpenGL"><div><h2>pyOpenGL Code</h2>
+
+<pre><code>def InitGL(Width, Height):</code><code>    glClearColor(0.0, 0.0, 0.0, 0.0)</code><code>    glClearDepth(1.0)</code><code>    glDepthFunc(GL_LESS)</code><code>    glEnable(GL_DEPTH_TEST)</code><code>    glShadeModel(GL_SMOOTH)</code><code>    glMatrixMode(GL_PROJECTION)</code><code>    glLoadIdentity()</code><code>    gluPerspective(45.0, float(Width) / float(Height), 0.1, 100.0)</code><code>    glMatrixMode(GL_MODELVIEW)</code></pre>
+
+</div></section>
+<section class="slide" id="CodeSmallpyOpenGL2"><div><h2>pyOpenGL Code</h2>
+
+<pre><code>def DrawGLScene():</code><code>    global angle</code><code>    glLoadIdentity()</code><code>    glRotatef(angle, 1.0, 1.0, 0.0)</code><code>    glBegin(GL_QUADS)</code><code>    glColor3f(1.0, 0.0, 0.0)</code><code>    glVertex3f(1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, 1.0)</code><code>    glVertex3f(1.0, 1.0, 1.0)</code><code>    ...</code><code>    glEnd()</code><code>    angle += 1</code></pre>
+
+</div></section>
+<section class="slide" id="CodeSmallpyOpenGL3"><div><h2>pyOpenGL Code {#CodeSmall}</h2>
+
+<pre><code>glutInit(sys.argv)</code><code>glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH)</code><code>glutInitWindowSize(Width, Height)</code><code>glutCreateWindow()</code><code>glutDisplayFunc(DrawGLScene)</code><code>glutIdleFunc(DrawGLScene)</code><code>InitGL(Width, Height)</code><code>glutMainLoop()</code></pre>
+
+</div></section>
+<section class="slide slide cover w" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationspyopenglanimationgif"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/pyopenglanimation.gif" alt="" /></h2>
+
+</div></section>
+<section class="slide" id="d-drawing-options-2"><div><h2>3D Drawing Options</h2>
+
+<ol>
+  <li>Processing + Python</li>
+  <li>PyOpenGL</li>
+  <li class="next">pyglet</li>
+</ol>
+
+</div></section>
+<section class="slide" id="pyglet"><div><h2>pyglet</h2>
+
+<pre><code>from pyglet.gl import *</code><code>from pyglet import clock, window, image</code></pre>
+
+</div></section>
+<section class="slide" id="CodeSmallpyglet"><div><h2>pyglet</h2>
+<pre><code>@win.event</code><code>def on_resize(width, height):</code><code>    glClearColor(0.0, 0.0, 0.0, 0.0)</code><code>    glClearDepth(1.0)</code><code>    glEnable(GL_DEPTH_TEST)</code><code>    glShadeModel(GL_SMOOTH)</code><code>    glMatrixMode(GL_PROJECTION)</code><code>    glLoadIdentity()</code><code>    gluPerspective(45.0, float(Width) / float(Height), 0.1, 100.0)</code><code>    glMatrixMode(GL_MODELVIEW)</code><code>    return pyglet.event.EVENT_HANDLED</code></pre>
+
+</div></section>
+<section class="slide" id="CodeSmallpyglet2"><div><h2>pyglet</h2>
+
+<pre><code>@win.event</code><code>def on_draw():</code><code>    global angle</code><code>    glLoadIdentity()</code><code>    glTranslatef(0.0, 0.0, -6.0)</code><code>    glRotatef(angle, 1, 1, 0)</code><code>    glBegin(GL_QUADS)</code><code>    glColor3f(1.0, 0.0, 0.0)</code><code>    glVertex3f(1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, 1.0)</code><code>    glVertex3f(1.0, 1.0, 1.0)</code><code>    ...</code></pre>
+
+</div></section>
+<section class="slide" id="CodeSmallpyglet3"><div><h2>pyglet</h2>
+
+<pre><code>def update(dt):</code><code>    global angle</code><code>    angle += 1</code><code>win = window.Window(height=Height, width=Width)</code><code> </code><code>pyglet.clock.schedule(update)</code><code>clock.set_fps_limit(30)</code><code>pyglet.app.run()</code></pre>
+
+</div></section>
+<section class="slide slide cover w" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationspygletanimationgif"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/pyglet_animation.gif" alt="" /></h2>
+
+</div></section>
+<section class="slide" id="d-drawing-options-3"><div><h2>3D Drawing Options</h2>
+
+<ol>
+  <li>Processing + Python</li>
+  <li>PyOpenGL</li>
+  <li>pyglet</li>
+  <li class="next">VPython</li>
+</ol>
+
+</div></section>
+<section class="slide" id="vpython-code"><div><h2>VPython code</h2>
+
+<pre><code>from visual import *</code><code> </code><code>box = box(width=1, height=1, length=1, color=color.red)</code><code> </code><code>while 1:</code><code>    rate(10)</code><code>    box.rotate(angle=radians(1), axis=(1, 1, 0))</code></pre>
+
+</div></section>
+<section class="slide slide cover w" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationsvpythonanimationgif"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/vpython_animation.gif" alt="" /></h2>
+
+</div></section>
+<section class="slide" id="vpython-and-why-it-needed-resurrecting"><div><h2>VPython, and why it needed resurrecting</h2>
+
+<ol>
+  <li>introduce creators</li>
+  <li>teaching uses</li>
+  <li>implementation</li>
+</ol>
+
+</div></section>
+<section class="slide" id="resurrection-problems"><div><h2>Resurrection problems</h2>
+
+<ol>
+  <li>converting C++ to python
+1.a. inheritance, data types, iterators
+1.b. removing indirect links
+1.c. multiple declarations</li>
+  <li>Continuous integration with no display</li>
+  <li>to pep or not to pep?</li>
+</ol>
+
+</div></section>
+<section class="slide" id="vpython-functionality"><div><h2>VPython Functionality</h2>
+
+<ol>
+  <li>objects</li>
+  <li>lights and scenes</li>
+  <li>trails</li>
+  <li>default scene</li>
+</ol>
+
+</div></section>
+<section class="slide" id="other-resurrections"><div><h2>Other Resurrections</h2>
+
+</div></section>
+<section class="slide" id="goofing-off"><div><h2>Goofing off</h2>
+
+</div></section>
+
+    <p class="badge"><a href="https://github.com/shower/shower">Fork me on Github</a></p>
+    <div class="progress"><div></div></div>
+    <script src="shower/shower.min.js"></script>
+    <!-- Copyright © 2016 Catherine Holloway, Qubitekk -->
+</body>
+</html>
