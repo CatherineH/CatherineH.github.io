@@ -245,10 +245,10 @@ Also a python OpenGL binding, but simplifies windowing and multimedia
 ## VPython code
 
     from visual import *
-    box = box(width=1, height=1, length=1, color=color.red)
+    a_box = box(width=1, height=1, length=1, color=color.red)
     while True:
         rate(10)
-        box.rotate(angle=radians(1), axis=(1, 1, 0))
+        a_box.rotate(angle=radians(1), axis=vector(1, 1, 0))
 
 ## ![](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/vpython_animation.gif)
 {: .slide .cover .h }
