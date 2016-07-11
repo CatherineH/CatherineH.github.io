@@ -59,7 +59,7 @@ Catherine Holloway (@femion, CatherineH)
 
 ## Processing
 
- - …created by Ben Fry and Casey Reas in 2001 from the MIT media lab
+ - …created by Ben Fry and Casey Reas in 2001 from the MIT  media lab
  - …integrated language + ide built on Java
  - …targeted at artists and beginners
  - …has a python **mode**
@@ -236,10 +236,11 @@ Also a python OpenGL binding, but simplifies windowing and multimedia
 
  - …Created by **David Scherer** in **2000** to replace **cT**, a simple graphics library
  used in CMU's computational physics classes
- - …maintained and developed by **Bruce Sherwood**, a developer of **cT**
- - …Used in many physics textbooks
+ - …Further development led by **Bruce Sherwood**, a developer of **cT**
+ - …Developed to aid understanding of physics through computing
  - …C++ calls OpenGL, compiled to a module called cvisual
- - …depends on wxPython
+ - …depends on wxPython and boost
+ - …development focus beginning 2016 is browser/webGL-based
 
 ## VPython code
 
@@ -292,7 +293,7 @@ Also a python OpenGL binding, but simplifies windowing and multimedia
 ## A Helper for Pyglet
 
 - …Write geometric shape primitives (sphere, box, etc) as "*objects*"
-- …Write mathematical primitives (vector, vertex, etc) as "*utils*"
+- …Write mathematical primitives (vector, vertex, etc)  as "*utils*"
 - …Let pyglet.gl interact with OpenGL
 - …Let pyglet.window and pyglet.app handle display
 
@@ -441,6 +442,6 @@ or
 
 1. … Rename pyglet_helper to vpython-pyglet?
 3. … 3D Text
-2. … Make vpython-jupyter compatible with pyglet_helper
+2. … Make vpython-jupyter  compatible with pyglet_helper
 
 
