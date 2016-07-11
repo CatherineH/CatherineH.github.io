@@ -429,11 +429,26 @@ or
 ## What about jupyter?
 {: .slide .shout .up }
 
+## vpython ecosystem
+
+1. Sherwood and others switched efforts from OpenGL to WebGL
+    1. wxPython has no python 3 version
+    2. few people familiar with C++ code base
+2. GlowScript JavaScript library written in 2012
+3. Two python routes to GlowScript
+
+## glowscript.org
+
+1. completely online, no local installs
+2. Python-to-JavaScript transpiler provides python interface
+3. no access to full scientific Python stack
+
 ## vpython-jupyter
 
-1. Current work by Scherer and Sherwood
-2. uses Glow Script, a WebGL implementation of the VPython api
-2. still requires the vpython library to be installed
+1. Originally developed by Coady as ivisual
+2. Updated to use GlowScipt Python API and released on PyPI as vpython
+3. Runs in Jupyter notebook, typically in a local installation
+4. Rendering handled through a custom kernel that calls GlowScript
 
 ## ![](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/vjupyter_animation.gif)
 {: .slide .cover .h }
