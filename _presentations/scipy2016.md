@@ -59,7 +59,7 @@ Catherine Holloway (@femion, CatherineH)
 
 ## Processing
 
- - …created by Ben Fry and Casey Reas in 2001 from the MIT media lab
+ - …created by Ben Fry and Casey Reas in 2001 from the MIT  media lab
  - …integrated language + ide built on Java
  - …targeted at artists and beginners
  - …has a python **mode**
@@ -236,10 +236,11 @@ Also a python OpenGL binding, but simplifies windowing and multimedia
 
  - …Created by **David Scherer** in **2000** to replace **cT**, a simple graphics library
  used in CMU's computational physics classes
- - …maintained and developed by **Bruce Sherwood**, a developer of **cT**
- - …Used in many physics textbooks
+ - …Further development led by **Bruce Sherwood**, a developer of **cT**
+ - …Developed to aid understanding of physics through computing
  - …C++ calls OpenGL, compiled to a module called cvisual
- - …depends on wxPython
+ - …depends on wxPython and boost
+ - …development focus beginning 2016 is browser/webGL-based
 
 ## VPython code
 
@@ -292,7 +293,7 @@ Also a python OpenGL binding, but simplifies windowing and multimedia
 ## A Helper for Pyglet
 
 - …Write geometric shape primitives (sphere, box, etc) as "*objects*"
-- …Write mathematical primitives (vector, vertex, etc) as "*utils*"
+- …Write mathematical primitives (vector, vertex, etc)  as "*utils*"
 - …Let pyglet.gl interact with OpenGL
 - …Let pyglet.window and pyglet.app handle display
 
@@ -428,11 +429,26 @@ or
 ## What about jupyter?
 {: .slide .shout .up }
 
+## vpython ecosystem
+
+1. Sherwood and others switched efforts from OpenGL to WebGL
+    1. wxPython has no python 3 version
+    2. few people familiar with C++ code base
+2. GlowScript JavaScript library written in 2012
+3. Two python routes to GlowScript
+
+## glowscript.org
+
+1. completely online, no local installs
+2. Python-to-JavaScript transpiler provides python interface
+3. no access to full scientific Python stack
+
 ## vpython-jupyter
 
-1. Current work by Scherer and Sherwood
-2. uses Glow Script, a WebGL implementation of the VPython api
-2. still requires the vpython library to be installed
+1. Originally developed by Coady as ivisual
+2. Updated to use GlowScipt Python API and released on PyPI as vpython
+3. Runs in Jupyter notebook, typically in a local installation
+4. Rendering handled through a custom kernel that calls GlowScript
 
 ## ![](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/vjupyter_animation.gif)
 {: .slide .cover .h }
@@ -441,6 +457,6 @@ or
 
 1. … Rename pyglet_helper to vpython-pyglet?
 3. … 3D Text
-2. … Make vpython-jupyter compatible with pyglet_helper
+2. … Make vpython-jupyter  compatible with pyglet_helper
 
 
