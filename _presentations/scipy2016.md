@@ -245,10 +245,10 @@ Also a python OpenGL binding, but simplifies windowing and multimedia
 ## VPython code
 
     from visual import *
-    box = box(width=1, height=1, length=1, color=color.red)
+    a_box = box(width=1, height=1, length=1, color=color.red)
     while True:
         rate(10)
-        box.rotate(angle=radians(1), axis=(1, 1, 0))
+        a_box.rotate(angle=radians(1), axis=vector(1, 1, 0))
 
 ## ![](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/vpython_animation.gif)
 {: .slide .cover .h }
@@ -451,6 +451,45 @@ or
 4. Rendering handled through a custom kernel that calls GlowScript
 
 ## ![](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/vjupyter_animation.gif)
+{: .slide .cover .h }
+
+## vpython in physics education
+
+1. Develop modeling in tandem with physical concepts
+2. Study situations difficult to handle analytically
+3. At beginning, instructor provides most of program
+4. By end of semester, student starts with blank program
+5. "Hack-a-thon" each semester to encourage students to push their boundaries
+
+## physics example: projectile motion
+
+    scene.autoscale = False; scene.range = 10
+    ball = sphere(pos=vector(-10, 0, 0), radius=0.1, color=color.red, make_trail=True)
+    ball.velocity = vector(10, 10, 0)
+    time = 0.0; time_final = 2; dt = 0.01
+    mass = 0.15
+    while time <= time_final and ball.pos.y > -0.1:
+        rate(100)
+        force = - mass * vector(0, 9.8, 0)
+        ball.pos += ball.velocity * dt
+        ball.velocity += force * dt / mass
+        time += dt
+
+## physics example: projectile motion with air resistance
+
+    scene.autoscale = False; scene.range = 10
+    ball = sphere(pos=vector(-10, 0, 0), radius=0.1, color=color.red, make_trail=True)
+    ball.velocity = vector(10, 10, 0)
+    time = 0.0; time_final = 2; dt = 0.01
+    mass = 0.15
+    while time <= time_final and ball.pos.y > -0.1:
+        rate(100)
+        force = - mass * vector(0, 9.8, 0) <mark>-0.006 * ball.velocity * ball.velocity.mag</mark>
+        ball.pos += ball.velocity * dt
+        ball.velocity += force * dt / mass
+        time += dt
+
+## ![](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/projectile.gif)
 {: .slide .cover .h }
 
 ## Future Work on pyglet_helper
