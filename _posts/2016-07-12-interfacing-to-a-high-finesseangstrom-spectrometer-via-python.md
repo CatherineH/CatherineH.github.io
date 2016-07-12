@@ -7,7 +7,7 @@ tags: [python, windows, C, instruments]
 ---
 {% include JB/setup %}
 
-High Finesse is a german optics company that makes high-quality 
+High Finesse is a German optics company that makes high-quality 
 spectrometers and wavelength meters.  I've written a python interface to
  their provided wlmData driver in order to grab spectrum data off of a 
  LSA UV Vis 2, however, it is likely to work with other spectrometers 
@@ -82,7 +82,8 @@ for line in f_in.readlines():
 
 Next, if a line contains the keywords *const int*, the line probably 
 contains a useful value to parse. The keywords, whitespace characters 
-and semicolon are removed, and the string is split around the equals sign  
+and semicolon are removed, and the string is split around the equals sign
+
 ```python
     if begin_read and line.find("const int") > 0:
         values = line.split("const int")[1].replace(";", "") \
