@@ -11,11 +11,23 @@
 #NoHeaderArduino h2,  #NoHeaderpyOpenGL h2, #NoHeaderpyOpenGL2 h2,
 #NoHeaderpyOpenGL2 h2, #NoHeaderpyOpenGL3 h2, #NoHeaderpyglet h2,
 #NoHeaderpyglet2 h2, #NoHeaderpyglet3 h2, #NoHeaderpyglet4 h2,
-#NoHeaderpythonmultiple h2{
+#NoHeaderpythonmultiple h2, #NoHeaderpyOpenGLSmall h2, 
+#NoHeaderphysics h2, #NoHeaderphysics2 h2{
     margin:0px 0 0;
     text-align:center;
     font-size:0px;
     }
+        
+.leftcol {
+    float: left;
+}
+.rightcol {
+    float: right;
+}
+
+#NoHeaderpyOpenGLSmall code{
+    font-size:14px;
+}
 
 #CodeSmallHeaderiterators h2{
     margin:0px 0 0;
@@ -68,7 +80,7 @@
 <section class="slide" id="processing"><div><h2>Processing</h2>
 
 <ul>
-  <li class="next">created by Ben Fry and Casey Reas in 2001 from the MIT media lab</li>
+  <li class="next">created by Ben Fry and Casey Reas in 2001 from the MIT  media lab</li>
   <li class="next">integrated language + ide built on Java</li>
   <li class="next">targeted at artists and beginners</li>
   <li class="next">has a python <strong>mode</strong></li>
@@ -119,6 +131,12 @@ PyOpenGL is to OpenGL as PyQt is to Qt</p>
 <section class="slide" id="NoHeaderpyOpenGL2"><div><h2>pyOpenGL Code</h2>
 
 <pre><code>def DrawGLScene():</code><code>    global angle</code><code>    glLoadIdentity()</code><code>    glRotatef(angle, 1.0, 1.0, 0.0)</code><code>    glBegin(GL_QUADS)</code><code>    glColor3f(1.0, 0.0, 0.0)</code><code>    glVertex3f(1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, 1.0)</code><code>    glVertex3f(1.0, 1.0, 1.0)</code><code>    ...</code><code>    glEnd()</code><code>    angle += 1</code></pre>
+
+</div></section>
+<section class="slide double" id="NoHeaderpyOpenGLSmall"><div><h2>pyOpenGL Code</h2>
+
+<div class="leftcol"> <pre><code>def DrawGLScene():</code><code>    global angle</code><code>    glLoadIdentity()</code><code>    glRotatef(angle, 1.0, 1.0, 0.0)</code><code>    glBegin(GL_QUADS)</code><code>    </code><code>    glColor3f(1.0, 0.0, 0.0)</code><code>    glVertex3f(1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, 1.0)</code><code>    glVertex3f(1.0, 1.0, 1.0)</code><code>    </code><code>    glColor3f(1.0, 0.0, 0.0)</code><code>    glVertex3f(1.0, -1.0, 1.0)</code><code>    glVertex3f(-1.0, -1.0, 1.0)</code><code>    glVertex3f(-1.0, -1.0, -1.0)</code><code>    glVertex3f(1.0, -1.0, -1.0)</code><code> </code><code>    glColor3f(0.0, 1.0, 0.0)</code><code>    glVertex3f(1.0, 1.0, 1.0)</code><code>    glVertex3f(-1.0, 1.0, 1.0)</code><code>    glVertex3f(-1.0, -1.0, 1.0)</code><code>    glVertex3f(1.0, -1.0, 1.0)</code><code> </code></pre> </div>
+<div class="rightcol"><pre><code>    glColor3f(1.0, 1.0, 0.0)</code><code>    glVertex3f(1.0, -1.0, -1.0)</code><code>    glVertex3f(-1.0, -1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, -1.0)</code><code>    glVertex3f(1.0, 1.0, -1.0)</code><code> </code><code>    glColor3f(0.0, 0.0, 1.0)</code><code>    glVertex3f(-1.0, 1.0, 1.0)</code><code>    glVertex3f(-1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, -1.0, -1.0)</code><code>    glVertex3f(-1.0, -1.0, 1.0)</code><code> </code><code>    glColor3f(1.0, 0.0, 1.0)</code><code>    glVertex3f(1.0, 1.0, -1.0)</code><code>    glVertex3f(1.0, 1.0, 1.0)</code><code>    glVertex3f(1.0, -1.0, 1.0)</code><code>    glVertex3f(1.0, -1.0, -1.0)</code><code> </code><code>    glEnd()</code><code>    angle += 1</code></pre></div>
 
 </div></section>
 <section class="slide" id="NoHeaderpyOpenGL3"><div><h2>pyOpenGL Code</h2>
@@ -194,16 +212,30 @@ PyOpenGL is to OpenGL as PyQt is to Qt</p>
 <ul>
   <li class="next">Created by <strong>David Scherer</strong> in <strong>2000</strong> to replace <strong>cT</strong>, a simple graphics library
  used in CMU’s computational physics classes</li>
-  <li class="next">maintained and developed by <strong>Bruce Sherwood</strong>, a developer of <strong>cT</strong></li>
-  <li class="next">Used in many physics textbooks</li>
+  <li class="next">Further development led by <strong>Bruce Sherwood</strong>, a developer of <strong>cT</strong></li>
+  <li class="next">Developed to aid understanding of physics through computing</li>
   <li class="next">C++ calls OpenGL, compiled to a module called cvisual</li>
-  <li class="next">depends on wxPython</li>
+  <li class="next">depends on wxPython and boost</li>
+  <li class="next">development focus beginning 2016 is browser/webGL-based</li>
 </ul>
+
+</div></section>
+<section class="slide" id="NoHeaderphysics"><div><h2>physics example: projectile motion</h2>
+
+<pre><code>ball = sphere(pos=vector(-10, 0, 0), radius=0.1, </code><code>              color=color.red, make_trail=True)</code><code>ball.velocity = vector(10, 10, 0)</code><code>time = 0.0; time_final = 2; dt = 0.01; m = 0.15</code><code>while time &lt;= time_final and ball.pos.y &gt; -0.1:</code><code>    rate(100)</code><code>    f = - m * vector(0, 9.8, 0)</code><code>    </code><code>    ball.pos += ball.velocity * dt</code><code>    ball.velocity += f * dt / m</code><code>    time += dt</code></pre>
+
+</div></section>
+<section class="slide" id="NoHeaderphysics2"><div><h2>physics example: projectile motion with air resistance</h2>
+
+<pre><code>ball = sphere(pos=vector(-10, 0, 0), radius=0.1, </code><code>              color=color.red, make_trail=True)</code><code>ball.velocity = vector(10, 10, 0)</code><code>time = 0.0; time_final = 2; dt = 0.01; m = 0.15</code><code>while time &lt;= time_final and ball.pos.y &gt; -0.1:</code><code>    rate(100)</code><code>    f = - m * vector(0, 9.8, 0) </code><code>         <mark>-0.006 * ball.velocity * ball.velocity.mag</mark></code><code>    ball.pos += ball.velocity * dt</code><code>    ball.velocity += f * dt / m</code><code>    time += dt</code></pre>
+
+</div></section>
+<section class="slide slide cover h" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationsprojectilegif"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/projectile.gif" alt="" /></h2>
 
 </div></section>
 <section class="slide" id="vpython-code"><div><h2>VPython code</h2>
 
-<pre><code>from visual import *</code><code>box = box(width=1, height=1, length=1, color=color.red)</code><code>while True:</code><code>    rate(10)</code><code>    box.rotate(angle=radians(1), axis=(1, 1, 0))</code></pre>
+<pre><code>from visual import *</code><code>a_box = box(width=1, height=1, length=1, color=color.red)</code><code>while True:</code><code>    rate(10)</code><code>    a_box.rotate(angle=radians(1), axis=vector(1, 1, 0))</code></pre>
 
 </div></section>
 <section class="slide slide cover h" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationsvpythonanimationgif"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/vpython_animation.gif" alt="" /></h2>
@@ -274,8 +306,8 @@ PyOpenGL is to OpenGL as PyQt is to Qt</p>
 <section class="slide" id="a-helper-for-pyglet"><div><h2>A Helper for Pyglet</h2>
 
 <ul>
-  <li class="next">Write geometric shape primitives (sphere, box, etc) as “<em>objects</em>”</li>
-  <li class="next">Write mathematical primitives (vector, vertex, etc) as “<em>utils</em>”</li>
+  <li class="next">Submodule “<em>objects</em>” has geometric shape primitives</li>
+  <li class="next">Submodule “<em>utils</em>” has mathematical primitives (vector, vertex, etc)</li>
   <li class="next">Let pyglet.gl interact with OpenGL</li>
   <li class="next">Let pyglet.window and pyglet.app handle display</li>
 </ul>
@@ -402,12 +434,36 @@ Becomes:
 <section class="slide slide shout up" id="what-about-jupyter"><div><h2>What about jupyter?</h2>
 
 </div></section>
+<section class="slide" id="vpython-ecosystem"><div><h2>vpython ecosystem</h2>
+
+<ol>
+  <li>Sherwood and others switched efforts from OpenGL to WebGL
+    <ol>
+      <li>wxPython has no python 3 version</li>
+      <li>few people familiar with C++ code base</li>
+    </ol>
+  </li>
+  <li>GlowScript JavaScript library written in 2012</li>
+  <li>Two python routes to GlowScript</li>
+</ol>
+
+</div></section>
+<section class="slide" id="glowscriptorg"><div><h2>glowscript.org</h2>
+
+<ol>
+  <li>completely online, no local installs</li>
+  <li>Python-to-JavaScript transpiler provides python interface</li>
+  <li>no access to full scientific Python stack</li>
+</ol>
+
+</div></section>
 <section class="slide" id="vpython-jupyter"><div><h2>vpython-jupyter</h2>
 
 <ol>
-  <li>Current work by Scherer and Sherwood</li>
-  <li>uses Glow Script, a WebGL implementation of the VPython api</li>
-  <li>still requires the vpython library to be installed</li>
+  <li>Originally developed by Coady as ivisual</li>
+  <li>Updated to use GlowScipt Python API and released on PyPI as vpython</li>
+  <li>Runs in Jupyter notebook, typically in a local installation</li>
+  <li>Rendering handled through a custom kernel that calls GlowScript</li>
 </ol>
 
 </div></section>
@@ -419,9 +475,11 @@ Becomes:
 <ol>
   <li class="next">Rename pyglet_helper to vpython-pyglet?</li>
   <li class="next">3D Text</li>
-  <li class="next">Make vpython-jupyter compatible with pyglet_helper</li>
+  <li class="next">Make vpython-jupyter  compatible with pyglet_helper</li>
 </ol>
 
+</div></section>
+<section class="slide slide shout up" id="thank-you"><div><h2>Thank you!</h2>
 
 </div></section>
 

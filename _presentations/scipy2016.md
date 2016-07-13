@@ -12,11 +12,23 @@ style: |
     #NoHeaderArduino h2,  #NoHeaderpyOpenGL h2, #NoHeaderpyOpenGL2 h2,
     #NoHeaderpyOpenGL2 h2, #NoHeaderpyOpenGL3 h2, #NoHeaderpyglet h2,
     #NoHeaderpyglet2 h2, #NoHeaderpyglet3 h2, #NoHeaderpyglet4 h2,
-    #NoHeaderpythonmultiple h2{
+    #NoHeaderpythonmultiple h2, #NoHeaderpyOpenGLSmall h2, 
+    #NoHeaderphysics h2, #NoHeaderphysics2 h2{
         margin:0px 0 0;
         text-align:center;
         font-size:0px;
         }
+            
+    .leftcol {
+        float: left;
+    }
+    .rightcol {
+        float: right;
+    }
+
+    #NoHeaderpyOpenGLSmall code{
+        font-size:14px;
+    }
 
     #CodeSmallHeaderiterators h2{
         margin:0px 0 0;
@@ -136,6 +148,12 @@ PyOpenGL is to OpenGL as PyQt is to Qt
         glEnd()
         angle += 1
 
+## pyOpenGL Code 
+{: .double #NoHeaderpyOpenGLSmall}
+
+<div class="leftcol"> <pre><code>def DrawGLScene():</code><code>    global angle</code><code>    glLoadIdentity()</code><code>    glRotatef(angle, 1.0, 1.0, 0.0)</code><code>    glBegin(GL_QUADS)</code><code>    </code><code>    glColor3f(1.0, 0.0, 0.0)</code><code>    glVertex3f(1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, 1.0)</code><code>    glVertex3f(1.0, 1.0, 1.0)</code><code>    </code><code>    glColor3f(1.0, 0.0, 0.0)</code><code>    glVertex3f(1.0, -1.0, 1.0)</code><code>    glVertex3f(-1.0, -1.0, 1.0)</code><code>    glVertex3f(-1.0, -1.0, -1.0)</code><code>    glVertex3f(1.0, -1.0, -1.0)</code><code> </code><code>    glColor3f(0.0, 1.0, 0.0)</code><code>    glVertex3f(1.0, 1.0, 1.0)</code><code>    glVertex3f(-1.0, 1.0, 1.0)</code><code>    glVertex3f(-1.0, -1.0, 1.0)</code><code>    glVertex3f(1.0, -1.0, 1.0)</code><code> </code></pre> </div>  
+<div class="rightcol"><pre><code>    glColor3f(1.0, 1.0, 0.0)</code><code>    glVertex3f(1.0, -1.0, -1.0)</code><code>    glVertex3f(-1.0, -1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, -1.0)</code><code>    glVertex3f(1.0, 1.0, -1.0)</code><code> </code><code>    glColor3f(0.0, 0.0, 1.0)</code><code>    glVertex3f(-1.0, 1.0, 1.0)</code><code>    glVertex3f(-1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, -1.0, -1.0)</code><code>    glVertex3f(-1.0, -1.0, 1.0)</code><code> </code><code>    glColor3f(1.0, 0.0, 1.0)</code><code>    glVertex3f(1.0, 1.0, -1.0)</code><code>    glVertex3f(1.0, 1.0, 1.0)</code><code>    glVertex3f(1.0, -1.0, 1.0)</code><code>    glVertex3f(1.0, -1.0, -1.0)</code><code> </code><code>    glEnd()</code><code>    angle += 1</code></pre></div>
+
 ## pyOpenGL Code {#NoHeaderpyOpenGL3}
 
     glutInit(sys.argv)
@@ -242,6 +260,39 @@ Also a python OpenGL binding, but simplifies windowing and multimedia
  - …depends on wxPython and boost
  - …development focus beginning 2016 is browser/webGL-based
 
+
+## physics example: projectile motion {#NoHeaderphysics}
+
+    ball = sphere(pos=vector(-10, 0, 0), radius=0.1, 
+                  color=color.red, make_trail=True)
+    ball.velocity = vector(10, 10, 0)
+    time = 0.0; time_final = 2; dt = 0.01; m = 0.15
+    while time <= time_final and ball.pos.y > -0.1:
+        rate(100)
+        f = - m * vector(0, 9.8, 0)
+        
+        ball.pos += ball.velocity * dt
+        ball.velocity += f * dt / m
+        time += dt
+
+## physics example: projectile motion with air resistance {#NoHeaderphysics2}
+
+    ball = sphere(pos=vector(-10, 0, 0), radius=0.1, 
+                  color=color.red, make_trail=True)
+    ball.velocity = vector(10, 10, 0)
+    time = 0.0; time_final = 2; dt = 0.01; m = 0.15
+    while time <= time_final and ball.pos.y > -0.1:
+        rate(100)
+        f = - m * vector(0, 9.8, 0) 
+             <mark>-0.006 * ball.velocity * ball.velocity.mag</mark>
+        ball.pos += ball.velocity * dt
+        ball.velocity += f * dt / m
+        time += dt
+
+## ![](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/projectile.gif)
+{: .slide .cover .h }
+
+
 ## VPython code
 
     from visual import *
@@ -292,8 +343,8 @@ Also a python OpenGL binding, but simplifies windowing and multimedia
 
 ## A Helper for Pyglet
 
-- …Write geometric shape primitives (sphere, box, etc) as "*objects*"
-- …Write mathematical primitives (vector, vertex, etc)  as "*utils*"
+- …Submodule "*objects*" has geometric shape primitives 
+- …Submodule "*utils*" has mathematical primitives (vector, vertex, etc) 
 - …Let pyglet.gl interact with OpenGL
 - …Let pyglet.window and pyglet.app handle display
 
@@ -453,49 +504,11 @@ or
 ## ![](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/vjupyter_animation.gif)
 {: .slide .cover .h }
 
-## vpython in physics education
-
-1. Develop modeling in tandem with physical concepts
-2. Study situations difficult to handle analytically
-3. At beginning, instructor provides most of program
-4. By end of semester, student starts with blank program
-5. "Hack-a-thon" each semester to encourage students to push their boundaries
-
-## physics example: projectile motion
-
-    scene.autoscale = False; scene.range = 10
-    ball = sphere(pos=vector(-10, 0, 0), radius=0.1, color=color.red, make_trail=True)
-    ball.velocity = vector(10, 10, 0)
-    time = 0.0; time_final = 2; dt = 0.01
-    mass = 0.15
-    while time <= time_final and ball.pos.y > -0.1:
-        rate(100)
-        force = - mass * vector(0, 9.8, 0)
-        ball.pos += ball.velocity * dt
-        ball.velocity += force * dt / mass
-        time += dt
-
-## physics example: projectile motion with air resistance
-
-    scene.autoscale = False; scene.range = 10
-    ball = sphere(pos=vector(-10, 0, 0), radius=0.1, color=color.red, make_trail=True)
-    ball.velocity = vector(10, 10, 0)
-    time = 0.0; time_final = 2; dt = 0.01
-    mass = 0.15
-    while time <= time_final and ball.pos.y > -0.1:
-        rate(100)
-        force = - mass * vector(0, 9.8, 0) <mark>-0.006 * ball.velocity * ball.velocity.mag</mark>
-        ball.pos += ball.velocity * dt
-        ball.velocity += force * dt / mass
-        time += dt
-
-## ![](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/projectile.gif)
-{: .slide .cover .h }
-
 ## Future Work on pyglet_helper
 
 1. … Rename pyglet_helper to vpython-pyglet?
 3. … 3D Text
 2. … Make vpython-jupyter  compatible with pyglet_helper
 
-
+## Thank you!
+{: .slide .shout .up }
