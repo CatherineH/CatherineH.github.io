@@ -258,8 +258,6 @@ Also a python OpenGL binding, but simplifies windowing and multimedia
  - …Developed to aid understanding of physics through computing
  - …C++ calls OpenGL, compiled to a module called cvisual
  - …depends on wxPython and boost
- - …development focus beginning 2016 is browser/webGL-based
-
 
 ## physics example: projectile motion {#NoHeaderphysics}
 
@@ -350,12 +348,6 @@ Also a python OpenGL binding, but simplifies windowing and multimedia
 
 ## Implementation
 {: .slide .shout .up }
-
-## Conversion problems
-
-1. Converting C++ to python
-2. To pep or not to pep?
-3. Continuous integration with no display
 
 <!--
 ## Replacing Iterators {#CodeSmallHeaderiterators}
