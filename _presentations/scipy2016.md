@@ -491,7 +491,7 @@ or
 1. Originally developed by Coady as ivisual
 2. Updated to use GlowScipt Python API and released on PyPI as vpython
 3. Runs in Jupyter notebook, typically in a local installation
-4. Rendering handled through a custom kernel that calls GlowScript
+4. Rendering handled through a comm channel to GlowScipt loaded in the front end
 
 ## ![](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/vjupyter_animation.gif)
 {: .slide .cover .h }
