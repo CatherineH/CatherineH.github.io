@@ -12,7 +12,7 @@
 #NoHeaderpyOpenGL2 h2, #NoHeaderpyOpenGL3 h2, #NoHeaderpyglet h2,
 #NoHeaderpyglet2 h2, #NoHeaderpyglet3 h2, #NoHeaderpyglet4 h2,
 #NoHeaderpythonmultiple h2, #NoHeaderpyOpenGLSmall h2, 
-#NoHeaderphysics h2, #NoHeaderphysics2 h2{
+#NoHeaderphysics h2, #NoHeaderphysics2 h2, {
     margin:0px 0 0;
     text-align:center;
     font-size:0px;
@@ -23,6 +23,10 @@
 }
 .rightcol {
     float: right;
+}
+
+#NoHeadervispy code{
+    font-size:18px;
 }
 
 #NoHeaderpyOpenGLSmall code{
@@ -469,6 +473,14 @@ Becomes:
 </ol>
 
 </div></section>
+
+<section class="slide" id="NoHeadervispy"><div><h2>Python version</h2>
+
+<pre><code>from vispy import app, scene</code><code>from vispy.visuals import transforms   </code><code>canvas = scene.SceneCanvas(keys='interactive')</code><code>view = canvas.central_widget.add_view()</code><code>def update(dt):</code><code>    global cube</code><code>    cube.transform.rotate(1, (1, 1, 0))</code><code>cube = scene.visuals.Cube(color='red', edge_color="k")</code><code>cube.transform = transforms.MatrixTransform()</code><code>view.add(cube)</code><code>view.camera = scene.TurntableCamera()</code><code>canvas.show()</code><code>timer = app.Timer('auto', connect=update, start=True)</code><code>canvas.app.run()</code></pre>
+
+</div></section>
+
+
 <section class="slide slide shout up" id="thank-you"><div><h2>Thank you!</h2>
 
 </div></section>
