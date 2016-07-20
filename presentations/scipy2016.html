@@ -340,7 +340,7 @@ Becomes:
 <pre><code>def __init__(self, in_vector=None):</code><code>    if in_vector is None:</code><code>        self.zero()</code><code>    elif len(in_vector) &gt; 2:</code><code>        for i in range(len(self)):</code><code>            self[i] = in_vector[i]</code><code>    else:</code><code>        raise ValueError("in_vector must contain "</code><code>                         "at least three numbers!")</code></pre>
 
 </div></section>
-<section class="slide no-numbers" id="pep"><div><h2>PEP</h2>
+<section class="slide no-numbers" id="pep"><div><h2>PEP styling</h2>
 <pre><code>box() became Box()</code><code>vector.x became Vector.x_component, or Vector[0]</code></pre>
 
 </div></section>
@@ -463,9 +463,9 @@ Becomes:
 <section class="slide" id="future-work-on-pyglethelper"><div><h2>Future Work on pyglet_helper</h2>
 
 <ol>
-  <li class="next">Rename pyglet_helper to vpython-pyglet?</li>
+  <li class="next">undo the styling changes so that it matches the textbook formats</li>
   <li class="next">3D Text</li>
-  <li class="next">Make vpython-jupyter  compatible with pyglet_helper</li>
+  <li class="next">Switch to PyOpenGL</li>
 </ol>
 
 </div></section>
