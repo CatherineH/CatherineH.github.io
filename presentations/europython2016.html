@@ -1,0 +1,506 @@
+<!DOCTYPE HTML>
+
+
+<html lang="en">
+<head>
+    <title>Simplifying Computer Art</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=792, user-scalable=no">
+    <link rel="stylesheet" href="themes/bright/styles/screen.css">
+    <style>
+#NoHeaderArduino h2,  #NoHeaderpyOpenGL h2, #NoHeaderpyOpenGL2 h2,
+#NoHeaderpyOpenGL2 h2, #NoHeaderpyOpenGL3 h2, #NoHeaderpyglet h2,
+#NoHeaderpyglet2 h2, #NoHeaderpyglet3 h2, #NoHeaderpyglet4 h2,
+#NoHeaderpythonmultiple h2, #NoHeaderpyOpenGLSmall h2, 
+#NoHeaderphysics h2, #NoHeaderphysics2 h2, #NoHeadervispy h2{
+    margin:0px 0 0;
+    text-align:center;
+    font-size:0px;
+    }
+        
+.leftcol {
+    float: left;
+}
+.rightcol {
+    float: right;
+}
+
+#NoHeadervispy code{
+    font-size:18px;
+}
+
+#NoHeaderpyOpenGLSmall code{
+    font-size:14px;
+}
+
+#CodeSmallHeaderiterators h2{
+    margin:0px 0 0;
+    text-align:center;
+    font-size:20px;
+    }
+
+
+#Cover h2 {
+    margin:30px 0 0;
+    color:#FFF;
+    text-align:center;
+    font-size:70px;
+    }
+#Cover p {
+    margin:10px 0 0;
+    text-align:center;
+    color:#FFF;
+    font-style:italic;
+    font-size:20px;
+    }
+    #Cover p a {
+        color:#FFF;
+        }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
+</head>
+<body class="list">
+    <header class="caption">
+        <h1>Simplifying Computer Art</h1>
+        <p>Catherine Holloway, Qubitekk</p>
+
+    </header>
+
+    <section id="Cover" class="slide slide cover w"><div><h2>Simplifying Computer Art</h2>
+
+<p>Catherine Holloway (@femion, CatherineH)</p>
+
+</div></section>
+<section class="slide slide cover w happyfreshman" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationscollege-freshmanjpg"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/College-Freshman.jpg" alt="0" /></h2>
+
+</div></section>
+<section class="slide" id="d-drawing-options"><div><h2>3D Drawing Options</h2>
+
+<ol>
+  <li class="next">Processing + Python</li>
+</ol>
+
+</div></section>
+<section class="slide" id="processing"><div><h2>Processing</h2>
+
+<ul>
+  <li class="next">created by Ben Fry and Casey Reas in 2001 from the MIT  media lab</li>
+  <li class="next">integrated language + ide built on Java</li>
+  <li class="next">targeted at artists and beginners</li>
+  <li class="next">has a python <strong>mode</strong></li>
+</ul>
+
+</div></section>
+<section class="slide" id="NoHeaderArduino"><div><h2>Processing + Python Code</h2>
+
+<pre><code>angle = 0</code><code>def setup():</code><code>    size(640, 480, P3D)</code><code>def draw():</code><code>    global angle</code><code>    clear()</code><code>    translate(320, 240)</code><code>    rotate(angle, 1, 1, 0)</code><code>    fill(255, 0, 0)</code><code>    box(100)</code><code>    angle += PI/100.0</code></pre>
+
+</div></section>
+<section class="slide slide cover w" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationsprocessinganimationgif"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/processing_animation.gif" alt="" /></h2>
+
+</div></section>
+<section class="slide slide cover w" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationscollege-freshmanjpg-1"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/College-Freshman.jpg" alt="1" /></h2>
+
+</div></section>
+<section class="slide slide cover w" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationsscipyimportfailpng"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/scipy_import_fail.png" alt="" /></h2>
+
+</div></section>
+<section class="slide slide cover w" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationscollege-freshman-sadjpg"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/College-Freshman-sad.jpg" alt="1" /></h2>
+
+</div></section>
+<section class="slide" id="d-drawing-options-1"><div><h2>3D Drawing Options</h2>
+
+<ol>
+  <li>Processing + Python</li>
+  <li class="next">PyOpenGL</li>
+</ol>
+
+</div></section>
+<section class="slide" id="pyopengl"><div><h2>PyOpenGL</h2>
+
+<p><img src="http://www.pygame.org/shots/443.gif" alt="" />
+PyOpenGL is to OpenGL as PyQt is to Qt</p>
+
+</div></section>
+<section class="slide" id="pyopengl-code"><div><h2>pyOpenGL Code</h2>
+
+<pre><code>from OpenGL.GL import *</code><code>from OpenGL.GLUT import *</code><code>from OpenGL.GLU import *</code></pre>
+
+</div></section>
+<section class="slide" id="NoHeaderpyOpenGL"><div><h2>pyOpenGL Code</h2>
+
+<pre><code>def InitGL(Width, Height):</code><code>    glClearColor(0.0, 0.0, 0.0, 0.0)</code><code>    glClearDepth(1.0)</code><code>    glDepthFunc(GL_LESS)</code><code>    glEnable(GL_DEPTH_TEST)</code><code>    glShadeModel(GL_SMOOTH)</code><code>    glMatrixMode(GL_PROJECTION)</code><code>    glLoadIdentity()</code><code>    gluPerspective(45.0, Width / Height, 0.1, 100.0)</code><code>    glMatrixMode(GL_MODELVIEW)</code></pre>
+
+</div></section>
+<section class="slide" id="NoHeaderpyOpenGL2"><div><h2>pyOpenGL Code</h2>
+
+<pre><code>def DrawGLScene():</code><code>    global angle</code><code>    glLoadIdentity()</code><code>    glRotatef(angle, 1.0, 1.0, 0.0)</code><code>    glBegin(GL_QUADS)</code><code>    glColor3f(1.0, 0.0, 0.0)</code><code>    glVertex3f(1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, 1.0)</code><code>    glVertex3f(1.0, 1.0, 1.0)</code><code>    ...</code><code>    glEnd()</code><code>    angle += 1</code></pre>
+
+</div></section>
+<section class="slide double" id="NoHeaderpyOpenGLSmall"><div><h2>pyOpenGL Code</h2>
+
+<div class="leftcol"> <pre><code>def DrawGLScene():</code><code>    global angle</code><code>    glLoadIdentity()</code><code>    glRotatef(angle, 1.0, 1.0, 0.0)</code><code>    glBegin(GL_QUADS)</code><code>    </code><code>    glColor3f(1.0, 0.0, 0.0)</code><code>    glVertex3f(1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, 1.0)</code><code>    glVertex3f(1.0, 1.0, 1.0)</code><code>    </code><code>    glColor3f(1.0, 0.0, 0.0)</code><code>    glVertex3f(1.0, -1.0, 1.0)</code><code>    glVertex3f(-1.0, -1.0, 1.0)</code><code>    glVertex3f(-1.0, -1.0, -1.0)</code><code>    glVertex3f(1.0, -1.0, -1.0)</code><code> </code><code>    glColor3f(0.0, 1.0, 0.0)</code><code>    glVertex3f(1.0, 1.0, 1.0)</code><code>    glVertex3f(-1.0, 1.0, 1.0)</code><code>    glVertex3f(-1.0, -1.0, 1.0)</code><code>    glVertex3f(1.0, -1.0, 1.0)</code><code> </code></pre> </div>
+<div class="rightcol"><pre><code>    glColor3f(1.0, 1.0, 0.0)</code><code>    glVertex3f(1.0, -1.0, -1.0)</code><code>    glVertex3f(-1.0, -1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, -1.0)</code><code>    glVertex3f(1.0, 1.0, -1.0)</code><code> </code><code>    glColor3f(0.0, 0.0, 1.0)</code><code>    glVertex3f(-1.0, 1.0, 1.0)</code><code>    glVertex3f(-1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, -1.0, -1.0)</code><code>    glVertex3f(-1.0, -1.0, 1.0)</code><code> </code><code>    glColor3f(1.0, 0.0, 1.0)</code><code>    glVertex3f(1.0, 1.0, -1.0)</code><code>    glVertex3f(1.0, 1.0, 1.0)</code><code>    glVertex3f(1.0, -1.0, 1.0)</code><code>    glVertex3f(1.0, -1.0, -1.0)</code><code> </code><code>    glEnd()</code><code>    angle += 1</code></pre></div>
+
+</div></section>
+<section class="slide" id="NoHeaderpyOpenGL3"><div><h2>pyOpenGL Code</h2>
+
+<pre><code>glutInit(sys.argv)</code><code>glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH)</code><code>glutInitWindowSize(Width, Height)</code><code>glutCreateWindow()</code><code>glutDisplayFunc(DrawGLScene)</code><code>glutIdleFunc(DrawGLScene)</code><code>InitGL(Width, Height)</code><code>glutMainLoop()</code></pre>
+
+</div></section>
+<section class="slide slide cover w" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationspyopenglanimationgif"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/pyopenglanimation.gif" alt="" /></h2>
+
+</div></section>
+<section class="slide slide cover w" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationsopenglpng"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/opengl.png" alt="" /></h2>
+
+</div></section>
+<section class="slide slide cover w" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationscollege-freshman-sadjpg-1"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/College-Freshman-sad.jpg" alt="2" /></h2>
+
+</div></section>
+<section class="slide" id="d-drawing-options-2"><div><h2>3D Drawing Options</h2>
+
+<ol>
+  <li>Processing + Python</li>
+  <li>PyOpenGL</li>
+  <li class="next">pyglet</li>
+</ol>
+
+</div></section>
+<section class="slide" id="pyglet"><div><h2>pyglet</h2>
+
+<p><img src="http://pyglet.readthedocs.io/en/pyglet-1.2-maintenance/_static/logo.png" alt="" /></p>
+
+<p>Also a python OpenGL binding, but simplifies windowing and multimedia</p>
+
+</div></section>
+<section class="slide slide cover w" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationspygletanimationgif"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/pyglet_animation.gif" alt="" /></h2>
+
+</div></section>
+<section class="slide" id="pyglet-1"><div><h2>pyglet</h2>
+
+<pre><code>from pyglet.gl import *</code><code>from pyglet import clock, window</code></pre>
+
+</div></section>
+<section class="slide" id="NoHeaderpyglet3"><div><h2>pyglet</h2>
+
+<pre><code>def update(dt):</code><code>    global angle</code><code>    angle += 1</code><code>win = window.Window(height=Height, width=Width)</code><code> </code><code>pyglet.clock.schedule(update)</code><code>clock.set_fps_limit(30)</code><code>pyglet.app.run()</code></pre>
+
+</div></section>
+<section class="slide slide cover w" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationscollege-freshmanjpg-2"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/College-Freshman.jpg" alt="3" /></h2>
+
+</div></section>
+<section class="slide" id="NoHeaderpyglet"><div><h2>pyglet</h2>
+<pre><code>@win.event</code><code>def on_resize(width, height):</code><code>    glClearColor(0.0, 0.0, 0.0, 0.0)</code><code>    glClearDepth(1.0)</code><code>    glEnable(GL_DEPTH_TEST)</code><code>    glShadeModel(GL_SMOOTH)</code><code>    glMatrixMode(GL_PROJECTION)</code><code>    glLoadIdentity()</code><code>    gluPerspective(45.0, Width / Height, 0.1, 100.0)</code><code>    glMatrixMode(GL_MODELVIEW)</code><code>    return pyglet.event.EVENT_HANDLED</code></pre>
+
+</div></section>
+<section class="slide" id="NoHeaderpyglet2"><div><h2>pyglet</h2>
+
+<pre><code>@win.event</code><code>def on_draw():</code><code>    global angle</code><code>    glLoadIdentity()</code><code>    glTranslatef(0.0, 0.0, -6.0)</code><code>    glRotatef(angle, 1, 1, 0)</code><code>    glBegin(GL_QUADS)</code><code>    glColor3f(1.0, 0.0, 0.0)</code><code>    glVertex3f(1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, 1.0)</code><code>    glVertex3f(1.0, 1.0, 1.0)</code><code>    ...</code></pre>
+
+</div></section>
+<section class="slide slide cover w" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationscollege-freshman-sadjpg-2"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/College-Freshman-sad.jpg" alt="3" /></h2>
+
+</div></section>
+<section class="slide" id="d-drawing-options-3"><div><h2>3D Drawing Options</h2>
+
+<ol>
+  <li>Processing + Python</li>
+  <li>PyOpenGL</li>
+  <li>pyglet</li>
+  <li class="next">VPython</li>
+</ol>
+
+</div></section>
+<section class="slide" id="vpython"><div><h2>VPython</h2>
+
+<ul>
+  <li class="next">Created by <strong>David Scherer</strong> in <strong>2000</strong> to replace <strong>cT</strong>, a simple graphics library
+ used in CMU’s computational physics classes</li>
+  <li class="next">Further development led by <strong>Bruce Sherwood</strong>, a developer of <strong>cT</strong></li>
+  <li class="next">Developed to aid understanding of physics through computing</li>
+  <li class="next">C++ calls OpenGL, compiled to a module called cvisual</li>
+  <li class="next">depends on wxPython and boost</li>
+</ul>
+
+</div></section>
+<section class="slide" id="NoHeaderphysics"><div><h2>physics example: projectile motion</h2>
+
+<pre><code>ball = sphere(pos=vector(-10, 0, 0), radius=0.1, </code><code>              color=color.red, make_trail=True)</code><code>ball.velocity = vector(10, 10, 0)</code><code>time = 0.0; time_final = 2; dt = 0.01; m = 0.15</code><code>while time &lt;= time_final and ball.pos.y &gt; -0.1:</code><code>    rate(100)</code><code>    f = - m * vector(0, 9.8, 0)</code><code>    </code><code>    ball.pos += ball.velocity * dt</code><code>    ball.velocity += f * dt / m</code><code>    time += dt</code></pre>
+
+</div></section>
+<section class="slide" id="NoHeaderphysics2"><div><h2>physics example: projectile motion with air resistance</h2>
+
+<pre><code>ball = sphere(pos=vector(-10, 0, 0), radius=0.1, </code><code>              color=color.red, make_trail=True)</code><code>ball.velocity = vector(10, 10, 0)</code><code>time = 0.0; time_final = 2; dt = 0.01; m = 0.15</code><code>while time &lt;= time_final and ball.pos.y &gt; -0.1:</code><code>    rate(100)</code><code>    f = - m * vector(0, 9.8, 0) </code><code>         <mark>-0.006 * ball.velocity * ball.velocity.mag</mark></code><code>    ball.pos += ball.velocity * dt</code><code>    ball.velocity += f * dt / m</code><code>    time += dt</code></pre>
+
+</div></section>
+<section class="slide slide cover h" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationsprojectilegif"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/projectile.gif" alt="" /></h2>
+
+</div></section>
+<section class="slide" id="vpython-code"><div><h2>VPython code</h2>
+
+<pre><code>from visual import *</code><code>a_box = box(width=1, height=1, length=1, color=color.red)</code><code>while True:</code><code>    rate(10)</code><code>    a_box.rotate(angle=radians(1), axis=vector(1, 1, 0))</code></pre>
+
+</div></section>
+<section class="slide slide cover h" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationsvpythonanimationgif"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/vpython_animation.gif" alt="" /></h2>
+
+</div></section>
+<section class="slide slide cover w" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationscollege-freshmanjpg-3"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/College-Freshman.jpg" alt="4" /></h2>
+
+</div></section>
+<section class="slide slide shout up" id="there-is-no-debian-package-for-wxpython3"><div><h2>“There is no debian package for wxPython3”</h2>
+
+</div></section>
+<section class="slide slide cover w" id="httpsimgflipcomsmemeengineering-professorjpg"><div><h2><img src="https://imgflip.com/s/meme/Engineering-Professor.jpg" alt="4" /></h2>
+
+</div></section>
+<section class="slide slide cover w" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationscollege-freshman-sadjpg-3"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/College-Freshman-sad.jpg" alt="4" /></h2>
+
+</div></section>
+<section class="slide slide shout down" id="writing-simple-graphics-libraries-is-hard"><div><h2>Writing simple graphics libraries is hard.</h2>
+
+</div></section>
+<section class="slide" id="an-opengl-helper"><div><h2>An OpenGL <em>Helper</em></h2>
+
+<ul>
+  <li class="next">Use the C++ code from VPython as a guide</li>
+  <li class="next">Let a python OpenGL binding do the heavy lifting</li>
+  <li class="next">Obscure the windowing</li>
+</ul>
+
+</div></section>
+<section class="slide" id="pyopengl-vs-pyglet"><div><h2>PyOpenGL vs. pyglet</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Feature</th>
+      <th scope="col">PyOpenGL</th>
+      <th scope="col">pyglet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">GLUT        </th>
+      <td>yes</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th scope="row">GLext       </th>
+      <td>yes</td>
+      <td>no (experimental)</td>
+    </tr>
+    <tr>
+      <th scope="row">3.5 support </th>
+      <td>yes (not official)</td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table>
+
+</div></section>
+<section class="slide" id="why-pyglet"><div><h2>Why pyglet?</h2>
+
+<ul>
+  <li>Better documentation</li>
+  <li>Extra app, window, sound, image and video libraries</li>
+</ul>
+
+</div></section>
+<section class="slide" id="a-helper-for-pyglet"><div><h2>A Helper for Pyglet</h2>
+
+<ul>
+  <li class="next">Submodule “<em>objects</em>” has geometric shape primitives</li>
+  <li class="next">Submodule “<em>utils</em>” has mathematical primitives (vector, vertex, etc)</li>
+  <li class="next">Let pyglet.gl interact with OpenGL</li>
+  <li class="next">Let pyglet.window and pyglet.app handle display</li>
+</ul>
+
+</div></section>
+<section class="slide slide shout up" id="implementation"><div><h2>Implementation</h2>
+
+<!--
+## Replacing Iterators {#CodeSmallHeaderiterators}
+
+    std::vector<point_coord> points;
+    typedef std::vector<point_coord>::iterator ip;
+    for (ip i = points.begin(); i != points.end(); ++i) {
+        // render point
+
+Becomes:
+
+    for curr_point in range(0, points.count):
+        # render point
+
+-->
+
+</div></section>
+<section class="slide" id="multiple-method-declarations"><div><h2>Multiple Method Declarations</h2>
+
+<pre><code>explicit vector( double a = 0.0, double b = 0.0,</code><code>                 double c = 0.0) throw()</code><code>	: x(a), y(b), z(c) {}</code><code>inline explicit vector( const double* v)</code><code>	: x(v[0]), y(v[1]), z(v[2]) {}</code></pre>
+
+</div></section>
+<section class="slide" id="NoHeaderpythonmultiple"><div><h2>Python version</h2>
+
+<pre><code>def __init__(self, in_vector=None):</code><code>    if in_vector is None:</code><code>        self.zero()</code><code>    elif len(in_vector) &gt; 2:</code><code>        for i in range(len(self)):</code><code>            self[i] = in_vector[i]</code><code>    else:</code><code>        raise ValueError("in_vector must contain "</code><code>                         "at least three numbers!")</code></pre>
+
+</div></section>
+<section class="slide no-numbers" id="pep"><div><h2>PEP styling</h2>
+<pre><code>box() became Box()</code><code>vector.x became Vector.x_component, or Vector[0]</code></pre>
+
+</div></section>
+<section class="slide slide shout up" id="how-do-we-make-sure-api-changes-dont-break-everything"><div><h2>How do we make sure API changes don’t break everything?</h2>
+
+</div></section>
+<section class="slide" id="use-continuous-integration"><div><h2>Use Continuous Integration!</h2>
+
+<p><img src="https://cdn.travis-ci.com/images/logos/Tessa-4-05d037b0d8b10e8b921ac1e24ee10606.svg" alt="Drawing" style="width: 150px;" /></p>
+
+<ul>
+  <li>Runs setup.py install for python 2.7 - 3.4</li>
+  <li>Runs pylint to check for PEP8</li>
+  <li>Runs unit tests</li>
+</ul>
+
+</div></section>
+<section class="slide" id="continous-integration-with-no-display"><div><h2>Continous integration with no display</h2>
+
+<p>OpenGL requires a display to draw to, but Travis-CI runs on a headless server!</p>
+
+</div></section>
+<section class="slide" id="rendering-to-a-still-image"><div><h2>Rendering to a still image</h2>
+
+<ul>
+  <li>Xdummy appears to require the Nvidia X driver.</li>
+  <li>Nvidia X driver does not work on headless systems.</li>
+  <li>If you know a solution, let me know!</li>
+</ul>
+
+</div></section>
+<section class="slide" id="alternative---mocking-gl"><div><h2>Alternative - Mocking GL</h2>
+
+<pre><code>@patch('pyglet_helper.objects.box.<mark>gl</mark>',</code><code>       new=pyglet_helper.test.<mark>fake_gl</mark>)</code><code>def test_box_generate_model():</code><code>    from pyglet_helper.objects import Box</code><code>    box = Box()</code><code>    box.generate_model()</code></pre>
+
+</div></section>
+<section class="slide" id="fakegl-module"><div><h2>fake_gl module</h2>
+
+<pre><code>def glVertex3f(x_component, y_component, z_component):</code><code>    pass</code></pre>
+
+</div></section>
+<section class="slide" id="pyglethelper-functionality"><div><h2>pyglet_helper Functionality</h2>
+
+<ol>
+  <li>Objects</li>
+  <li>Lights and scenes</li>
+  <li>Default scene</li>
+</ol>
+
+</div></section>
+<section class="slide slide cover w" id="httpsrawgithubusercontentcomcatherinehpyglethelpermasterdocexamplesallobjectsgif"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/pyglet_helper/master/doc/examples/all_objects.gif" alt="" /></h2>
+
+</div></section>
+<section class="slide" id="lights-and-scenes"><div><h2>Lights and Scenes</h2>
+
+<ul>
+  <li>The <em>Scene</em> object contains information on the camera position</li>
+  <li>Lights are non-renderable objects</li>
+  <li>Objects can either be drawn in a scene by passing the scene as an argument, or by
+ adding the object to a scene and rendering a scene</li>
+</ul>
+
+</div></section>
+<section class="slide" id="drawing-options"><div><h2>Drawing options</h2>
+
+<pre><code>my_box = Box()</code><code>my_scene = View()</code><code>my_box.render(my_scene)</code></pre>
+
+<p>or</p>
+
+<pre><code>my_scene.objects.append(my_box)</code><code>my_scene.setup()    </code></pre>
+
+</div></section>
+<section class="slide" id="default-scene"><div><h2>Default Scene</h2>
+
+<pre><code>from pyglet_helper import *</code><code><mark>vsetup()</mark></code><code>box = objects.Box(size=(1, 1, 1), color=util.RED)</code><code>def update(dt):</code><code>    box.rotate(angle=radians(1),</code><code>               axis=util.Vector([1, 1, 0]))</code><code><mark>vrun(update, render_images=True, max_frames=180)</mark></code></pre>
+
+</div></section>
+<section class="slide slide cover w" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationsdefaultscenegif"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/default_scene.gif" alt="" /></h2>
+
+</div></section>
+<section class="slide slide shout up" id="what-about-jupyter"><div><h2>What about jupyter?</h2>
+
+</div></section>
+<section class="slide" id="vpython-ecosystem"><div><h2>vpython ecosystem</h2>
+
+<ol>
+  <li>Sherwood and others switched efforts from OpenGL to WebGL
+    <ol>
+      <li>wxPython has no python 3 version</li>
+      <li>few people familiar with C++ code base</li>
+    </ol>
+  </li>
+  <li>GlowScript JavaScript library written in 2012</li>
+  <li>Two python routes to GlowScript</li>
+</ol>
+
+</div></section>
+<section class="slide" id="glowscriptorg"><div><h2>glowscript.org</h2>
+
+<ol>
+  <li>completely online, no local installs</li>
+  <li>Python-to-JavaScript transpiler provides python interface</li>
+  <li>no access to full scientific Python stack</li>
+</ol>
+
+</div></section>
+<section class="slide" id="vpython-jupyter"><div><h2>vpython-jupyter</h2>
+
+<ol>
+  <li>Originally developed by John Coady as ivisual</li>
+  <li>Updated to use GlowScipt Python API and released on PyPI as vpython</li>
+  <li>Runs in Jupyter notebook, typically in a local installation</li>
+  <li>Rendering handled through a comm channel to GlowScipt loaded in the front end</li>
+</ol>
+
+</div></section>
+<section class="slide slide cover h" id="httpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationsvjupyteranimationgif"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/vjupyter_animation.gif" alt="" /></h2>
+
+</div></section>
+<section class="slide" id="future-work-on-pyglethelper"><div><h2>Future Work on pyglet_helper</h2>
+
+<ol>
+  <li class="next">undo the styling changes so that it matches the textbook formats</li>
+  <li class="next">3D Text</li>
+  <li class="next">Switch to PyOpenGL</li>
+</ol>
+
+</div></section>
+
+<section class="slide" id="NoHeadervispy"><div><h2>Python version</h2>
+
+<pre><code>from vispy import app, scene</code><code>from vispy.visuals import transforms   </code><code>canvas = scene.SceneCanvas(keys='interactive')</code><code>view = canvas.central_widget.add_view()</code><code>def update(dt):</code><code>    global cube</code><code>    cube.transform.rotate(1, (1, 1, 0))</code><code>cube = scene.visuals.Cube(color='red', edge_color="k")</code><code>cube.transform = transforms.MatrixTransform()</code><code>view.add(cube)</code><code>view.camera = scene.TurntableCamera()</code><code>canvas.show()</code><code>timer = app.Timer('auto', connect=update, start=True)</code><code>canvas.app.run()</code></pre>
+
+</div></section>
+
+
+<section class="slide slide shout up" id="thank-you"><div><h2>Thank you!</h2>
+
+</div></section>
+<section class="slide" id="an-experiment"><div><h2>An Experiment</h2>
+
+<p><img src="https://avatars0.githubusercontent.com/u/4682807?v=3&amp;s=400" alt="DEAP Logo" style="width: 250px;" /></p>
+
+<p><img src="http://scikit-image.org/_static/img/logo.png" alt="Scikit image logo" style="width: 250px;" /></p>
+
+
+</div></section>
+<section class="slide" id="genetic-algorithm-pyglet-helperhttpsrawgithubusercontentcomcatherinehcatherinehgithubiomasterpresentationsgaanimationgif"><div><h2><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/ga_animation.gif" alt="genetic algorithm pyglet helper" /></h2>
+
+</div></section>
+
+    <p class="badge"><a href="https://github.com/shower/shower">Fork me on Github</a></p>
+    <div class="progress"><div></div></div>
+    <script src="shower/shower.min.js"></script>
+    <!-- Copyright © 2016 Catherine Holloway, Qubitekk -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
