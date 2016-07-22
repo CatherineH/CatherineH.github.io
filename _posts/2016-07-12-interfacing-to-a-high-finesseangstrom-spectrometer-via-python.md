@@ -8,7 +8,7 @@ tags: [python, windows, C, instruments]
 {% include JB/setup %}
 
 High Finesse is a German optics company that makes high-quality 
-spectrometers and wavelength meters.  I've written a python interface to
+spectrometers and wavelength meters. I've written a python interface to
  their provided wlmData driver in order to grab spectrum data off of a 
  LSA UV Vis 2, however, it is likely to work with other spectrometers 
  and wavelength meters that use the same library. Unfortunately, at this
@@ -41,8 +41,8 @@ spectrum = spectrumdata.set_index('wavelength')
 _ax = spectrum.plot()
 _ax.legend_.remove()
 _ax.set_title('LSA Analysis output')
-_ax.set_xlabel("Wavelength (nm)")
-_ax.set_ylabel("Intensity")
+_ax.set_xlabel('Wavelength (nm)')
+_ax.set_ylabel('Intensity')
 plt.show()
 ```
 

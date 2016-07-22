@@ -33,8 +33,7 @@ OSError: [WinError 193] %1 is not a valid Win32 application
 ```
 
 Make sure the dynamic *.dll* file is loaded, not the static *.lib* file. If only
-static libraries are provided, it might be possible to recompile as a dynamic library,
-but I did not try this.
+static libraries are provided, it might be possible to recompile as a dynamic library, but I did not try this.
 
 Are you using 32 bit python with a 64 bit library?
 ==================================================
