@@ -1,13 +1,19 @@
-My Favourites from SciPy 2016
+---
+layout: post
+title: "My Favourites from SciPy 2016"
+description: "Wheels, Linting Text and Imputation"
+category: programming
+tags: [python, conference, scipy]
+---
+{% include JB/setup %}
 
 The SciPy 2016 conference was last week in Austin, Texas. Despite the 
 suffocating heat, I got to visit the Lyndon B Johnson Presidential 
-Library, see Ghostbusters in the Alamo Drafthouse, and slept in an 
-airstream trailer in someone else's back yard. More importantly, I had 
+Library, see Ghostbusters in the Alamo Drafthouse, and sleep in an 
+airstream trailer in someone's back yard. More importantly, I had 
 the opportunity to 
 [talk about pyglet_helper](https://www.youtube.com/watch?v=lrk6erM3mkI), 
-and learn a lot of useful things about python. Here are some of my 
-favourites:
+and learn a lot of useful things about python. Here are a few personal highlights.
 
 
 Making Python Packages for Windows is Hard
@@ -18,8 +24,9 @@ recently switched to using wheels. No longer will we twiddle our thumbs
 restlessly as we watch setup.py install churn through line after line of
  gcc warnings! That is due to the excellent efforts of Nathaniel Smith, 
  who spoke about his work:
+ 
+[![Reinventing the .whl](http://img.youtube.com/vi/oE5iePv8nD8/0.jpg)](https://www.youtube.com/watch?v=oE5iePv8nD8)
 
-https://www.youtube.com/watch?v=oE5iePv8nD8
 
 Wheels can be built for several different versions of python using a 
 provided docker image. The Numpy and Scipy builds are built with OpenBLAS,
@@ -32,10 +39,10 @@ for Windows - the lack of a good compiler. This was brought up by an
 audience member at the python core developers panel at Euro Python a few
  days ago and the panellists seemed surprised. I think the problem is 
  that the people with the domain knowledge of compilers are exclusively 
- linux users and windows users would prefer to use Anaconda. But there 
- are some people, like me, who both need to use Windows for device 
- drivers but also want to use obscure packages in PyPI, who appreciate 
- not having to fuss with the visual studio compiler.
+ linux users and windows users would prefer to use Anaconda. In between 
+ are a few like me, who both need to use Windows for device 
+ drivers but also want to use obscure packages in PyPI, without fussing 
+ with the visual studio compiler.
 
 Linting Text
 ============
@@ -47,7 +54,8 @@ one journalism class I took in undergrad, but 10 years later I've
 forgotten most of the rules. Thus, I am keenly interested in Michael 
 Pacer and Jordan Suchow's project, proselint:
 
-https://www.youtube.com/watch?v=S55EFUOu4O0
+
+[![A linter for prose](http://img.youtube.com/vi/S55EFUOu4O0/0.jpg)](https://www.youtube.com/watch?v=S55EFUOu4O0)
 
 I've tried it out for myself on my blog posts, and at the moment it has 
 difficulty with markdown, especially in accidentally prose-linting code 
@@ -69,9 +77,11 @@ Allen's talk. I work on experiments with only up to one control computer
   Robotics Operating System, with its publishers and subscribers. In his
    talk, Allan describes an experimentalists' dream: capture your data 
    along with the operations in a retrievable format, and have a system 
-   that can roll back to a recoverable state if something goes wrong. 
+   that can roll back to a recoverable state if something goes wrong.
+    
 
-https://www.youtube.com/watch?v=0WoSJS3_mC0
+[![Experiments as Iterators](http://img.youtube.com/vi/0WoSJS3_mC0/0.jpg)](https://www.youtube.com/watch?v=0WoSJS3_mC0)
+
 
 These are design goals for my projects as well, even if they 
  only have 3 users. I have limited time with my equipment as well, and 
@@ -90,7 +100,7 @@ ballots in order to maximize the fairness of elections. Imputation is an
  world, as Deborah Hanus demonstrated in her talk, featuring her work 
  with optimizing the treatments for HIV patients: 
 
-https://www.youtube.com/watch?v=cHzahWjaA7o
+[![Dealing with Missing Data](http://img.youtube.com/vi/cHzahWjaA7o/0.jpg)](https://www.youtube.com/watch?v=cHzahWjaA7o)
 
 Due to issues surrounding shift work and childcare, transportation 
 access, or human error, HIV patients sometimes miss their regularly 
