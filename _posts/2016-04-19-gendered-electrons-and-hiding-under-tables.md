@@ -36,7 +36,7 @@ undergrad, through graduate school, and in my post-school career, and will
 probably continue reacting to things this way because I am a coward who would 
 rather read physics papers alone and not have to prove I’m smart to anyone. 
 
-But over a decade on, only one of those seven students ended up in a career in physics.
+Over a decade on, only one of those seven students ended up in a career in physics.
 
 It was me.
 

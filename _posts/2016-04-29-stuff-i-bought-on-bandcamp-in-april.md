@@ -15,9 +15,9 @@ Tengger Cavalry - Mountain Side EP
 [![Tengger Cavalry Mountain Side](https://f4.bcbits.com/img/a0624661730_14.jpg)](https://tenggercavalry.bandcamp.com/album/mountain-side-ep)
 
 
-**Tengger Cavalry** is a New York-based metal band that incorporates traditional mongolian instruments and throat singing into some very fast metal. I first heard of them when their 2014 album **Ancient Call** was released, instantly fell in love with the band, and forced it on anyone in my social circle with even a passing interest in metal.
+**Tengger Cavalry** is a New York-based metal band that incorporates traditional mongolian instruments and throat singing into some fast metal. I first heard of them when their 2014 album **Ancient Call** was released, instantly fell in love with the band, and forced it on anyone in my social circle with even a passing interest in metal.
 
-Although I skipped over their 2015 album **Blood Sacrifice Shaman**, their new Mountain Side EP, and it fit within my bandcamp budget for April. For 9 USD you get 11 tracks, but only two are full *new* songs. Both new songs focus more on the folk side of folk-metal Tengger Cavalry’s previous albums, and the recording and production quality is better. However, the songs sound a little too similar, and don’t have a good ending: **Mountain Side** ends abruptly and **Krutaya Gora** fades out.
+Although I skipped their 2015 album **Blood Sacrifice Shaman**, their new Mountain Side EP, and it fit within my bandcamp budget for April. For 9 USD you get 11 tracks, but only two are full *new* songs. Both new songs focus more on the folk side of folk-metal Tengger Cavalry’s previous albums, and the recording and production quality is better. However, the songs sound a little too similar, and don’t have a good ending: **Mountain Side** ends abruptly and **Krutaya Gora** fades out.
 
 The other songs in the EP are not even worth including: there’s a club mix of **Mountain Side** that isn’t fast enough to dance to, an instrumental version which adds nothing because the throat singing on Tengger Cavalry tracks is practically a sixth instrument, a live version with a distracting yell of “everybody fucking move”, and an acoustic version that turns what was metal into country-western.
 

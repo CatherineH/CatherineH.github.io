@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Hacking Seaborn Grid Plots"
-description: ""
 category: programming
 tags: [python, matplotlib, seaborn, data visualization]
 ---
@@ -78,8 +77,8 @@ This is the resulting graph:
 Moving the Legend
 -----------------
 
-There are plenty of ways to place a legend in a figure when it is created, 
-but moving the legend once it is already in the figure is a different story. 
+There are plenty of ways to place a legend in a figure when it is 
+created, but moving the legend once it is already in the figure is a different story. 
 The one method I've found is to move the legend's anchor using 
 *set_bbox_to_anchor*. These numbers seem to be expressed as a function of the
  size of the total figure, and are expressed as (left, bottom, width, height)

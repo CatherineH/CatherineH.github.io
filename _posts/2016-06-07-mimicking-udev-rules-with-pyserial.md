@@ -8,9 +8,9 @@ tags: [python, serial, experimental automation]
 {% include JB/setup %}
 
 My research group in grad school had an unfortunate culture of stealing equipment from
-other people's experiments when they weren't around. I participated in this culture as well,
- but I tried to replace the things I took before they returned. However, this did not
- spare me from the ire of a Postdoc[^1] who pointed out that windows assigns
+other people's experiments when they weren't around. I participated in 
+this culture as well, but I tried to replace the things I took before 
+they returned. However, this did not spare me from the ire of a Postdoc[^1] who pointed out that windows assigns
   device names by serial number, thus my replacing a power meter with an identical
   copy had caused him an hour of debugging time until he opened up the device manager.
 

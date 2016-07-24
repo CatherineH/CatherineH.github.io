@@ -93,7 +93,7 @@ These are design goals for my projects as well, even if they
 Imputation is Important for the Real World
 ==========================================
 
-John's recently-defended PhD thesis is about applying machine learning 
+John's recently defended PhD thesis is about applying machine learning 
 techniques to filling missing data (imputation) on incomplete ranked 
 ballots in order to maximize the fairness of elections. Imputation is an
  important consideration when applying algorithms to data in the real 

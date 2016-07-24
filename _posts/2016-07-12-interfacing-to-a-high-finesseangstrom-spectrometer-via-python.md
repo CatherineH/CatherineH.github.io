@@ -9,7 +9,7 @@ tags: [python, windows, C, instruments]
 
 High Finesse is a German optics company that makes high-quality 
 spectrometers and wavelength meters. I've written a python interface to
- their provided wlmData driver in order to grab spectrum data off of a 
+ their provided wlmData driver in order to grab spectrum data off a 
  LSA UV Vis 2, however, it is likely to work with other spectrometers 
  and wavelength meters that use the same library. Unfortunately, at this
   time High Finesse only provides windows drivers. 
@@ -59,7 +59,7 @@ installed to the system32 directory. They also provide a C header called
 The LSA is a GUI that also a server process that communicates with the 
 instrument. The python interface communicates and shares memory with the
  LSA through the dynamic library. The python interface needs to start up
-  the LSA in order to get data off of the spectrometer. 
+  the LSA in order to get data off the spectrometer. 
 
 Parsing the Header file
 =======================
