@@ -31,7 +31,7 @@ The first two albums, **Volume 1** and **Holy Mountain** have some good
 tracks, including my favourite, the gut punching and hypnotic
  **Dragonaut**, however, the real masterpiece of their discography is 
  **Dopesmoker**, a churning bible-themed epic about the genre's favourite
-  substance. The track is occasionally repetitive, but their are 
+  substance. The track is occasionally repetitive, but there are 
   frequent fantastic guitar licks that keep the track/album interesting for over an hour.
 
 Katatonia
@@ -94,7 +94,7 @@ Some of their songs remind me of **Eve of Destruction** - the heaviness
 The highlight of their discography are the three albums released with 
 former keyboardist Patrick Moraz, **Long Distance Voyager**, 
 **The Present** and **The Other Side of Life**. These albums have, 
-insurprisingly, the great piano composition and emotional range reminiscent 
+unsurprisingly, the great piano composition and emotional range reminiscent 
 of a *Yes* album.  
 
 However, after Moraz left, the quality fell steeply off as they chased modern 
