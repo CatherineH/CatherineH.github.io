@@ -7,10 +7,9 @@ tags: [sleep, katatonia, Moody Blues, music, recommendation]
 ---
 {% include JB/setup %}
 
-Music People Recommend to Me #2
 
-I am grateful that writing critiques of the music people recommend to me
- has not discouraged from getting new recommendations. I enjoy listening
+I am grateful that [writing critiques of the music people recommend to me](http://catherineh.github.io/music/2016/05/17/music-people-recommend-to-me)
+ has not discouraged new recommendations. I enjoy listening
   to everything once, so please continue to send me stuff! Here are my 
   thoughts on the recommendations I’ve listened to recently.
 
