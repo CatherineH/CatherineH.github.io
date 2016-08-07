@@ -2,7 +2,7 @@
 layout: post
 title: "Music People Recommend to me #2"
 description: "Sleepy, Catatonic, and Moody"
-category: Music
+category: music
 tags: [sleep, katatonia, Moody Blues, music, recommendation]
 ---
 {% include JB/setup %}

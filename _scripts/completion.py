@@ -4,8 +4,8 @@ The following script contains several helpers to complete images and links.
 from os import environ
 from os.path import expanduser
 from sys import argv
-import urllib
-import simplejson
+
+from bandcamp_dl import Bandcamp
 
 from apiclient.discovery import build
 
@@ -26,6 +26,7 @@ def get_title(id):
     ).execute().get("items", [])[0]
     return video_response["snippet"]["title"]
 
+
 def youtube(input_file):
     """
     Replace the youtube urls with screenshots and links
@@ -44,17 +45,38 @@ def youtube(input_file):
             desc = get_title(token)
             _words[i] = "[!["+desc+"](http://img.youtube.com/vi/"+token + \
                        "/0.jpg)]("+_words[i]+")"
-    print('\n'.join(_words))
     output_file = input_file+"-copy"
     fh = open(output_file, "w+")
     fh.write('\n'.join(_words))
     fh.close()
+    return output_file
 
 
 def bandcamp(input_file):
-    pass
+    """
+    Replace bandcamp urls with album covers and links back to the album.
+    :param input_file: the file to analyze
+    :return:
+    """
+    fh = open(input_file, "r")
+    _text = fh.read(-1)
+    fh.close()
+    _words = _text.split("\n")
+    for i in range(len(_words)):
+        if _words[i].find("bandcamp.com/album") >= 0:
+            url = _words[i]
+            parser = Bandcamp().parse(url)
+            album_art = parser["art"].replace("_16.jpg", "_14.jpg")
+            _words[i] = "[!["+parser['title']+" - "+parser["artist"]+"]("+\
+                        album_art+")]("+url+")"
+    output_file = input_file+"-copy"
+    fh = open(output_file, "w+")
+    fh.write('\n'.join(_words))
+    fh.close()
+    return output_file
 
 
 if __name__ == "__main__":
     input_file = expanduser(argv[1])
-    youtube(input_file=input_file)
+    output_file = youtube(input_file=input_file)
+    bandcamp(output_file)
