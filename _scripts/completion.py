@@ -47,7 +47,7 @@ def youtube(input_file):
     print('\n'.join(_words))
     output_file = input_file+"-copy"
     fh = open(output_file, "w+")
-    fh.writelines('\n'.join(_words))
+    fh.write('\n'.join(_words))
     fh.close()
 
 
