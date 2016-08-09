@@ -11,7 +11,7 @@ IV - BadBadNotGood
 ==================
 [![IV - BADBADNOTGOOD](https://f4.bcbits.com/img/a2662282282_14.jpg)](https://badbadnotgoodil.bandcamp.com/album/iv)
 
-Toronto Jazz trio **BadBadNotGood** are now a quartet, having invited saxophonist **Leland Whitty**, previously the secret sauce behind the band's best previous output, *Confessions*, to join as a full member. I'm not a fan of **Ghostface Killah**'s style of barking unrhythmic style of rapping, so their collaboration album *Sour Soul* was a let down, but their latest album *IV* is a return to their old style, matured. It's their best release yet.
+Toronto Jazz trio **BadBadNotGood** are now a quartet, having invited saxophonist **Leland Whitty**, the secret sauce behind the band's best previous output, *Confessions*, to join as a full member. I'm not a fan of **Ghostface Killah**'s style of barking unrhythmic style of rapping, so their collaboration album *Sour Soul* was a let down, but their latest album *IV* is a return to their old style, matured. It's their best release yet.
 
 *Chompy's Paradise* is devine. The grove is smooth and hypnotic broken up with progressive rhythm changes and a chorus that slowly ascends to heaven. Another highlight is *IV*, with fast, dueling bass, piano and saxophone lines that suddently become soft and sweet.
 
@@ -27,7 +27,7 @@ Monomania, Vision Crimes and Self-titled Split EPS - Child Bite
 [![Vision Crimes - Child Bite](https://f4.bcbits.com/img/a1363851554_14.jpg)](https://childbite.bandcamp.com/album/vision-crimes)
 [![Child Bite / We Are Hex Split EP - Child Bite](https://f4.bcbits.com/img/a2148450214_14.jpg)](https://childbite.bandcamp.com/album/child-bite-we-are-hex-split-ep)
 
-Aside from missing friends, my biggest regret about leaving San Diego was missing **Vektor** open for **Voivod** in Toronto. Though I may have missed that concert, I instead was able to see them when the played San Diego, where they were opened by **Child Bite**. Following their frenetic but fantastic live performance, I bought their three EPs on Bandcamp, *Monomania*, *Vision Crimes* and their self-titled EP.
+Aside from missing friends, my biggest regret about moving to San Diego was missing **Vektor** open for **Voivod** in Toronto. Though I may have missed that concert, I instead was able to see them when the played San Diego, where they were opened by **Child Bite**. Following their frenetic but fantastic live performance, I bought their three EPs on Bandcamp, *Monomania*, *Vision Crimes* and their self-titled EP.
 
 It's hard to define Child Bite's genre. Like Voivod, they are closest to punk rock, but with lyrics like **Can** or **Zappa** combined with some sludge metal sounds over a mid-century musical melody. Many songs start off with rough production or a punk-like simplicity to the singing and melody. The melodies on certain songs, like *Wrong Flesh*, are annoying in their simplicity and lack of resolution. I'm not sure if this is intentional. A minute into most songs, however, and it has progressed into unexpected territory. It's this progression and a lot of technical talent that have kept my attention.
 
