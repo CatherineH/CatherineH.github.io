@@ -40,7 +40,7 @@ Spoiler Alert: I was *super* wrong.
 Failure 1: Automating Landscape Generation
 ==========================================
 
-The problem is that landscapes are built into the level on build, and are impossible to change at run time. I’m trying to think of any FPS that have terrain that changes while you’re playing through a level or environment, and I can’t really think of any. Unlike top-down RPGs like Diablo, FPS’s rely on a lot of physics and not falling through things that are much harder to guarantee with a procedurally-generated world. Also, the load times on new levels are much faster if you have a pre-baked, compressed description of the landscape. 
+The problem is that landscapes are built into the level on build, and are impossible to change at run time. I’m trying to think of any FPS that have terrain that changes while you’re playing through a level or environment, and I can’t really think of any. Unlike top-down RPGs like Diablo, FPS’s rely on a lot of physics and not falling through things that are much harder to guarantee with a procedurally generated world. Also, the load times on new levels are much faster if you have a pre-baked, compressed description of the landscape. 
 
 At this point I considered giving up, but I kept going because the solution was so tantalizingly close: I could extract the compressed files that contained the landscape information, and somewhere in the source code for the Unreal Editor was the functionality to generate these files. 
 
@@ -72,7 +72,7 @@ Failure 2: Colouring the ground
  
 Like landscape files, textures are compressed and baked into the levels prior to runtime. No problem, I’d solve that issue like I had with the meshes: change the color of the triangles in the mesh to match the corresponding pixel in the images. 
 
-I had all of this implemented two hours before the deadline, but then shit started crashing. I was hitting a breakpoint in the memory allocation functionality of Unreal Engine. In addition, color images aren’t as smooth as surface data, so my poorly-implemented compression method wasn’t cutting it anymore. I would guess that these two issues are related. At this point, frustrated and exhausted, I decided to pack up and submit what I had. 
+I had all of this implemented two hours before the deadline, but then Unreal started crashing. I was hitting a breakpoint in the memory allocation functionality of Unreal Engine. In addition, color images aren’t as smooth as surface data, so my poorly implemented compression method wasn’t cutting it anymore. I would guess that these two issues are related. At this point, frustrated and exhausted, I decided to pack up and submit what I had. 
 
 Conclusion
 ==========

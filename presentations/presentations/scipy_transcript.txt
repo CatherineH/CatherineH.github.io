@@ -1,0 +1,173 @@
+Hi, thank you for attending my talk and not the super gpu cluster talk next door. I'm
+kind of bummed I couldn't go to that one. My name is Catherine Holloway, you can
+follow me on twitter @femion or look at some of my other projects on Github as
+CatherineH. I am a physicist, and I went to grad school at the University of Waterloo.
+ The science faculty at UWaterloo offers a computational science degree and for the
+ five years of grad school I TAed the first and second year computational science
+ degrees that were taught through the physics department. This talk is going to be
+ about a python library I have been working on that is partially inspired by my time
+ teaching programming to science students.
+
+ Every great software project begins with a user story. Let's imagine that our user is
+ the freshman meme guy. The freshman meme guy is a computational science student - not
+  a computer science student. His classes are mostly science and math, and he's had
+  one programming class - the first computational science class, which has taught him
+  how to integrate differential equations using python, but not a lot about
+  programming language concepts or computer systems, or anything that would be covered
+   in a computer science class. He flunked his midterm because the night before was
+   the final game of intramural qudditch and is now working on a project for extra
+   credit. His prof told him the midterm mark would be ignored if he made a
+   visualization of his planetary orbits simulation, so he goes off to google to look
+   for 3D drawing libraries in python.
+
+ The first hit he finds is processing. Processing was created in 2001 by Ben Fry and
+ Casey Reas from the MIT media lab. Processing is simultaneously the name of the
+ programming language, the IDE, and the name of the project. It has a very simple
+ setup and language and is targetted at artists and beginners, and the current
+ versions have an option to create processing sketches using python syntax.
+
+ So, our freshman finds a tutorial for drawing a spinning box online. It is only 11
+ lines, and he can read and understand what each line is doing. He runs the sketch and
+  it generates a rotating red cube, as expected. He thinks he will be back on the
+  quidditch field soon. Next, he imports scipy and is confronted with the error:
+  ImportError, no module called scipy. This error message is confusing to him: scipy
+  is definitely installed on his computer. The problem is that Processing python mode
+  is a meer verneer over a java archive. He goes back to his google search.
+
+The next thing he finds is PyOpenGL. PyOpenGL is a python binding to the C OpenGL
+libraries, like what pyQt or pyside are for Qt. Our freshman finds a rotating cube
+example. The first thing he sees are the import statements - it's easy enough, import
+the graphics library, the graphics library utilites and the graphics library utility
+tools. Next he sees a method for initializing the scene. He doesn't
+quite understand what is going on, but it seems irrelevant to actually drawing objects
+ on the screen, so he ignores it for now. Next he finds the method for drawing the cube.
+ There are several ways to draw a cube in OpenGL, but the one that appears first in
+ tutorials is to draw six
+ quadrilaterals - one for each side. each quadrilateral needs a color definition and
+ the definition of four vertices for every side. The full code to draw a cube looks
+ like this:
+
+Finally, to actually open a new window and render the GL image, several calls to the
+graphics library utilies are made. The result is a spinning red cube, as expected. So,
+ undiscouraged, the Freshman decides to download the Opengl cheat sheet. But it's not
+ a single sheet - it's a 13 page pdf, and the first page is all about buffers.
+ Remember that our freshman is a computational science student, not a computer science
+  student, and he doesn't know what a pointer is. He's not going to be able to learn
+  all of this by the end of the course. He goes back to google.
+
+Another option he finds is pyglet. Like PyOpenGL, pyglet is a python openGL binding,
+but it has extra submodules for handling windowing and multimedia. Our Freshman finds
+a spinning cube demo in pyglet and opens it up. The first lines import the graphics
+library and the windowing submodule. Next he looks at how the window is set up, and
+it's all in code he can understand. The result is exactly the same as the PyOpenGL
+example. But, he looks at the initialization and drawing method, and it's the same as
+the PyOpenGL, except now there's this weird At symbol stuff going on, and he doesn't
+even want to try to figure out what that is. So, almost out of patience, he goes back
+to google.
+
+The fourth option he finds is vpython. Vpython was created in 2000 by David Scherer at
+ carnegie mellon, to replace the language they were using since the 80s in their
+ computational science classes. It is currently maintained by Bruce Sherwood, one of
+ the original cT developers. On the back end, it uses compiled C++ to call OpenGL, and
+  the cross-platform windowing is dependent on wxPython.
+
+Here's an example of the first assignment a student might see - it's a falling ball.
+It teaches the students the affect of newton's second law - force is mass times
+acceleration. The ball's velocity increases by Force over mass over a small time
+difference from frame to frame. Then, students can learn about adding forces by
+introducing wind resistance. Here's what an animation might look like. Thanks to
+Matthew Craig, an actual physics prof, for contributing this example. So, our freshman
+ finds some sample code for a spinning cube in vpython, and it's all in plain english,
+  and it renders as expected. He's happy. He writes his solar system visualization and
+   uploads it to the physics marking server, which is running ubuntu. Then he gets an
+   email from his prof that says "there's no debian package for wxPython3, can you
+   please bring your laptop to my office?". Our freshman does not understand what this
+    email means, but he goes into campus. His
+    prof's a nice guy, but he has a tendency to go on about how great programming and
+    physics is, and that cuts into his quidditch practicing time, which ultimately
+    makes him a sad freshman.
+
+The point I want to convey with this user story is that writing simple cross-platform
+graphics libraries is hard. For the rest of this talk, I want to go into my attempt at
+ solving this - an OpenGL helper. I want to use the VPython C++ code as a guide,
+ because it's api is really easy to understand, and they've already worked out the
+ math. But I want someone else's opengl binding to do the heavy lifting. I also want
+ the user to not have to worry about cross-platform windowing.
+
+ First, I should pick an OpenGL binding. On the face of it, PyOpenGL is the obvious
+ choice - it has the utilites implemented and appears to work with python 35. However,
+  I decided to go with pyglet - for the simple fact that its documentation is better
+  and the extra submodules make things really easy.
+
+ My pyglet helper has two submodules - objects, which contain geometric primitives,
+ and utils, which contain math stuff. Pyglet.gl interacts with OpenGL, and window and
+ app handle the windows and events.
+
+ Now I want to talk a little bit about the implementation. Unfortunately, converting
+ C++ to python is not as easy as doing a find and replace on curly braces. C++ allows
+ for a lot of things that aren't pythonic. For example, it allows for multiple method
+ declarations - you can create a vector by passing it nothing, or three doubles, or a
+ pointer to an array of doubles. This is the code I wrote in python. If nothing is
+ passed, the three components of the vector get set to 0. If a tuple or list is
+ passed, it will assign the first, second and third items to x, y and z, and using the
+  len, getitem and setitem operators, it can also be initialized from another vector
+  or vertex.
+
+Another thing I struggled over was whether to change the API to match the python style
+ guide. In the end, I decided to adopt it, and all objects became capitalized, and
+ single character variables became longer or indexed.
+
+ Given that the API is now changing, how can we make sure that further changes don't
+ break everything?
+
+ The solution was to use continuous integration. I use Travis CI, which is free as in
+ beer but not free as in speech. Any time code is pushed to the repository, it runs
+ setup.py for python 2.7-3.4, runs pylint to check for style issues, and runs the unit
+  tests.
+
+This leads to a unique problem - opengl needs a display to render to, but Travis CI is
+ headless!
+
+My first attempt to solve this problem was to render to an image, rather than a
+display. This has the added benefit that rendered images could be checked against
+previous renderings. In theory, I should be able to do this with the Xdummy package.
+However, the Xdummy package appears to need the nvidia x driver, and the nvidia x
+driver does not appear to work on a headless system. If you know a project that has
+done this successfully, let me know afterwards - I have an unanswered question on the
+ask ubuntu stack for over 6 months.
+
+The alternative I'm working with right now is mocking the opengl calls. Patch from the
+ mock module allows references to be substituted. Here I'm substituting box's
+ reference to pyglet.gl with my own fake_gl for the duration of the test. In my
+ fake_gl library, I have a function primitive that does nothing. I think it's okay to
+ make this hack - I don't want to test whether the OpenGL renders correctly, I want to
+  ensure tha math and API Calls work.
+
+Now that implementation is out of the way, I want to go over a few functionality
+aspects. Here are all of the geometric primitives in the same scene.
+The Scene object is contains information about the camera position, direction,
+perspective and rendering. Lights are non-renderable objects. Objects can be drawn
+either by passing a scene to the draw method, or by adding the object to a scene. As
+an example:
+
+Finally, to make things really simple, I've added setup and run methods that create a
+default screen. I've also added an option to render frames to make these animations.
+And here's what this output looks like:
+
+Alright, so I started trying to revive vpython in the summer of 2015 by replacing the
+C++ and wxPython with pyglet, but the original developers have been pursuing a
+different path, which I was not even aware of until this talk appeared on the schedule
+. I'm going to talk about what they've done.
+
+They switched over to WebGL. They had previously written a library called glowscript.
+It allows you to write vpython in a browser and have it render as webgl. However, like
+ Processing, this does not allow you to use other python libraries.
+
+Another current effort brings vpython to jupyter. It uses a custom kernel to call
+glowscript. However, it also only appears to work on Windows. Here it is in action:
+
+To go back to pyglet_helper, here's what the future work I'm aiming for: with the
+original developer's blessing, I'd like to rename the library to vpython-pyglet,
+though that might mean reversing the API changes I made to comply with the python
+style guide. I also want to implement 3d text, and also make pyglet_helper compatible
+with jupyter and glowscript.

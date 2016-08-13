@@ -51,7 +51,7 @@ Quorthon’s next two albums, *Nordland I* and *II*, revisit viking metal and ar
 better this time around: the lyrics mesh with the rhythm, the melodies have
 space to shine, and the ballads don’t get boring. Quorthon even makes
 synthetic horns pleasant, which I thought was impossible. My favourite
-Bathory song, *Vinterbolt*, is off of *Nordland I*:
+Bathory song, *Vinterbolt*, is off *Nordland I*:
 
 [![Vinterland Link](http://img.youtube.com/vi/4B1YDPE20Ss/0.jpg)](https://www
 .youtube
@@ -69,7 +69,7 @@ experimenting with the latest sounds at the time across multiple genres, and
 seemed to be trying to fix issues from record to record. Quorthon planned
 another two albums to his Nordland series but died young before they were completed, and that is a shame. He was just getting good.
 
-[^1]: Countess Bathory is to Metal and Gothic Fantasy RPGs as Ada Lovelace is to computing: they are very interesting women who are not commonly known to the general public, but their story has been retold ad nauseum. Bathory’s song about Countess Bathory is one of the better exemplars, but surely the genres can find other lady serial killers to idolize.
+[^1]: Countess Bathory is to Metal and Gothic Fantasy RPGs as Ada Lovelace is to computing: they are interesting women who are not commonly known to the general public, but their story has been retold ad nauseum. Bathory’s song about Countess Bathory is one of the better exemplars, but surely the genres can find other lady serial killers to idolize.
 
 [^2]: Panzer Division Marduk used the same World War 2 bombing sound two years earlier; Quorthon should have known better.
 

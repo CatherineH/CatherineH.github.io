@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Controlling an Optical Switch via Arduino (Teensy)"
-description: ""
 category: programming
 tags: [electronics, C, python, InstrumentKit]
 ---
@@ -10,7 +9,7 @@ tags: [electronics, C, python, InstrumentKit]
 Aside from fingerprints, there is nothing more annoying, or more damaging to optics equipment than unplugging and
 plugging in fiber optics. Every time a fiber tip or port is exposed to air, there's a chance of getting gross human skin
  cells on places where tightly focused high-power light might incinerate them, yet, so many experiments require routing
- light. Wouldn't it be nicer if a robot did the switching for you at 2 am while your gross dust and sweat producing body
+ light. Wouldn't it be nicer if a robot did the switching for you at 2 a.m. while your gross dust and sweat producing body
   is sleeping?
 
 In experiments, I accomplish this using a teensy LC and a DiCon optical switch.
@@ -18,7 +17,7 @@ In experiments, I accomplish this using a teensy LC and a DiCon optical switch.
 Electronics Side
 ================
 
-The optical switch I use is a [DiCon 2x2 prism switch](http://www.diconfiberoptics.com/products/scd0009/scd0009f.pdf),
+The optical switch I use is a [DiCon 2×2 prism switch](http://www.diconfiberoptics.com/products/scd0009/scd0009f.pdf),
 which is essentially a little piece of glass on a motor.
 
 ![A picture of a DiCon fiber optic switch](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/dicon_switch.jpg)

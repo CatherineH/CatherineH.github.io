@@ -10,7 +10,7 @@ tags: [c, dynamic c]
 Although AVR now dominates the microcontroller landscape, some hardware
 projects still rely on older chips with quirky, proprietary versions of C.
 When working with these chips, many of C standard library functions are
-either unavailable or implemented... *creatively*. In this case: how to use
+either unavailable or implemented… *creatively*. In this case: how to use
 arrays of strings in [Digi's Dynamic C](http://www.digi.com/support/productdetail?pid=4978).
 
 Dynamic C has no *malloc* function. Instead, memory is allocated by declaring

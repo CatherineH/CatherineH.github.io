@@ -21,9 +21,9 @@ and think that their other two albums since Portnoy’s departure rank just unde
 **The Astonishing** gave me DT fatigue. So I was hesitant to listen to **Fragments of Creation** by *Sunburst* when I
 read that it was marketed as an album for DT fans.
 
-But **Fragments of Creation** was worth waking up for - it’s like the frenetic playing of *Fleshgod Apocalypse* with
+**Fragments of Creation** was worth waking up for - it’s like the frenetic playing of *Fleshgod Apocalypse* with
 triumphant DT melodies, guitar work and Labrie’s singing style. There are quite a few other progressive and metal influences:
-the fast synthesizer arpeggios that sound like songs off of *Asia*’s **Aura**, *TesseracT* djent, and *Rhapsody of Fire*
+the fast synthesizer arpeggios that sound like songs off *Asia*’s **Aura**, *TesseracT* djent, and *Rhapsody of Fire*
 choral breaks. There are still some fresh ideas - I really like the xylophones in the background.
 
 The singing often verges on Celine Dion-level corniness with all of the tremolos, or descends into *Disturbed* whining.
@@ -46,7 +46,7 @@ The story is about some unspeakable evil plotting revenge on the civilization th
  great evil, which is utterly delightful. Vektor venture into slower territory on **Collapse**, which don’t quite hold
  my attention at slower speeds, though the interaction between counter melodies are still interesting.
 
-But **Collapse** is the one weak song on a substantial album.
+**Collapse** is the one weak song on a substantial album.
 
 Bent Knee - Say So
 ==================
@@ -58,7 +58,7 @@ Bent Knee are called art-rock, I think of them as more like progressive pop/jazz
 can channel powerful Chanson emotions like *Edith Piaf*, but with all of the avant-garde, modern flourishes of a singer
 like *Kimbra*. The album starts off with a deeply unsettling song reminiscent of Shiny Eyed Babies’ **Way Too Long**,
 about foreign liquids covering or flowing uncontrollably out of your body, except this time tar instead of oil and toxic
-gas, then delves into very female-centric themes. There are songs about the pre-pubescent angst of female childhood: I
+gas, then delves into female-centric themes. There are songs about the pre-pubescent angst of female childhood: I
 think the song **Leak Water** is about feeling like one of the peeing dolls that were popular in the 90s and the song
 **Counsellor** evokes memories of the emotional distance and bullying of my childhood peers. Other songs cover
 dissatisfaction with domestic life; lyrics on multiple songs mention dreaming of love and adventure while doing mundane

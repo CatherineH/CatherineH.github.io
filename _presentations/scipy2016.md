@@ -12,11 +12,23 @@ style: |
     #NoHeaderArduino h2,  #NoHeaderpyOpenGL h2, #NoHeaderpyOpenGL2 h2,
     #NoHeaderpyOpenGL2 h2, #NoHeaderpyOpenGL3 h2, #NoHeaderpyglet h2,
     #NoHeaderpyglet2 h2, #NoHeaderpyglet3 h2, #NoHeaderpyglet4 h2,
-    #NoHeaderpythonmultiple h2{
+    #NoHeaderpythonmultiple h2, #NoHeaderpyOpenGLSmall h2, 
+    #NoHeaderphysics h2, #NoHeaderphysics2 h2{
         margin:0px 0 0;
         text-align:center;
         font-size:0px;
         }
+            
+    .leftcol {
+        float: left;
+    }
+    .rightcol {
+        float: right;
+    }
+
+    #NoHeaderpyOpenGLSmall code{
+        font-size:14px;
+    }
 
     #CodeSmallHeaderiterators h2{
         margin:0px 0 0;
@@ -120,54 +132,13 @@ PyOpenGL is to OpenGL as PyQt is to Qt
         gluPerspective(45.0, Width / Height, 0.1, 100.0)
         glMatrixMode(GL_MODELVIEW)
 
-## pyOpenGL Code {#NoHeaderpyOpenGL2}
+## pyOpenGL Code 
+{: .double #NoHeaderpyOpenGLSmall}
 
-    def DrawGLScene():
-        global angle
-        glLoadIdentity()
-        glRotatef(angle, 1.0, 1.0, 0.0)
-        glBegin(GL_QUADS)
-        
-        glColor3f(1.0, 0.0, 0.0)
-        glVertex3f(1.0, 1.0, -1.0)
-        glVertex3f(-1.0, 1.0, -1.0)
-        glVertex3f(-1.0, 1.0, 1.0)
-        glVertex3f(1.0, 1.0, 1.0)
-        
-        glColor3f(1.0, 0.0, 0.0)
-        glVertex3f( 1.0,-1.0, 1.0)
-        glVertex3f(-1.0,-1.0, 1.0)
-        glVertex3f(-1.0,-1.0,-1.0)
-        glVertex3f( 1.0,-1.0,-1.0) 
- 
-        glColor3f(1.0, 0.0, 0.0)
-        glVertex3f( 1.0, 1.0, 1.0)
-        glVertex3f(-1.0, 1.0, 1.0)
-        glVertex3f(-1.0,-1.0, 1.0)
-        glVertex3f( 1.0,-1.0, 1.0)
- 
-        glColor3f(1.0, 0.0, 0.0)
-        glVertex3f( 1.0,-1.0,-1.0)
-        glVertex3f(-1.0,-1.0,-1.0)
-        glVertex3f(-1.0, 1.0,-1.0)
-        glVertex3f( 1.0, 1.0,-1.0)
- 
-        glColor3f(1.0, 0.0, 0.0)
-        glVertex3f(-1.0, 1.0, 1.0) 
-        glVertex3f(-1.0, 1.0,-1.0)
-        glVertex3f(-1.0,-1.0,-1.0) 
-        glVertex3f(-1.0,-1.0, 1.0) 
- 
-        glColor3f(1.0, 0.0, 0.0)
-        glVertex3f( 1.0, 1.0,-1.0) 
-        glVertex3f( 1.0, 1.0, 1.0)
-        glVertex3f( 1.0,-1.0, 1.0)
-        glVertex3f( 1.0,-1.0,-1.0)
+<div class="leftcol"> <pre><code>def DrawGLScene():</code><code>    global angle</code><code>    glLoadIdentity()</code><code>    glRotatef(angle, 1.0, 1.0, 0.0)</code><code>    glBegin(GL_QUADS)</code><code>    </code><code>    glColor3f(1.0, 0.0, 0.0)</code><code>    glVertex3f(1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, 1.0)</code><code>    glVertex3f(1.0, 1.0, 1.0)</code><code>    </code><code>    glColor3f(1.0, 0.0, 0.0)</code><code>    glVertex3f(1.0, -1.0, 1.0)</code><code>    glVertex3f(-1.0, -1.0, 1.0)</code><code>    glVertex3f(-1.0, -1.0, -1.0)</code><code>    glVertex3f(1.0, -1.0, -1.0)</code><code> </code><code>    glColor3f(0.0, 1.0, 0.0)</code><code>    glVertex3f(1.0, 1.0, 1.0)</code><code>    glVertex3f(-1.0, 1.0, 1.0)</code><code>    glVertex3f(-1.0, -1.0, 1.0)</code><code>    glVertex3f(1.0, -1.0, 1.0)</code><code> </code></pre> </div>  
+<div class="rightcol"><pre><code>    glColor3f(1.0, 1.0, 0.0)</code><code>    glVertex3f(1.0, -1.0, -1.0)</code><code>    glVertex3f(-1.0, -1.0, -1.0)</code><code>    glVertex3f(-1.0, 1.0, -1.0)</code><code>    glVertex3f(1.0, 1.0, -1.0)</code><code> </code><code>    glColor3f(0.0, 0.0, 1.0)</code><code>    glVertex3f(-1.0, 1.0, 1.0)</code><code>    glVertex3f(-1.0, 1.0, -1.0)</code><code>    glVertex3f(-1.0, -1.0, -1.0)</code><code>    glVertex3f(-1.0, -1.0, 1.0)</code><code> </code><code>    glColor3f(1.0, 0.0, 1.0)</code><code>    glVertex3f(1.0, 1.0, -1.0)</code><code>    glVertex3f(1.0, 1.0, 1.0)</code><code>    glVertex3f(1.0, -1.0, 1.0)</code><code>    glVertex3f(1.0, -1.0, -1.0)</code><code> </code><code>    glEnd()</code><code>    angle += 1</code></pre></div>
 
-        glEnd()
-        glutSwapBuffers()
-        angle += 1
-
+## pyOpenGL Code {#NoHeaderpyOpenGL3}
 
     glutInit(sys.argv)
     glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH)
@@ -271,15 +242,46 @@ Also a python OpenGL binding, but simplifies windowing and multimedia
  - …Developed to aid understanding of physics through computing
  - …C++ calls OpenGL, compiled to a module called cvisual
  - …depends on wxPython and boost
- - …development focus beginning 2016 is browser/webGL-based
+
+## physics example: projectile motion {#NoHeaderphysics}
+
+    ball = sphere(pos=vector(-10, 0, 0), radius=0.1, 
+                  color=color.red, make_trail=True)
+    ball.velocity = vector(10, 10, 0)
+    time = 0.0; time_final = 2; dt = 0.01; m = 0.15
+    while time <= time_final and ball.pos.y > -0.1:
+        rate(100)
+        f = - m * vector(0, 9.8, 0)
+        
+        ball.pos += ball.velocity * dt
+        ball.velocity += f * dt / m
+        time += dt
+
+## physics example: projectile motion with air resistance {#NoHeaderphysics2}
+
+    ball = sphere(pos=vector(-10, 0, 0), radius=0.1, 
+                  color=color.red, make_trail=True)
+    ball.velocity = vector(10, 10, 0)
+    time = 0.0; time_final = 2; dt = 0.01; m = 0.15
+    while time <= time_final and ball.pos.y > -0.1:
+        rate(100)
+        f = - m * vector(0, 9.8, 0) 
+             <mark>-0.006 * ball.velocity * ball.velocity.mag</mark>
+        ball.pos += ball.velocity * dt
+        ball.velocity += f * dt / m
+        time += dt
+
+## ![](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/projectile.gif)
+{: .slide .cover .h }
+
 
 ## VPython code
 
     from visual import *
-    box = box(width=1, height=1, length=1, color=color.red)
+    a_box = box(width=1, height=1, length=1, color=color.red)
     while True:
         rate(10)
-        box.rotate(angle=radians(1), axis=(1, 1, 0))
+        a_box.rotate(angle=radians(1), axis=vector(1, 1, 0))
 
 ## ![](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/vpython_animation.gif)
 {: .slide .cover .h }
@@ -323,19 +325,13 @@ Also a python OpenGL binding, but simplifies windowing and multimedia
 
 ## A Helper for Pyglet
 
-- …Write geometric shape primitives (sphere, box, etc) as "*objects*"
-- …Write mathematical primitives (vector, vertex, etc)  as "*utils*"
+- …Submodule "*objects*" has geometric shape primitives 
+- …Submodule "*utils*" has mathematical primitives (vector, vertex, etc) 
 - …Let pyglet.gl interact with OpenGL
 - …Let pyglet.window and pyglet.app handle display
 
 ## Implementation
 {: .slide .shout .up }
-
-## Conversion problems
-
-1. Converting C++ to python
-2. To pep or not to pep?
-3. Continuous integration with no display
 
 <!--
 ## Replacing Iterators {#CodeSmallHeaderiterators}
@@ -479,7 +475,7 @@ or
 1. Originally developed by Coady as ivisual
 2. Updated to use GlowScipt Python API and released on PyPI as vpython
 3. Runs in Jupyter notebook, typically in a local installation
-4. Rendering handled through a custom kernel that calls GlowScript
+4. Rendering handled through a comm channel to GlowScipt loaded in the front end
 
 ## ![](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/vjupyter_animation.gif)
 {: .slide .cover .h }
@@ -490,4 +486,5 @@ or
 3. … 3D Text
 2. … Make vpython-jupyter  compatible with pyglet_helper
 
-
+## Thank you!
+{: .slide .shout .up }

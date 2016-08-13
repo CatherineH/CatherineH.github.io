@@ -139,6 +139,6 @@ Resolution
 
 When executing arduino-builder, add the argument:
 
-```
+```bash
 -tools ~/arduino-1.6.7/tools-builder
 ```
