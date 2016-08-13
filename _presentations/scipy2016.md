@@ -127,16 +127,47 @@ PyOpenGL is to OpenGL as PyQt is to Qt
         glLoadIdentity()
         glRotatef(angle, 1.0, 1.0, 0.0)
         glBegin(GL_QUADS)
+        
         glColor3f(1.0, 0.0, 0.0)
         glVertex3f(1.0, 1.0, -1.0)
         glVertex3f(-1.0, 1.0, -1.0)
         glVertex3f(-1.0, 1.0, 1.0)
         glVertex3f(1.0, 1.0, 1.0)
-        ...
+        
+        glColor3f(1.0, 0.0, 0.0)
+        glVertex3f( 1.0,-1.0, 1.0)
+        glVertex3f(-1.0,-1.0, 1.0)
+        glVertex3f(-1.0,-1.0,-1.0)
+        glVertex3f( 1.0,-1.0,-1.0) 
+ 
+        glColor3f(1.0, 0.0, 0.0)
+        glVertex3f( 1.0, 1.0, 1.0)
+        glVertex3f(-1.0, 1.0, 1.0)
+        glVertex3f(-1.0,-1.0, 1.0)
+        glVertex3f( 1.0,-1.0, 1.0)
+ 
+        glColor3f(1.0, 0.0, 0.0)
+        glVertex3f( 1.0,-1.0,-1.0)
+        glVertex3f(-1.0,-1.0,-1.0)
+        glVertex3f(-1.0, 1.0,-1.0)
+        glVertex3f( 1.0, 1.0,-1.0)
+ 
+        glColor3f(1.0, 0.0, 0.0)
+        glVertex3f(-1.0, 1.0, 1.0) 
+        glVertex3f(-1.0, 1.0,-1.0)
+        glVertex3f(-1.0,-1.0,-1.0) 
+        glVertex3f(-1.0,-1.0, 1.0) 
+ 
+        glColor3f(1.0, 0.0, 0.0)
+        glVertex3f( 1.0, 1.0,-1.0) 
+        glVertex3f( 1.0, 1.0, 1.0)
+        glVertex3f( 1.0,-1.0, 1.0)
+        glVertex3f( 1.0,-1.0,-1.0)
+
         glEnd()
+        glutSwapBuffers()
         angle += 1
 
-## pyOpenGL Code {#NoHeaderpyOpenGL3}
 
     glutInit(sys.argv)
     glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH)
