@@ -104,12 +104,12 @@ mc.channel[3].voltage = 3*pq.V
 mc.channel[1].enable = True
 ```
 
-the *__init__* keyword is like a constructor on C++ classes - it gets called any time *MDT693B()* is called, and contains the code we want to run on initialization. Our device is based on the template *Instrument*, so in our intialization function, we need to call *Super* on it to make sure the *Instrument* gets initialized. Next, from the manual we can read that each query or command is terminated by a Carriage Return and Line Feed character, and that the device will print a prompt character when it is ready for new input. If we define these variables in our init, they will be passed up to Instrument when *query* or *sendcmd* are invoked, and will be handled appropriately. The variable *self._channel_count* is used to tell the *ProxyList* template that this device has three channels.
+the *__init__* keyword is like a constructor on C++ classes - it gets called any time *MDT693B()* is called, and contains the code we want to run on initialization. Our device is based on the template *Instrument*, so in our intialization function, we need to call *Super* on it to make sure the *Instrument* gets initialized. Next, from the manual we can read that each query or command is terminated by a *Carriage Return* (\\r) and *Line Feed* (\\n) character, and that the device will print a prompt character when it is ready for new input. If we define these variables in our init, they will be passed up to Instrument when *query* or *sendcmd* are invoked, and will be handled appropriately. The variable *self._channel_count* is used to tell the *ProxyList* template that this device has three channels.
 
 ```python
     def __init__(self, filelike):
         super(MDT693B, self).__init__(filelike)
-        self.terminator = "\r"
+        self.terminator = "\r\n"
         self.prompt = "> "
         self._channel_count = 3
 ```
