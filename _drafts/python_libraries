@@ -1,0 +1,94 @@
+Python libraries for beginners
+
+The plethora of libraries is a key feature of using python in the sciences. I would like to offer my advice on finding and installing libraries, as well as the libraries I use on a regular basis.
+
+Finding New Libraries
+=====================
+
+When looking for code, I first turn to the [Python Package Index (PyPI)](https://pypi.python.org/pypi) for packages. If I don't find what I want there, I search the publicly available repositories taged with 'Python' on [GitHub](https://github.com/search?l=Python&type=Repositories&utf8=%E2%9C%93) to see if someone has also worked on the same problem but has not released python modules on a package manager.
+
+[conda](https://conda.anaconda.org/conda-forge) is alternative package management system aimed at data scientists. I have stopped using it as it had too few packages. 
+
+
+Installing libraries
+====================
+
+There are two ways to install python libraries: either building from source or downloading a .whl file (called wheels), which often include a compiled binary. 'Building' in this context is a bit of a misnomer: python is an interpreted library thus the installation procedure is merely copying some python source code to your python dist-packages or lib folders. However, certain packages, especially those that do intensive numerical calculations, have sections written in C or fortran that need to be compiled. Some python packages release wheels on PyPI, some release wheels outside of PyPI, some python packages on PyPI link to code on github or some other online repository and will automatically download this source and compile and copy files it when it is installed from the package manager, and some packages can only be installed by downloading the source code and compiling. 
+
+Installing from PyPI
+--------------------
+
+Read the PyPI package description website to make sure that your operating system and python version are supported by this package. If it is, then open a terminal on linux, or a command prompt on Windows, and type:
+
+```
+pip install module_name
+```
+
+If Windows complains that it can't find pip, one of two things may have happened: either pip was not installed when python was installed, in which case it can be installed by running the installation msi file with scripts selected for installation, or the *C:/Python34/Scripts* path has not been added to the path environment variable.
+
+pip can also install several libraries at once, by specifying each library on a new line in a file (typically called *requirements.txt*). This file can then be called using:
+
+```
+pip install -r requirements.txt
+```
+
+Many python projects will have a *requirements.txt* file in the main directory.
+
+You can check which version of a library you have installed using:
+
+```
+pip show module_name
+```
+
+You can uninstall libraries using the command:
+
+```
+pip uninstall module_name
+```
+
+Installing from github repositories
+-----------------------------------
+
+
+Problems on Windows
+-------------------
+
+Libraries for Experimental Quantum Optics
+=========================================
+
+Simulating Data
+---------------
+
+Numpy
+QuTIP
+PyZZDE
+Scipy
+DEAP
+
+Gathering Data
+--------------
+
+pyserial
+InstrumentKit
+PyOmniDriver
+RPi.GPIO
+
+Analyzing Data
+--------------
+
+numpy
+pandas
+scipy.signal
+scipy.stats
+
+Visualizing Data
+----------------
+
+matplotlib
+svgwrite
+pyside
+pyqtgraph
+
+
+
+
