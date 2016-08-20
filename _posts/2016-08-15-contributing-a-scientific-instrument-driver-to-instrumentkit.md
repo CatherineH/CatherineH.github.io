@@ -287,10 +287,8 @@ An example script for interacting with the thorlabs MDT693B piezo driver.
 """
 import quantities as pq
 from instruments.thorlabs import MDT693B
-from instruments import Device
 
-hardware = Device(vid=1027, pid=24577)
-mdt = MDT693B.open_serial(hardware.port, baud=115200)
+mdt = MDT693B.open_serial(vid=1027, pid=24577, baud=115200)
 
 for i in range(0, 3):
     print("The voltage on ", i, " is ", mdt.channel[i].voltage)
@@ -300,12 +298,13 @@ for i in range(0, 3):
 mdt.master_scan_voltage = 1*pq.V
 mdt.master_scan_enable = True
 ```
+Although the method *open_serial* can be called by specifying a port, such as *COM8* or */dev/ttyUSB0*, it can also be specified using the device's vid, pid, and optional serial number. As assigned ports can change hap-hazardly based on the order in which devices are plugged into the computer, or at the whims of the operating system, it is often preferable to open the serial connection with the vid/ pid pairs instead of the port. These IDs can be determined either by opening the port's preferences under the device manager on Windows, or with the command *lsusb* in Linux.
 
-InstrumentKit contains an object called *Device* that allows you to find the port number of your device by its product and vendor ids and serial number. This is especially useful when switching out copies of the same device, or switching between computers. If you have multiple devices with the same product and vendor ids, you can differentiate them by the optional variable *serial_number*, i.e.:
+If you have multiple devices with the same product and vendor ids, you can differentiate them by the optional variable *serial_number*, i.e.:
 
 ```python
-hardware1 = Device(vid=1027, pid=24577, serial_number="aaaaaaaaa")
-hardware2 = Device(vid=1027, pid=24577, serial_number="aaaaaaaab")
+hardware1 = Device.open_serial(vid=1027, pid=24577, serial_number="aaaaaaaaa", baud=9600)
+hardware2 = Device.open_serial(vid=1027, pid=24577, serial_number="aaaaaaaab", baud=9600)
 ```
 
 The sample code opens a serial connection on this port and passes it to the *MDT693B* class for initialization. Then, it prints the voltage values for the three channels, then sets the master_scan_voltage and finally enables the master scan.

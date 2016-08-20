@@ -34,6 +34,17 @@ pip install -r requirements.txt
 
 Many python projects will have a *requirements.txt* file in the main directory.
 
+You can download and install .whl packages with:
+
+```
+pip install /path/to/your/wheel.whl
+```
+You can upgrade an existing package using:
+
+```
+pip install --upgrade module_name
+```
+
 You can check which version of a library you have installed using:
 
 ```
@@ -49,9 +60,53 @@ pip uninstall module_name
 Installing from github repositories
 -----------------------------------
 
+If a module is unavailable as a *.whl or as a package on PyPI, do not dispair! It is often possible to install from source.
+
+Assuming the code you want to install has a setup.py file, you can do one of two things: install the repository using pip, or running the setup script.
+
+To install using pip, run (using my pyOmniDriver library as an example):
+
+```
+pip install -e git+git://github.com/CatherineH/pyOmniDriver.git#egg=Package
+```
+
+This method is not preferable, as pip will copy the code and generated egg-info to a directory called *src/package*, not to the python lib or dist-packages folders, and if this directory is deleted, you will need to re-install the module. The alternate method is to clone the source code, then run the setup file:
+
+```
+git clone git@github.com:CatherineH/pyOmniDriver.git
+cd pyOmniDriver
+python setup.py install
+```
+When installed this way, source code and builds are copied to the python lib or dist-packages folders and deleting the folder with the cloned repository will not remove the module from the operating system.
 
 Problems on Windows
 -------------------
+
+Installing and using python libraries that depend on the Basic Linear Algebra Subprograms (BLAS) specification are a little tricky on Windows, as the microsoft visual studio compilers have a hard time compiling them without some changes to configuration. There is work towards using open-source compilers and open-source implementations of BLAS, however, not all libraries have implemented this yet (for example, Numpy and SciPy). On Windows, pip installing numpy will download a .whl compiled with open-blas; SciPy does not yet have a corresponding library. Attempting to install scipy will result in the error:
+
+```
+error here.
+```
+
+Christoph Golke maintains a [collection of compiled .whl files for windows python libraries](http://www.lfd.uci.edu/~gohlke/pythonlibs/), all built on the Intel Math Kernel Library (MKL) and the Microsoft Visual C++ compiler. I would strongly recommend downloading and installing these packages instead of messing around with the Visual Studio compilers on your own. However, if you install the MKL version of libraries that depend on numpy while your numpy package has been installed from PyPI and uses open-blas, you will get the error:
+
+```
+```
+
+If this happens, uninstall numpy, then install numpy from the whls:
+
+```
+
+```
+
+Make sure the .whls you download match the python version number and system architecture of your system. You can check these versions using .......
+If you attempt to install an incompatible whl, you will get the error message:
+
+```
+```
+
+If you still get this error message when your python version and system architecture are the same, upgrade pip.
+
 
 Libraries for Experimental Quantum Optics
 =========================================
