@@ -116,38 +116,40 @@ pip install --upgrade pip
 Libraries for Experimental Quantum Optics
 =========================================
 
-I'm now going to give a short introduction to many useful libraries for doing quantum optics research.
+Here's a short introduction to many useful libraries for doing quantum optics research.
 
 Simulating Data
 ---------------
 
 [Numpy](http://www.numpy.org/) mimics the array manipulations data syntax introduced in Matlab. Although its primary functionality is in speeding up numerical operations, I hardly ever call these directly, and instead use numpy for its array initialization functions. Most other scientifically useful libraries, such as QuTIP, Scipy and pandas are built on top of Numpy objects and operations.
-[QuTIP](http://qutip.org/) is the quantum toolbox in python. 
-[PyZZDE](https://github.com/indranilsinharoy/PyZDDE) a python interface to zemax. 
-[DEAP](http://deap.gel.ulaval.ca/doc/default/) Distributed Evolutionary Algorithms in Python.
+[QuTIP](http://qutip.org/) is the quantum toolbox in python. Though a lot of the functionality is aimed simulating and analyzing more complex quantum systems with long-term time evolution and coupled system, it is still useful for creating entangled photon states using nonlinear optics, applying waveplates and calculating the probability amplitudes after squashing the states down to classical measurements. 
+[PyZZDE](https://github.com/indranilsinharoy/PyZDDE) a python interface to zemax. Useful for automating optical analysis, for example, optimizing coupling by iteratively moving elements around in the optical system.  
+[DEAP](http://deap.gel.ulaval.ca/doc/default/) DEAP stands for Distributed Evolutionary Algorithms in Python and is a versatile library for creating and running genetic programs in python. 
 
 Gathering Data
 --------------
 
-[pyserial](https://pythonhosted.org/pyserial/)
-[InstrumentKit](https://github.com/Galvant/InstrumentKit)
-[PyOmniDriver](https://github.com/CatherineH/pyOmniDriver)
-[RPi.GPIO](https://sourceforge.net/projects/raspberry-gpio-python/)
+[pyserial](https://pythonhosted.org/pyserial/) allows for writing and reading to serial ports from Windows and Linux. It also provides some helper functionality for inspecting available serial ports. 
+[InstrumentKit](https://github.com/Galvant/InstrumentKit) is a library that abstracts away the communication protocols to scientific instruments, as well as handling the common and known bugs in these devices.
+[PyOmniDriver](https://github.com/CatherineH/pyOmniDriver) is my library for communicating with Ocean Optics spectrometers.
+[PyHighFinesse](https://github.com/CatherineH/pyHighFinesse) is my library for communicating with Angstrom/High Finesse spectrometers.
+[RPi.GPIO](https://sourceforge.net/projects/raspberry-gpio-python/) is a library for communicating with the raspberry pi's GPIO port, which is allows the raspberry pi to be used as a cheap and simple data aquisition device. 
 
 Analyzing Data
 --------------
 
-[pandas](http://pandas.pydata.org/)
-scipy.signal
-scipy.stats
+[pandas](http://pandas.pydata.org/) provides a data storage object called a DataFrame, which is accessed like R's DataFrame. When stored in a DataFrame, data can be easily sliced on a query - i.e., pick out all spectrometer intensitities where the oven temperature was 34 degrees C between the ranges of 800 to 815 nm, then manipulated as a numpy matrix or array, printed in a human-readable format, or written to a comma separated file.
+[scipy.signal](http://docs.scipy.org/doc/scipy/reference/signal.html) can be useful in analyzing spectrums and oscilloscope traces, however many of these libraries are overkill. The same task can often be accomplished in a more transparent and effective fashion using curve-fitting.
+[scipy.stats](http://docs.scipy.org/doc/scipy/reference/stats.html) contains methods for fitting data to several probability distributions that can arrise from experimental data, for example, gaussians, poissonians, chi-squared and lognormal, as well as multi-variate analysis.
+[scipy.optimize](http://docs.scipy.org/doc/scipy/reference/optimize.html) contains methods for performing simple numerical optimizations, such as curve-fitting and root-finding. Though not as sophisticated as some other machine-learning algorithms, when applied correctly it is powerful enough. 
 
 Visualizing Data
 ----------------
 
-matplotlib
-svgwrite
-pyside
-pyqtgraph
+[matplotlib](http://matplotlib.org/) is a versatile 2-d plotter. If data can be drawn as a collection of 2-d shapes, it can be created programmatically using matplotlib. Matplotlib has methods for simple scatterplots and bar charts, but its versatility comes from its artist layer, which allows any two-dimensional shape or annotation to be added to the plot. Another key feature is that care has been put into making the default style and color schemes attractive in the latest version.
+[svgwrite](https://svgwrite.readthedocs.io/en/latest/) allows scalable vector graphics to be created from within python. Useful for creating iterative experimental schematics that can be scaled for any resolution (for example, when printing in an article pdf) or viewed in a web browser.
+[PySide](https://wiki.qt.io/PySide) is a python implementation of Qt, a robust cross-platform graphical user interface library. PySide is particularily useful as it has a license that allows it to be used for commercial applications. One drawback is that it is not yet compatible with python 3.5. 
+[PyQtGraph](http://pyqtgraph.org/) allows plots to be embedded in Qt applications. Although it is possible to render matplotlib graphs in Qt GUIs, they do not respond well to multi-threaded programs. PyQtGraph, on the other hand, is based on Qt and thus can be used in a Qt thread. Responsive experimental GUIs require threading, thus responsive experimental graphs require PyQtGraph. It is not as versatile or as attractive as matplotlib, but adequate for real-time GUIs. 
 
 
 

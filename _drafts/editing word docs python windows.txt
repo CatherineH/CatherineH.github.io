@@ -1,0 +1,11 @@
+don't install python-base, pyoo or uno modules. You will run into errors like this:
+
+  File "C:\Python34\lib\site-packages\uno\__init__.py", line 4, in <module>
+    from base import Element, Css, Payload, UnoBaseFeature, UnoBaseField
+ImportError: No module named 'base
+
+As far as I can tell, there is no active development by the OpenOffice people on this.
+
+Instead - 
+
+- download libreOffice. Make sure that the system architecture matches the system architecture of your version of python. i.e., if you have a 32 bit version of python, download the 32 bit version of libre office.
