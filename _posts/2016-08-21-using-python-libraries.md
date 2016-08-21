@@ -129,7 +129,7 @@ Here's a short introduction to many useful libraries for doing quantum optics re
 Simulating Data
 ---------------
 
-[Numpy](http://www.numpy.org/) mimics the array manipulations data syntax introduced in MATLAB. Although its primary functionality is in speeding up numerical operations, I hardly ever call these directly, and instead use NumPy for its array initialization functions. Most other scientifically useful libraries, such as QuTIP, SciPy and pandas are built on top of NumPy objects and operations.
+[NumPy](http://www.numpy.org/) mimics the array manipulations data syntax introduced in MATLAB. Although its primary functionality is in speeding up numerical operations, I hardly ever call these directly, and instead use NumPy for its array initialization functions. Most other scientifically useful libraries, such as QuTIP, SciPy and pandas are built on top of NumPy objects and operations.
 
 [QuTIP](http://qutip.org/) is the quantum toolbox in python. Though a lot of the functionality is aimed simulating and analyzing more complex quantum systems with long-term time evolution and coupled system, it is still useful for creating entangled photon states using nonlinear optics, applying wave-plates and calculating the probability amplitudes after squashing the states down to classical measurements. 
 
@@ -173,5 +173,6 @@ Visualizing Data
 [PyQtGraph](http://pyqtgraph.org/) allows plots to be embedded in Qt applications. Although it is possible to render matplotlib graphs in Qt GUI's, they do not respond well to multi-threaded programs. PyQtGraph, on the other hand, is based on Qt and thus can be used in a Qt thread. Responsive experimental GUI's require threading, thus responsive experimental graphs require PyQtGraph. It is not as versatile or as attractive as matplotlib, but adequate for real-time GUI's. 
 
 
+If there is a library you find useful not included in the above, let me know!
 
 
