@@ -85,38 +85,45 @@ Problems on Windows
 Installing and using python libraries that depend on the Basic Linear Algebra Subprograms (BLAS) specification are a little tricky on Windows, as the microsoft visual studio compilers have a hard time compiling them without some changes to configuration. There is work towards using open-source compilers and open-source implementations of BLAS, however, not all libraries have implemented this yet (for example, Numpy and SciPy). On Windows, pip installing numpy will download a .whl compiled with open-blas; SciPy does not yet have a corresponding library. Attempting to install scipy will result in the error:
 
 ```
-error here.
+      File "scipy\linalg\setup.py", line 20, in configuration
+        raise NotFoundError('no lapack/blas resources found')
+    numpy.distutils.system_info.NotFoundError: no lapack/blas resources found
 ```
 
-Christoph Golke maintains a [collection of compiled .whl files for windows python libraries](http://www.lfd.uci.edu/~gohlke/pythonlibs/), all built on the Intel Math Kernel Library (MKL) and the Microsoft Visual C++ compiler. I would strongly recommend downloading and installing these packages instead of messing around with the Visual Studio compilers on your own. However, if you install the MKL version of libraries that depend on numpy while your numpy package has been installed from PyPI and uses open-blas, you will get the error:
-
-```
-```
+Christoph Golke maintains a [collection of compiled .whl files for windows python libraries](http://www.lfd.uci.edu/~gohlke/pythonlibs/), all built on the Intel Math Kernel Library (MKL) and the Microsoft Visual C++ compiler. I would strongly recommend downloading and installing these packages instead of messing around with the Visual Studio compilers on your own. However, if you install the MKL version of libraries that depend on numpy while your numpy package has been installed from PyPI and uses open-blas, you will get the same error as above.
 
 If this happens, uninstall numpy, then install numpy from the whls:
 
 ```
-
+pip uninstall numpy
+pip install numpy-1.11.1+mkl-cp27-cp27m-win_amd64.whl
 ```
 
-Make sure the .whls you download match the python version number and system architecture of your system. You can check these versions using .......
+Make sure the .whls you download match the python version number and system architecture of your system. You can check these versions by looking at the lines that are printed when python starts up.
 If you attempt to install an incompatible whl, you will get the error message:
 
 ```
+numpy-1.11.1+mkl-cp27-cp27m-win32.whl is not a supported wheel on this platform.
 ```
 
-If you still get this error message when your python version and system architecture are the same, upgrade pip.
+If you still get this error message when your python version and system architecture are the same, upgrade pip:
+
+```
+pip install --upgrade pip
+```
 
 
 Libraries for Experimental Quantum Optics
 =========================================
 
+I'm now going to give a short introduction to many useful libraries for doing quantum optics research.
+
 Simulating Data
 ---------------
 
-Numpy
-QuTIP
-PyZZDE
+[Numpy](http://www.numpy.org/) mimics the array manipulations data syntax introduced in Matlab. Although its primary functionality is in speeding up numerical operations, I hardly ever call these directly, and instead use numpy for its array initialization functions. Most other scientifically useful libraries, such as QuTIP, Scipy and pandas are built on top of Numpy objects and operations.
+[QuTIP](http://qutip.org/) is the quantum toolbox in python. 
+[PyZZDE](https://github.com/indranilsinharoy/PyZDDE) a python interface to zemax. 
 Scipy
 DEAP
 
