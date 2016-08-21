@@ -124,22 +124,20 @@ Simulating Data
 [Numpy](http://www.numpy.org/) mimics the array manipulations data syntax introduced in Matlab. Although its primary functionality is in speeding up numerical operations, I hardly ever call these directly, and instead use numpy for its array initialization functions. Most other scientifically useful libraries, such as QuTIP, Scipy and pandas are built on top of Numpy objects and operations.
 [QuTIP](http://qutip.org/) is the quantum toolbox in python. 
 [PyZZDE](https://github.com/indranilsinharoy/PyZDDE) a python interface to zemax. 
-Scipy
-DEAP
+[DEAP](http://deap.gel.ulaval.ca/doc/default/) Distributed Evolutionary Algorithms in Python.
 
 Gathering Data
 --------------
 
-pyserial
-InstrumentKit
-PyOmniDriver
-RPi.GPIO
+[pyserial](https://pythonhosted.org/pyserial/)
+[InstrumentKit](https://github.com/Galvant/InstrumentKit)
+[PyOmniDriver](https://github.com/CatherineH/pyOmniDriver)
+[RPi.GPIO](https://sourceforge.net/projects/raspberry-gpio-python/)
 
 Analyzing Data
 --------------
 
-numpy
-pandas
+[pandas](http://pandas.pydata.org/)
 scipy.signal
 scipy.stats
 
