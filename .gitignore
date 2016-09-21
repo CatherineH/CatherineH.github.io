@@ -12,3 +12,6 @@ serve
 .rbenv-version
 .rvmrc
 .idea
+
+# gedit crap
+*~
