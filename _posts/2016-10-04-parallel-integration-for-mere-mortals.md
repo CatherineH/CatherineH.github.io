@@ -62,7 +62,7 @@ To make sure that the process of parallelization did not change the result someh
         assert results_pooled[i] == results[i]
 ```
 
-For this example, at least, the results are the same. The parallelized computation takes an average of 47.5 seconds on both python 2.7 and python 3.4. Long enough to be frustrating, but long enough to get distracted. 
+For this example, at least, the results are the same. The parallelized computation takes an average of 47.5 seconds on both python 2.7 and python 3.4. Long enough to be frustrating, but not long enough to get distracted. 
 
 This is what the CPU usage looks like when the calculations are run one after the other:
 
