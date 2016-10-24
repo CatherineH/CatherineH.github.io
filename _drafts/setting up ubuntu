@@ -13,6 +13,7 @@ gimp
 vim
 inkscape
 zlib1g-dev
+nmap
 
 - add keys to github and gitlab
 
