@@ -12,6 +12,7 @@ golang-go
 gimp
 vim
 inkscape
+zlib1g-dev
 
 - add keys to github and gitlab
 
@@ -28,4 +29,6 @@ https://www.jetbrains.com/pycharm/download/download-thanks.html?platform=linux&c
 
 - add variables to .profile:
 
-export PATH="arduino folder"
+export PATH=$PATH:"arduino folder":"altera folder"
+
+- clone your repos (remember to check for submodules!)
