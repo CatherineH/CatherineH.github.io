@@ -2,7 +2,7 @@
 author: Catherine Holloway
 company: Qubitekk
 twitter: femion
-title: Python goes Micro
+title: Honey I shrunk the Python
 layout: bright
 
 
@@ -55,8 +55,25 @@ style: |
             }
 ---
 
-# How I spent my summer vacation {#Cover}
+# Honey I shrunk the Python {#Cover}
 {: .slide .cover .w }
 
 Catherine Holloway (@femion, CatherineH)
+
+## Pis to teensies
+
+<table border="0">
+<tr><td><img width="400" src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/october_lightning/raspberry_pi.jpg"></td><td><img width="400" src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/october_lightning/teensyparts.jpg"></td></tr>
+</table>
+
+Images from Adafruit
+
+## Pis to Teensies {#NoHeaderArduino}
+
+<table border="0">
+<tr><td></td><td>Raspberry Pi Zero</td><td>Teensy 3.2</td></tr>
+<tr><td>Price</td><td>5$ (20$)</td><td>12$ (20$)</td></tr>
+<tr><td>Boot time</td><td>35 s </td><td> < 1 s</td></tr>
+
+
 
