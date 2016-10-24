@@ -8,6 +8,8 @@ python3-pip
 vlc
 ruby-dev
 ruby
+golang-go
+
 
 
 - add keys to github and gitlab
