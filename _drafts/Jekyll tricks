@@ -1,0 +1,5 @@
+- if you want to store your raw markdown in different places from your jekyll configuration, change the _config.yaml to include the line:
+
+safe: false
+
+then create a symbolic link between your markdown repo and jekyll source.
