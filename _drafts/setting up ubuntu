@@ -1,0 +1,21 @@
+- packages to install:
+
+git
+libappindicator1 
+libindicator7
+python-pip
+python3-pip
+vlc
+ruby-dev
+ruby
+
+
+- add keys to github and gitlab
+
+- download and run pycharm
+
+https://www.jetbrains.com/pycharm/download/download-thanks.html?platform=linux&code=PCC
+
+- download and install quartus prime lite edition
+
+- make directories python_projects, ruby_projects, embedded_projects, go_projects
