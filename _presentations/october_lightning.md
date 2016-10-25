@@ -60,7 +60,7 @@ style: |
 
 Catherine Holloway (@femion, CatherineH)
 
-## Pis to teensies
+## Comparing Pis to teensies
 
 <table border="0">
 <tr><td><img width="400" src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/october_lightning/raspberry_pi.jpg"></td><td><img width="400" src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_presentations/october_lightning/teensyparts.jpg"></td></tr>
@@ -71,9 +71,66 @@ Images from Adafruit
 ## Pis to Teensies {#NoHeaderArduino}
 
 <table border="0">
-<tr><td></td><td>Raspberry Pi Zero</td><td>Teensy 3.2</td></tr>
-<tr><td>Price</td><td>5$ (20$)</td><td>12$ (20$)</td></tr>
-<tr><td>Boot time</td><td>35 s </td><td> < 1 s</td></tr>
+<tr><td></td><td>Raspberry Pi Zero*</td><td>Teensy 3.2</td></tr>
+<tr><td>Price</td><td>5$ (20$) + 5$</td><td><b>12$ (20$)</b></td></tr>
+<tr><td>Boot time</td><td>35 s </td><td> <b>< 1 s</b></td></tr>
+<tr><td>Digital I/O</td><td>18 pins </td><td><b> 34 pins</b></td></tr>
+<tr><td>Digital I/O speed</td><td><b>22 MHz**</b></td><td>115 kHz</td></tr>
+<tr><td>Analog I/O</td><td>None </td><td><b> 14 pins</b></td></tr>
+<tr><td>Storage</td><td><b>14 GB</b></td><td>262 kB</td></tr>
+<tr><td>RAM</td><td><b>512 MB</b></td><td>64 kB</td></tr>
+</table>
+
+\* 16 Gb storage card with Rasbpian lite 
+\*\* C + RasPi hardware libraries
+
+## Use the Pi Zero when you:
+
+- don't need **analog input**
+- want to use existing **linux libraries**
+- have a device that will stay **on all the time**
+- need **fast** digital electronics communication (and can program in C)
+- need a lot of **storage** or **RAM**
+
+## Use the Teensy when you:
+
+- need **analog I/O** or a lot of **digital I/O**
+- need to **security audit** your code
+- will be turning your **device on and off** frequently
+
+## MicroPython: an alternative to C++
+
+- original kickstarter by Damien George, a **physicist** at Cambridge
+- used by the BBC micro:bit
+- compatible with the Teensy 3.+ (but not the LC... yet?)
+- stripped-down standard library
+
+## Interactive MicroPython Prompt
+
+( show serial connection)
+
+## boot.py and main.py
+
+- boot executes first, then main
+- add to hex and upload!
+(show code for other board) 
+
+## fake-micropython
+
+- embedded programming requires frequent breaks to compile & upload, breaking mental flow
+- no feedback on failures
+- solution: emulate the functionality of the pyboard library on a computer
+- use keyboard presses for pin inputs
+
+## For more...
+
+- Blog post on setting up toolchain: http://**catherineh**.github.io/programming/2016/09/18/getting-started-with-micropython-on-the-teensy.html
+- my MicroPython demo board: **micropython-teensy-demo**
+- my fake-micropython tool: **fake-micropython**
+- my teensy build scripts: **teensy-python-makefile**
+
+
+
 
 
 

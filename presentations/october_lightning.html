@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)http://127.0.0.1:4000/october_lightning.html?full#comparing-pis-to-teensies -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Honey I shrunk the Python</title>
+    
+    <meta name="viewport" content="width=792, user-scalable=no">
+    <link rel="stylesheet" href="./october_lightning_files/screen.css">
+    <style>
+#NoHeaderArduino h2,  #NoHeaderpyOpenGL h2, #NoHeaderpyOpenGL2 h2,
+#NoHeaderpyOpenGL2 h2, #NoHeaderpyOpenGL3 h2, #NoHeaderpyglet h2,
+#NoHeaderpyglet2 h2, #NoHeaderpyglet3 h2, #NoHeaderpyglet4 h2,
+#NoHeaderpythonmultiple h2, #NoHeaderpyOpenGLSmall h2,
+#NoHeaderphysics h2, #NoHeaderphysics2 h2{
+    margin:0px 0 0;
+    text-align:center;
+    font-size:0px;
+    }
+
+.leftcol {
+    float: left;
+}
+.rightcol {
+    float: right;
+}
+
+#NoHeaderpyOpenGLSmall code{
+    font-size:14px;
+}
+
+#CodeSmallHeaderiterators h2{
+    margin:0px 0 0;
+    text-align:center;
+    font-size:20px;
+    }
+
+
+#Cover h2 {
+    margin:30px 0 0;
+    color:#FFF;
+    text-align:center;
+    font-size:70px;
+    }
+#Cover p {
+    margin:10px 0 0;
+    text-align:center;
+    color:#FFF;
+    font-style:italic;
+    font-size:20px;
+    }
+    #Cover p a {
+        color:#FFF;
+        }
+</style>
+<link rel="stylesheet" href="./october_lightning_files/default.min.css">
+</head>
+<body class="full" style="transform: scale(1.15156);">
+    <header class="caption">
+        <h1>Honey I shrunk the Python</h1>
+        <p>Catherine Holloway, Qubitekk</p>
+
+    </header>
+
+    <section id="Cover" class="slide slide cover w visited"><div><h2>Honey I shrunk the Python</h2>
+
+<p>Catherine Holloway (@femion, CatherineH)</p>
+
+</div></section>
+<section class="slide active" id="comparing-pis-to-teensies"><div><h2>Comparing Pis to teensies</h2>
+
+<table border="0">
+<tbody><tr><td><img width="400" src="./october_lightning_files/raspberry_pi.jpg"></td><td><img width="400" src="./october_lightning_files/teensyparts.jpg"></td></tr>
+</tbody></table>
+
+<p>Images from Adafruit</p>
+
+</div></section>
+<section class="slide" id="NoHeaderArduino"><div><h2>Pis to Teensies</h2>
+
+<table border="0">
+<tbody><tr><td></td><td>Raspberry Pi Zero*</td><td>Teensy 3.2</td></tr>
+<tr><td>Price</td><td>5$ (20$) + 5$</td><td><b>12$ (20$)</b></td></tr>
+<tr><td>Boot time</td><td>35 s </td><td> <b>&lt; 1 s</b></td></tr>
+<tr><td>Digital I/O</td><td>18 pins </td><td><b> 34 pins</b></td></tr>
+<tr><td>Digital I/O speed</td><td><b>22 MHz**</b></td><td>115 kHz</td></tr>
+<tr><td>Analog I/O</td><td>None </td><td><b> 14 pins</b></td></tr>
+<tr><td>Storage</td><td><b>14 GB</b></td><td>262 kB</td></tr>
+<tr><td>RAM</td><td><b>512 MB</b></td><td>64 kB</td></tr>
+</tbody></table>
+
+<p>* 16 Gb storage card with Rasbpian lite 
+** C + RasPi hardware libraries</p>
+
+</div></section>
+<section class="slide" id="use-the-pi-zero-when-you"><div><h2>Use the Pi Zero when you:</h2>
+
+<ul>
+  <li>don’t need <strong>analog input</strong></li>
+  <li>want to use existing <strong>linux libraries</strong></li>
+  <li>have a device that will stay <strong>on all the time</strong></li>
+  <li>need <strong>fast</strong> digital electronics communication (and can program in C)</li>
+  <li>need a lot of <strong>storage</strong> or <strong>RAM</strong></li>
+</ul>
+
+</div></section>
+<section class="slide" id="use-the-teensy-when-you"><div><h2>Use the Teensy when you:</h2>
+
+<ul>
+  <li>need <strong>analog I/O</strong> or a lot of <strong>digital I/O</strong></li>
+  <li>need to <strong>security audit</strong> your code</li>
+  <li>will be turning your <strong>device on and off</strong> frequently</li>
+</ul>
+
+</div></section>
+<section class="slide" id="micropython-an-alternative-to-c"><div><h2>MicroPython: an alternative to C++</h2>
+
+<ul>
+  <li>original kickstarter by Damien George, a <strong>physicist</strong> at Cambridge</li>
+  <li>used by the BBC micro:bit</li>
+  <li>compatible with the Teensy 3.+ (but not the LC… yet?)</li>
+  <li>stripped-down standard library</li>
+</ul>
+
+</div></section>
+<section class="slide" id="interactive-micropython-prompt"><div><h2>Interactive MicroPython Prompt</h2>
+
+<p>( show serial connection)</p>
+
+</div></section>
+<section class="slide" id="bootpy-and-mainpy"><div><h2>boot.py and main.py</h2>
+
+<ul>
+  <li>boot executes first, then main</li>
+  <li>add to hex and upload!
+(show code for other board)</li>
+</ul>
+
+</div></section>
+<section class="slide" id="fake-micropython"><div><h2>fake-micropython</h2>
+
+<ul>
+  <li>embedded programming requires frequent breaks to compile &amp; upload, breaking mental flow</li>
+  <li>no feedback on failures</li>
+  <li>solution: emulate the functionality of the pyboard library on a computer</li>
+  <li>use keyboard presses for pin inputs</li>
+</ul>
+
+</div></section>
+<section class="slide" id="for-more"><div><h2>For more…</h2>
+
+<ul>
+  <li>Blog post on setting up toolchain: http://<strong>catherineh</strong>.github.io/programming/2016/09/18/getting-started-with-micropython-on-the-teensy.html</li>
+  <li>my MicroPython demo board: <strong>micropython-teensy-demo</strong></li>
+  <li>my fake-micropython tool: <strong>fake-micropython</strong></li>
+  <li>my teensy build scripts: <strong>teensy-python-makefile</strong></li>
+</ul>
+
+
+</div></section>
+
+    <p class="badge"><a href="https://github.com/shower/shower">Fork me on Github</a></p>
+    <div class="progress"><div style="width: 11.11%;"></div></div>
+    <script src="./october_lightning_files/shower.min.js"></script>
+    <!-- Copyright © 2016 Catherine Holloway, Qubitekk -->
+    <script src="./october_lightning_files/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+</body></html>
