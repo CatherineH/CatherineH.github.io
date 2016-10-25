@@ -14,6 +14,8 @@ vim
 inkscape
 zlib1g-dev
 nmap
+python-tk
+python3-tk
 
 - add keys to github and gitlab
 
