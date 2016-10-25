@@ -16,6 +16,7 @@ zlib1g-dev
 nmap
 python-tk
 python3-tk
+screen
 
 - add keys to github and gitlab
 
