@@ -17,6 +17,7 @@ nmap
 python-tk
 python3-tk
 screen
+libffi-dev
 
 - add keys to github and gitlab
 
