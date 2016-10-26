@@ -42,3 +42,6 @@ export PATH=$PATH:"arduino folder":"altera folder":"eagle folder"
 
 - clone your repos (remember to check for submodules!)
 - add udev rules for teensy, ftdi, altera
+
+Do not use the udev rules from altera! instead, modify these instructions for the usb-blaster 1
+http://www.fpga-dev.com/altera-usb-blaster-with-ubuntu/
