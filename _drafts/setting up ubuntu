@@ -1,4 +1,5 @@
 - packages to install:
+ppas: ppa:team-gcc-arm-embedded/ppa
 
 git
 libappindicator1 
@@ -18,6 +19,7 @@ python-tk
 python3-tk
 screen
 libffi-dev
+gcc-arm-embedded
 
 - add keys to github and gitlab
 
@@ -29,6 +31,8 @@ https://www.jetbrains.com/pycharm/download/download-thanks.html?platform=linux&c
 
 - download install arduino and arduino-builder https://www.arduino.cc/en/Main/Software
 - Install the beta version of Teensyduino https://forum.pjrc.com/threads/38599-Teensyduino-1-31-Beta-2-Available
+
+- download and install eagle
 
 - make directories python_projects, ruby_projects, embedded_projects, go_projects
 
