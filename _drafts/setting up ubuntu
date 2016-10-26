@@ -38,7 +38,7 @@ https://www.jetbrains.com/pycharm/download/download-thanks.html?platform=linux&c
 
 - add variables to .profile:
 
-export PATH=$PATH:"arduino folder":"altera folder"
+export PATH=$PATH:"arduino folder":"altera folder":"eagle folder"
 
 - clone your repos (remember to check for submodules!)
 - add udev rules for teensy, ftdi, altera
