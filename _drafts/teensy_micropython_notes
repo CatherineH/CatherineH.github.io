@@ -5,3 +5,5 @@ _pin = pyb.Pin("A11", pyb.Pin.IN)
 micropython will just hang forever.
 
 - add the udev rules or else you'll be sudo screen'ing forever.
+
+- random is not yet implemented
