@@ -115,13 +115,6 @@ Images from Adafruit
 - add to hex and upload!
 (show code for other board) 
 
-## fake-micropython
-
-- embedded programming requires frequent breaks to compile & upload, breaking mental flow
-- no feedback on failures
-- solution: emulate the functionality of the pyboard library on a computer
-- use keyboard presses for pin inputs
-
 ## For more...
 
 - Blog post on setting up toolchain: http://**catherineh**.github.io/programming/2016/09/18/getting-started-with-micropython-on-the-teensy.html
