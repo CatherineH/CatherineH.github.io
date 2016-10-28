@@ -1,0 +1,8 @@
+I was getting a 'Permission Denied (publickey)' when cloning github repositories.
+
+creating the file ~/.ssh/config that contains:
+
+Host github.com
+	IdentityFile ~/.ssh/id_rsa
+  
+and then restarting git bash seemed to fix the problem
