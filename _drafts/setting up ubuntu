@@ -1,0 +1,47 @@
+- packages to install:
+ppas: ppa:team-gcc-arm-embedded/ppa
+
+git
+libappindicator1 
+libindicator7
+python-pip
+python3-pip
+vlc
+ruby-dev
+ruby
+golang-go
+gimp
+vim
+inkscape
+zlib1g-dev
+nmap
+python-tk
+python3-tk
+screen
+libffi-dev
+gcc-arm-embedded
+
+- add keys to github and gitlab
+
+- download and run pycharm
+
+https://www.jetbrains.com/pycharm/download/download-thanks.html?platform=linux&code=PCC
+
+- download and install quartus prime lite edition
+
+- download install arduino and arduino-builder https://www.arduino.cc/en/Main/Software
+- Install the beta version of Teensyduino https://forum.pjrc.com/threads/38599-Teensyduino-1-31-Beta-2-Available
+
+- download and install eagle
+
+- make directories python_projects, ruby_projects, embedded_projects, go_projects
+
+- add variables to .profile:
+
+export PATH=$PATH:"arduino folder":"altera folder":"eagle folder"
+
+- clone your repos (remember to check for submodules!)
+- add udev rules for teensy, ftdi, altera
+
+Do not use the udev rules from altera! instead, modify these instructions for the usb-blaster 1
+http://www.fpga-dev.com/altera-usb-blaster-with-ubuntu/

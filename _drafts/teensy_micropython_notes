@@ -1,0 +1,9 @@
+- ADC is not yet implemented. As such, if you try to initialize analog-only pins (like A10, A11 and A14) to input, such as:
+
+_pin = pyb.Pin("A11", pyb.Pin.IN)
+
+micropython will just hang forever.
+
+- add the udev rules or else you'll be sudo screen'ing forever.
+
+- random is not yet implemented

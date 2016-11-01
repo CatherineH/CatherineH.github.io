@@ -1,0 +1,19 @@
+Linx ARM
+
+Time elapsed: quartus_map 31.5695772171
+Time elapsed: quartus_fit 21.8984749317
+Time elapsed: quartus_asm 5.16810512543
+Time elapsed: quartus_eda 3.30787801743
+Total time elapsed:87.5765049458
+
+Time elapsed: quartus_map 28.1666769981
+Time elapsed: quartus_fit 21.6608970165
+Time elapsed: quartus_asm 5.09123587608
+Time elapsed: quartus_eda 3.22272896767
+Total time elapsed:83.3319408894
+
+Time elapsed: quartus_map 32.8028512001
+Time elapsed: quartus_fit 23.2031779289
+Time elapsed: quartus_asm 5.29801797867
+Time elapsed: quartus_eda 3.65992093086
+Total time elapsed:89.9107651711
