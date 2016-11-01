@@ -20,6 +20,7 @@ python3-tk
 screen
 libffi-dev
 gcc-arm-embedded
+default-jdk
 
 - add keys to github and gitlab
 
