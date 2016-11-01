@@ -32,7 +32,6 @@ for prop in propositions:
             sleep(1)
             rename(join(current_directory, filename),
                    join(current_directory, html_page))
-
 ```
 
 My strong opinions are stored as a dict:
@@ -92,6 +91,37 @@ Results
 =======
 
 $RESULT_TABLE$
+
+Most positive words:
+
+1 marijuana
+2 murder
+3 penalty
+4 prison
+5 death
+6 nonmedical
+7 inmates
+8 sentence
+9 victims
+10 system
+
+they are all related to legalizing marijuana or the death penalty.
+
+The most negative words:
+
+10 diseases
+9 condoms
+8 films
+7 mdash
+6 workplace
+5 cigarette
+4 cigarettes
+3 performers
+2 film
+1 8208
+
+8208 and mdash are the ascii character codes for the em-dash. It appears in propositions 52-59 used that, but not in propositions 60-67.
+
 
 <a name="myfootnote1">1</a>: which isn't much of a vote; Clinton will win California unless the San Andreas fault opens up and dumps LA, San Francisco and San Diego into the Pacific, and both candidates for Senate are democrats
 
