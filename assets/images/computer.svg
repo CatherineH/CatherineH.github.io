@@ -67,7 +67,7 @@
        rx="1.3022494"
        ry="1.0278554" />
     <rect
-       style="fill:#ff551b;fill-opacity:1;stroke:#000000;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="cursor:pointer;fill:#ff551b;fill-opacity:1;stroke:#000000;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="turbo"
        width="40"
        height="40"
@@ -76,7 +76,7 @@
        rx="1.302"
        ry="1.02786" />
     <rect
-       style="fill:#fffc1b;fill-opacity:1;stroke:#000000;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="cursor:pointer;fill:#fffc1b;fill-opacity:1;stroke:#000000;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="reset"
        width="40"
        height="40"
@@ -85,7 +85,7 @@
        rx="1.302"
        ry="1.02786" />
     <rect
-       style="fill:#03001b;fill-opacity:1;stroke:#000000;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="cursor:pointer;fill:#03001b;fill-opacity:1;stroke:#000000;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="off"
        width="40"
        height="40"
