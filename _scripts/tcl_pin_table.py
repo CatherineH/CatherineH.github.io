@@ -10,6 +10,7 @@ output_input_file = expanduser("~/output_lvds.tcl")
 draft_in = open("../_drafts/2016-11-08-picking-lvds-pins-on-the-de0-nano.md",
                     "r").read(-1)
 
+
 def parse_tcl(filename):
     p_pin_list = {}
     n_pin_list = {}
@@ -69,7 +70,6 @@ output_only_html = generate_table(p_pin_list, n_pin_list, output_p_pin_list,
 draft_in = draft_in.replace("$ALL_PINS$", all_pins_html)
 draft_in = draft_in.replace("$ACCESSIBLE_PINS$", only_gpio_html)
 draft_in = draft_in.replace("$OUTPUT_PINS$", output_only_html)
-
 
 
 f_handle_post = open("../_posts/2016-11-08-picking-lvds-pins-on-the-de0-nano.md", "w+")
