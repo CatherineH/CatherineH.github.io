@@ -22,6 +22,7 @@ libffi-dev
 gcc-arm-embedded
 default-jdk
 gparted
+pciutils
 
 - add keys to github and gitlab
 
