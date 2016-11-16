@@ -11,7 +11,7 @@ I've written some [basic sample code](https://github.com/CatherineH/de0-nano-ras
 
 # Functionality Common to Both Examples
 
-The verilog and tcl common to both DE0Nano projects is in *de0nano/common*
+The verilog and tcl common to both DE0-Nano projects is in *de0nano/common*
 
 The accelerometer puts out 16 bits of data for each of the three dimensions. The basic functionality of both examples is that the Raspberry Pi puts out one of the bytes for 'x', 'y' and 'z', and the DE0-Nano responds with two sequential bytes, one for the lower half of the 16 bits, one for the upper half. The accelerometer verilog code comes from Terasic, but with a modified module which includes the 2-bit input register called **dimension**. When **dimension** is 0, the axis to be read is x, 1 is y and 2 is z. This is accomplished by setting the hex values sent to the accelerometer using ternary operators in *spi_ee_config.v*:
 
@@ -73,13 +73,13 @@ always @(posedge (TxD_busy | RxD_data_ready))
 
 ## Setup
 
-- Plug GPIO03 on the de0-nano into GPIO 15 on the Raspberry Pi.
-- Plug GPIO05 on the de0-nano into GPIO 14 on the Raspberry Pi.
+- Plug GPIO03 on the DE0-Nano into GPIO 15 on the Raspberry Pi.
+- Plug GPIO05 on the DE0-Nano into GPIO 14 on the Raspberry Pi.
 
-To load the de0nano, can either import the verilog and tcl files into your own
+To load the DE0-Nano, can either import the verilog and tcl files into your own
 quartus project, or use my [pyquartus tool](https://github
 .com/CatherineH/python-quartus). To compile and upload using pyquartus, plug
- your de0-nano into your computer, and run:
+ your DE0-Nano into your computer, and run:
 
 ```
 cd de0-nano-raspi-serial-demo
@@ -96,8 +96,7 @@ python serial/main.py
 
 ## Code
 
-The serial verilog code was adapted from [Jean P Nicolle at fpga4fun]
-(http://fpga4fun.com/). I've made some modifications to it, including separating the modules and creating a header file to define a common baud rate in *parameters.h*:
+The serial verilog code was adapted from [Jean P Nicolle at fpga4fun](http://fpga4fun.com/). I've made some modifications to it, including separating the modules and creating a header file to define a common baud rate in *parameters.h*:
 
 ```verilog
 parameter BAUD_RATE  = 460800;
@@ -175,21 +174,23 @@ if __name__ == "__main__":
 
 ## Setup
 
-- Plug GPIO 133 on the de0-nano into GPIO 8 on the Raspberry Pi
-- Plug GPIO 131 on the de0-nano into GPIO 10 on the Raspberry Pi
-- Plug GPIO 129 on the de0-nano into GPIO 24 on the Raspberry Pi
-- Plug GPIO 127 on the de0-nano into GPIO 4 on the Raspberry Pi
-- Plug GPIO 125 on the de0-nano into GPIO 17 on the Raspberry Pi
-- Plug GPIO 132 on the de0-nano into GPIO 22 on the Raspberry Pi
-- Plug GPIO 130 on the de0-nano into GPIO 9 on the Raspberry Pi
-- Plug GPIO 128 on the de0-nano into GPIO 25 on the Raspberry Pi
-- Plug GPIO 126 on the de0-nano into GPIO 18 on the Raspberry Pi
-- Plug GPIO 124 on the de0-nano into GPIO 23 on the Raspberry Pi
+![connection image](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/comms_example/raspi_de0nano.jpg)
 
-To load the de0nano, can either import the verilog and tcl files into your own
+- Plug GPIO 133 on the DE0-Nano into GPIO 8 on the Raspberry Pi
+- Plug GPIO 131 on the DE0-Nano into GPIO 10 on the Raspberry Pi
+- Plug GPIO 129 on the DE0-Nano into GPIO 24 on the Raspberry Pi
+- Plug GPIO 127 on the DE0-Nano into GPIO 4 on the Raspberry Pi
+- Plug GPIO 125 on the DE0-Nano into GPIO 17 on the Raspberry Pi
+- Plug GPIO 132 on the DE0-Nano into GPIO 22 on the Raspberry Pi
+- Plug GPIO 130 on the DE0-Nano into GPIO 9 on the Raspberry Pi
+- Plug GPIO 128 on the DE0-Nano into GPIO 25 on the Raspberry Pi
+- Plug GPIO 126 on the DE0-Nano into GPIO 18 on the Raspberry Pi
+- Plug GPIO 124 on the DE0-Nano into GPIO 23 on the Raspberry Pi
+
+To load the DE0-Nano, can either import the verilog and tcl files into your own
 quartus project, or use my [pyquartus tool](https://github
 .com/CatherineH/python-quartus). To compile and upload using pyquartus, plug
- your de0-nano into your computer, and run:
+ your DE0-Nano into your computer, and run:
 
 ```
 cd de0-nano-raspi-serial-demo
