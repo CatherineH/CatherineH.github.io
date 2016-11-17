@@ -56,6 +56,7 @@ arrow_font = "style=\"font-family: Verdana; font-size: "+str(font_size*0.8)+"px;
 #'down_arrow'
 icon_filenames = {'up': 'up_arrow', 'down': 'down_arrow', 'new': 'new', 'same': 'same'}
 icon_colors = {'up': green, 'down': red, 'new': yellow, 'same': grey}
+text_offsets = {'up': 30, 'down': 0}
 
 
 def format_icon(icon_type, rank_change=0):
@@ -63,9 +64,9 @@ def format_icon(icon_type, rank_change=0):
     table_str = open(join(asset_folder, icon_filenames[icon_type]+".svg"))\
                 .read(-1).replace(grey, icon_colors[icon_type])
     if rank_change != 0:
-        y_pos = int(font_size - (font_size - font_size*0.8)/2.0)
+        y_pos = int(font_size - (font_size - font_size*0.8)/2.0) + text_offsets[icon_type]
         table_str = table_str.replace("</svg>",
-                                     "<text text-anchor=\"middle\" x=\"25\" y=\""+str(y_pos)+"\" "
+                                     "<text text-anchor=\"middle\" x=\"50\" y=\""+str(y_pos)+"\" "
                                                 + arrow_font + ">"+ str(abs(rank_change)) + "</text></svg>")
     return table_str
 

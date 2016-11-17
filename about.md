@@ -1,12 +1,13 @@
 ---
 layout: page
-title: "About"
+title: "About Catherine"
 description: ""
+group: navigation
 ---
 {% include JB/setup %}
 <svg id="svg" width="630" height="430"></svg>
 
-My name is Catherine. I'm a physicist currently working as a hardware engineer at a quantum computing startup in San Diego, California. 
+I'm a physicist currently working as a hardware engineer at a quantum computing startup in San Diego, California. 
 
 Some of the things I love are:
 
