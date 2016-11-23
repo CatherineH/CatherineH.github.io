@@ -30,6 +30,8 @@ They really show their sludge virtuosity on songs like *Worlds Apart*, despite t
 
 *Love you to Death* is great!
 
+*Devoid Of Redemption* sounds very **Sleep**-like, but it's not weird or progressive enough to justify the repetitiveness.
+
 It’s like a heavier **Baroness**.
 
 Helen Money

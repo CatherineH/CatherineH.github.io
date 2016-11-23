@@ -8,7 +8,7 @@ Tony MacAlpine
 
 The chopin interludes are like the skit segments on rap albums - they show off the personality of the artist but are skippable.
 
-*CAB* is light jazz. If you’re into this sort of thing, you’ll love it, otherwise it will be annoying.
+*CAB* is light jazz. If you’re into this sort of thing, you’ll love it, otherwise it will be annoying. The fake trumpets are ear-grating.
 
 
 Madness is a great album; it’s like everything you want out of Steve Vai without as many gimmicks.
