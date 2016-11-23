@@ -1,13 +1,14 @@
 Tony MacAlpine
+==============
 
+*Tony MacAlpine* opened for *Steve Vai*. 
 
-M.A.R.S. has some good stuff, like the electric keyboard solos. However, the song-writing is a bit too much like Iron Maiden for my taste - the non-melodic chanting choruses. Really generic heavy metal.
+*M.A.R.S.* has some good stuff, like the electric keyboard solos. However, it also has some of the worst aspects of New Wave of British Heavy Metal bands - the non-melodic chanting choruses. Really generic heavy metal.
 
 
 The chopin interludes are like the skit segments on rap albums - they show off the personality of the artist but are skippable.
 
-
-CAB is light jazz. If you’re into this sort of thing, you’ll love it, otherwise it will be annoying.
+*CAB* is light jazz. If you’re into this sort of thing, you’ll love it, otherwise it will be annoying.
 
 
 Madness is a great album; it’s like everything you want out of Steve Vai without as many gimmicks.

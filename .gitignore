@@ -15,3 +15,5 @@ serve
 
 # gedit crap
 *~
+# vim swp files
+*.swp
