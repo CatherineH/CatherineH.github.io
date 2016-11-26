@@ -169,6 +169,7 @@ class GuiPart(QtGui.QWidget):
 Note that the *update(current_datetime)* needs a decorator to describe that the incoming signals are of type *datetime*. 
 
 In Tkinter, Widget attributes must be defined by variables in order to be updated. For example:
+
 <b>Tkinter</b>
 
 ```python
