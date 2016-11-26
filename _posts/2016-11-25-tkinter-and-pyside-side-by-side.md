@@ -126,8 +126,9 @@ In PySide, the layout is a separate object from the main window's *QWidget* call
 
 In order to have a responsive GUI, signals emitted from user's interaction to the trigger the desired action. PySide Widgets come with several pre-defined signals, or it is possible to define your own. Signals can be connected to the desired method using the *.connect()* method. In Tkinter, buttons have a slot for specifying the action on clicking called *command*. Here's how to define button callbacks:
 
+
 <table><tr><td><b>PySide</b></td><td><b>Tkinter</b></td></tr>
-<td><div class="highlighter-rouge"><pre class="highlight"><code><span class="bp">self</span><span class="o">.</span><span class="n">pause_button</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pause</span><span class="p">)</span>
+<tr><td><div class="highlighter-rouge"><pre class="highlight"><code><span class="bp">self</span><span class="o">.</span><span class="n">pause_button</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pause</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">quit_button</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">quit_click</span><span class="p">)</span>
 </code></pre>
 </div></td><td><div class="highlighter-rouge"><pre class="highlight"><code><span class="bp">self</span><span class="o">.</span><span class="n">pause_button</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pause</span><span class="p">)</span>
@@ -289,7 +290,7 @@ PySide spaces elements to fill the entire screen by default, but the main window
 After all of that styling, here's the final result:
 
 <table><tr><td><b>PySide</b></td><td><b>Tkinter</b></td></tr>
-<td><img src="images/tkinter_pyside/pyside.jpg" alt="pyside final result"></td><td><img src="images/tkinter_pyside/tkinter.jpg" alt="tkinter final result"></td></table>
+<td><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/tkinter_pyside/pyside.jpg" alt="pyside final result"></td><td><img src="https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/tkinter_pyside/tkinter.jpg" alt="tkinter final result"></td></table>
 
 Things that make this not quite a fair comparison are:
 
