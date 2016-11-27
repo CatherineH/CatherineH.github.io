@@ -1,41 +1,26 @@
 Tony MacAlpine
 ==============
 
-https://play.google.com/store/music/album/Tony_Macalpine_Chromaticity?id=Bk2nqz4mnnlox6u7it2dx7rdazm
+https://play.google.com/store/music/album/Tony_Macalpine_Edge_of_Insanity?id=Botaxmeht6fkyyobxoipbxj2ej4
 https://play.google.com/store/music/album/Tony_Macalpine_Madness?id=Bfpe4c7gaex3t5xsktx25vojo5q
 https://play.google.com/store/music/album/Tony_Macalpine_Chromaticity?id=Bk2nqz4mnnlox6u7it2dx7rdazm
 
 
 
-**Tony MacAlpine** opened for **Steve Vai**. 
+**Tony MacAlpine** opened for **Steve Vai**. Like Vai, MacAlpine is a virtuoso guitarist who became famous in the 80s by playing for heavy metal bands. Unlike Vai, MacAlpine's early musical influences were classical piano rather than popular rock music. MacAlpine's music is more technical and less gimmicky than Vai's as a result. Electronic keyboard covers of Chopin crop up several times in his albums, but are included as an expression of admiration rather than as schtick, like *E.L.P.*'s Hammond organ covers of Mussorsky. Having now heard both discographies, I prefer MacAlpine to Vai. 
 
-*M.A.R.S.* has some good stuff, like the electric keyboard solos. However, it also has some of the worst aspects of New Wave of British Heavy Metal bands - the non-melodic chanting choruses. Really generic heavy metal.
+MacAlpine dabbled in several musical groups throughout his discography, and a lot of it is skipable. His time in the supergroup **M.A.R.S.** produced some great solos, but also exhibited the worst aspects of New Wave of British Heavy Metal bands. Similarly, his work in **CAB** is also great, but I'm not into light jazz. The fake trumpets, slow, funky rhythms and repetitive melodies are ear-grating. Also skip the albums where MacAlpine sings, such as *Master of Paradise*
 
-The chopin interludes are like the skit segments on rap albums - they show off the personality of the artist but are skippable.
-
-*CAB* is light jazz. If you’re into this sort of thing, you’ll love it, otherwise it will be annoying. The fake trumpets are ear-grating.
-
-*Madness* is a great album; it’s like everything you want out of Steve Vai without as many gimmicks.
-
-His singing is not annoying and nasally, which makes *Master of Paradise* skippable, despite some great guitar and keyboard solos.
-
-Unfortunately his discography highlights a few problems with listening to 80's metal - the drumming on certain tracks, especially *Box Office Poison* off of *Freedom to Fly* can't quite keep up with the playing and is a bit too distracting. I think my modern ears are accustomed to things being tighter on album tracks.
-
-Chromaticity is great - it has the 90s style of keyboard power metal like on *Images and Words*, though it came out in 2001, which meant that the sound was a bit dated when it came out. Especially *Avenger*.
-
+I would highly recommend the albums *Edge of Insanity* (1986), *Madness* (1993), and *Chromaticity* (2001), which each consist of the best in metal composition trends and styles of the decade prior to their release date.
 
 Brain Tentacles
 ===============
 
 https://braintentacles.bandcamp.com/album/brain-tentacles
 
-**Brian Tentacles** opened for **Gorguts**
+**Brian Tentacles** opened for **Gorguts**, and are a death metal band with a baritone and bass saxophone. The saxophone works better as a metal instrument on certain songs than on others. It has a tendency to slow down the music, for example, *Gassed* and *The Sadist* sound like a **Captain Beefheart** songs with a grating and short repetitive melody. By contrast, *The Spoiler* and *Death Rules* work better because they let other instruments breath, or have a longer melody.
 
-On certain songs the saxophone works better as a metal instrument than others. It has a tendency to slow down the music, for example, *Gassed* sounds like an experimental captain beefheart song with a really grating and short repetitive melody that gets annoying quick, and seems to be attempting to exist purely on the oddness of the song. By contrast, *The Spoiler* and *Death Rules* work better because they let other instruments breath, or have a longer melody. *The Sadist* is another song where the boring saxophone line overpowers the song.
-
-
-“Palantine” is just a skit
-
+Despite the few misses, this band is really neat and fun both live and on their debut album. I'm hooked.
 
 Intronaut
 =========
@@ -44,13 +29,8 @@ https://play.google.com/store/music/album/Intronaut_The_Direction_of_Last_Things
 https://play.google.com/store/music/album/Intronaut_Habitual_Levitations_Instilling_Words_Wi?id=Bbnz6iil4lusancqjgr4oav6dw4
 https://play.google.com/store/music/album/Intronaut_Valley_of_Smoke?id=Bhcyj64siz4ygtdvmlruj2wxrai
 
-**Intronaut** also opened for **Gorguts**.
+**Intronaut** also opened for **Gorguts**. They're a technical death metal in a more subdued folk-metal style like **Nechochwen** rather than the aggressive style used by **Between the Buried and Me** on *Colors* and *The Great Misdirect*. My only complaint with their style is that, like a lot of modern progressive bands, they go for overkill on the samples - such as *The Unlikely Event after landing*. An almost minute-long weird sample intro leads into an otherwise nice song. I wish these bands would cut their samples into interlude tracks, so they can be deleted. Believing that these sample interludes truly add to the song is pretentious. 
 
-Intronaut is pretty good! It’s technical death metal with enough progression and melody that it keeps me interested.
-
-However, like a lot of modern progressive bands, they go for overkill on the samples - such as *The Unlikely Event after landing*. An almost minute-long weird sample intro leads into an otherwise nice song. I wish these bands would cut their samples into interlude tracks, so they can be deleted. Believing that these sample interludes truly add to the artistry of the song is pretentious. Same thing on the end of *Sul Ponticello*. 
-
-The soft, minor key harmonic singing on *Core Relations* off of *Valley of Smoke* reminds me of **Nechochwen**. However, the track also has two pianos playing a melody in a round that is slightly out of phase.
 
 
 

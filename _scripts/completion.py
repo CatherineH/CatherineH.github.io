@@ -148,10 +148,13 @@ def google_play(input_file):
                 # rename(join(CURRENT_DIRECTORY, filename), target_filename)
             parser = GooglePlayParser()
             contents = open(target_filename, "r").read(-1)
+            parser.feed(repr(contents))
+            '''
             try:
                 parser.feed(contents)
             except Exception as e:
                 print("got exception: ", e, " on ", target_filename)
+            '''
             album_art = parser.found_url
             return "<a href=\"" + word + "\"><img src=\"" + album_art + "\" alt=\"" + \
                    parser.title + " - " + parser.artist + "\"></a>"
