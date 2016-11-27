@@ -2,7 +2,7 @@
 layout: post
 title: "Opening Acts 1"
 description: ""
-category: Music
+category: music
 tags: [Fallujah, Pallbearer, Helen Money]
 ---
 {% include JB/setup %}
