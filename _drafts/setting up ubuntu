@@ -23,6 +23,7 @@ gcc-arm-embedded
 default-jdk
 gparted
 pciutils
+hugs
 
 - add keys to github and gitlab
 
