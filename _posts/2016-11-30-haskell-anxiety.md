@@ -100,3 +100,44 @@ ERROR - Type error in application
 ```
  
 At this point I'm going to give up and play video games for a bit and hope that my frustration and confusion abates enough to make more progress.
+
+Clarification
+=============
+
+Thanks to [Aaron Levin](https://aaronlevin.ca), and re-reading the course material, I have become unstuck.
+
+First I need a function that actually executes the parser, like this:
+
+```haskell
+> parse                         :: Parser a -> String -> [(a,String)]
+> parse (P p) inp               =  p inp
+```
+
+Next, I have to define the behavior of the Parser type when invoked as a monad (I think this is what this is for):
+
+```haskell
+> instance Monad Parser where
+>    return v                   =  P (\inp -> [(v,inp)])
+>    p >>= f                    =  P (\ inp ->
+>                                       case parse p inp of
+>                                           [(v, out)] -> parse (f v) out
+>                                           [] -> [])
+```
+
+Then, I can finally get the parser to work on a string with:
+
+```haskell
+Parsing> parse (many digit) "0234a"
+[("0234","a")]
+```
+
+Note that the brackets are required for order of operations, else the compiler will interpret *many* and *digit* as both being arguments to *parse*:
+
+```haskell
+Parsing> parse many digit "b0234a"
+ERROR - Type error in application
+*** Expression     : parse many digit "b0234a"
+*** Term           : parse
+*** Type           : Parser e -> String -> [(e,String)]
+*** Does not match : a -> b -> c -> d
+```
