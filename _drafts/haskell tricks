@@ -1,0 +1,27 @@
+The default version of Cabal in the ubuntu package manager is 1.23, and most packages require >= 1.24. If you get an error like:
+
+```
+The package 'glib' requires Cabal library version -any && >=1.24
+but no suitable version is installed.
+```
+[Download the latest binary online](https://www.haskell.org/cabal/download.html)
+
+If you attempt to install grapefruit, you may run into the error:
+
+```
+rejecting: gtk-0.13.9 (conflict: requires pkg-config package gthread-2.0-any,
+not found in the pkg-config database)
+```
+Check whether gtk is in pkg-config:
+```
+pkg-config --list-all | grep gtk
+```
+If there is nothing there, install gtk+2.0:
+
+```
+sudo apt-get install gtk+2.0
+```
+
+another error:
+
+Probable cause: ‘getInstalledPackages’ is applied to too few arguments
