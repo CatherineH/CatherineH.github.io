@@ -23,5 +23,18 @@ sudo apt-get install gtk+2.0
 ```
 
 another error:
+```
+Probable cause: ‘getInstalledPackages’ is applied to too few arguments 
+```
+I don't remember how I got out of this one. Maybe using a later version of the package?
 
-Probable cause: ‘getInstalledPackages’ is applied to too few arguments
+If you encounter:
+```
+runhaskell Setup.hs configure --ghc
+Setup.hs: Encountered missing dependencies:
+```
+but your dependencies are available in **ghc-pkg list**, it's likely that you're installing 
+the package system side but your dependencies are installed for only you. instead, run configure for you only:
+```
+runhaskell Setup.hs configure --user
+``
