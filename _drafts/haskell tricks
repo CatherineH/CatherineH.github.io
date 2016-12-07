@@ -38,3 +38,6 @@ the package system side but your dependencies are installed for only you. instea
 ```
 runhaskell Setup.hs configure --user
 ``
+Use stack instead of cabal! Don't use the packages out of the ubuntu package manager.
+
+the *:browse* command in ghci is very useful.
