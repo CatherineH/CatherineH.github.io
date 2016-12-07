@@ -49,3 +49,9 @@ export PATH=$PATH:"arduino folder":"altera folder":"eagle folder"
 
 Do not use the udev rules from altera! instead, modify these instructions for the usb-blaster 1
 http://www.fpga-dev.com/altera-usb-blaster-with-ubuntu/
+
+- prevent nautilus from opening up a new window everytime you plug your phone in
+
+```
+gsettings set org.gnome.desktop.media-handling automount-open false
+```
