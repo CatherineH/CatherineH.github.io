@@ -9,7 +9,7 @@ tags: [haskell]
 
 I'm currently learning Haskell by working on stupid projects. In this post, I'm going to go over my process for trying to generate a rainbow terminal. I'm going to use the [haskell-ncurses](https://john-millikin.com/software/haskell-ncurses/reference/haskell-ncurses/latest/UI.NCurses/) bindings to draw a rainbow of colored squares to the terimal. 
 
-Haskell has two types with monad instances: *Curses* and *Update*. *Update* is used whenever the window needs to be redrawn, like on resize. *Curses* is *A small wrapper around IO, to ensure the ncurses library is initialized while running.* but I don't understand what is meant by this. To create a green square on the screen this is the minimal code:
+Haskell has two types with monad instances: **Curses** and **Update**. **Update** is used whenever the window needs to be redrawn, like on resize. **Curses** is *A small wrapper around IO, to ensure the ncurses library is initialized while running.* but I don't understand what is meant by this. To create a green square on the screen this is the minimal code:
 
 
 ```haskell
@@ -23,7 +23,7 @@ main = runCurses $ do
      waitFor w (\ev -> ev == EventCharacter 'q' || ev == EventCharacter 'Q')
 ```
 
-where *waitFor* is taken from the basic ncurses example:
+where **waitFor** is taken from the basic ncurses example:
 
 ```haskell
 waitFor :: Window -> (Event -> Bool) -> Curses ()
@@ -35,7 +35,7 @@ waitFor w p = loop where
             Just ev' -> if p ev' then return () else loop
 ```
 
-Next step is to create a field of squares. I'm going to use the *forM_* Control Monad. There's probably a better way of doing this, but as a Haskell newbie, this method feels the most comfortable.
+Next step is to create a field of squares. I'm going to use the **forM_** Control Monad. There's probably a better way of doing this, but as a Haskell newbie, this method feels the most comfortable.
 
 ```haskell
 import Control.Monad (forM_)
@@ -74,7 +74,7 @@ But this leads to the error:
       Actual type: Curses ()
 ```
 
-This error occurs because *newColorID* returns an instance of *Curses*, but I've put it in a Monad bound to the an instance of the *Update* type. I think I can solve this by switching the order of operations:
+This error occurs because **newColorID** returns an instance of *Curses*, but I've put it in a Monad bound to the an instance of the **Update** type. I think I can solve this by switching the order of operations:
 
 ```haskell
      forM_ [(x,y) | x<-[0..num_accross], y<-[0..num_down]] $ \(x,y) ->
@@ -94,7 +94,7 @@ That clears up the type error. Let's move on to the other errors:
     In a stmt of a 'do' block: moveCursor y x
 ```
 
-This error is interesting because it goes away if I remove the *newColorID* line. The *newColorID* line must be casting the x and y values to Integers, but moveCursor is unable to cast them back to *Int*. I can force it to cast to Int using the *fromIntegral* function:
+This error is interesting because it goes away if I remove the **newColorID** line. The **newColorID** line must be casting the x and y values to Integers, but moveCursor is unable to cast them back to **Int**. I can force it to cast to Int using the **fromIntegral** function:
 
 ```haskell
 moveCursor (fromIntegral y) (fromIntegral x)
@@ -118,7 +118,7 @@ Couldn't match expected type ‘Integer’ with actual type ‘Int’
     In the first argument of ‘(+)’, namely ‘(x * num_accross)’
 ```
 
-OMG Haskell just pick a type and stick with it! I can cast back to Int using *toInteger*:
+OMG Haskell just pick a type and stick with it! I can cast back to Int using **toInteger**:
 
 ```haskell
 cid <- newColorID (colors !! x) (colors !! y) (toInteger ((x*(num_accross+1))+y+1))
@@ -128,7 +128,7 @@ This works!
 
 ![a terminal window with a 8x8 grid of rainbow squares](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/haskell_ncurses/rainbow_screen.png)
 
-Okay, but now I want to paint with all the colors of the wind. We can define custom colors using *Color *.
+Okay, but now I want to paint with all the colors of the wind. We can define custom colors using **Color**.
 
 First, let's expand the window to more rows and columns. To avoid the error:
 
@@ -142,4 +142,32 @@ We need to change the allowable size of the window:
 ```haskell
 updateWindow w $ resizeWindow num_accross num_down
 ```
+
+**haskell-ncurses** has a **defineColor** function that allows for custom colors, but like **newColorID**, it can only be applied to colors in the colors in the terminal's list of colors. The number of colors can be checked using the code:
+
+```haskell
+maxid <- maxColorID
+updateWindow w $ drawString (show maxid)
+```
+
+On GNOME-terminal, this is 255, which is far less than most displays can output, but more than enough to make some pretty pictures. Like ColorPairs, colors need to be assigned to specific addresses in the table. Addresses should start at 1 so that 0 can be reserved for black. I'm not sure why Colors can start at 0 but ColorPairs need to start at 1, but this means that we can use the same equation for the indices of both.
+
+```haskell
+...
+num_accross = 24
+num_down = 9
+...
+let colIndex = x*(num_down+1)+y+1
+let my_color = Color (fromIntegral colIndex :: Int16)
+defineColor my_color (x*36) (y*110) 0
+cid <- newColorID my_color ColorBlack (toInteger colIndex)
+``` 
+
+Which leads to another pretty picture:
+
+![A 24x9 screen of red to blue squares](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/haskell_ncurses/blue_red_screen.png)
+
+I don't quite understand why I need to use **let** in certain cases and single-assignment operators in others. Maybe it's because the single-assignment is used in a nested monad?
+
+The code for this exercise is available [as a gist](https://gist.github.com/CatherineH/e2c1a00791111bbc006fe9d1e9fce4e4).
 
