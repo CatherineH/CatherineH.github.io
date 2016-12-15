@@ -159,7 +159,7 @@ num_down = 9
 ...
 let colIndex = x*(num_down+1)+y+1
 let my_color = Color (fromIntegral colIndex :: Int16)
-defineColor my_color (x*36) (y*110) 0
+defineColor my_color (x*36) 0 (y*110)
 cid <- newColorID my_color ColorBlack (toInteger colIndex)
 ``` 
 
