@@ -77,7 +77,7 @@ Couldn't match expected type ‘IO t0’ with actual type ‘Text’
 In a stmt of a 'do' block: escText <- pack "Escape"
 ```
 
-Since I'm getting deeper and deeper down a rabbit hall of trying to convert strings, maybe there's a way for haskell to interpret string literals in the way that *eventKeyName* needs. A [similar question on stack overflow](http://stackoverflow.com/questions/37894987/couldnt-match-expected-type-text-with-actual-type-char) suggests that I need to add:
+Since I'm getting deeper and deeper down a rabbit hole of string conversions, maybe there's a way for haskell to interpret string literals in the way that *eventKeyName* needs. A [similar question on stack overflow](http://stackoverflow.com/questions/37894987/couldnt-match-expected-type-text-with-actual-type-char) suggests that I need to add:
 
 ```haskell
 {-# LANGUAGE OverloadedStrings #-}
