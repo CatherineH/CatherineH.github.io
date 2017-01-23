@@ -1,0 +1,11 @@
+set the project:
+
+```
+gcloud config set project my-project
+```
+
+deploy the project: (make sure to include a versions tag or gcloud will just pick a version number at random)
+
+```
+gcloud app deploy -v ch
+```
