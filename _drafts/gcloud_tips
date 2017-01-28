@@ -9,3 +9,24 @@ deploy the project: (make sure to include a versions tag or gcloud will just pic
 ```
 gcloud app deploy -v ch
 ```
+
+deploy a project locally:
+
+```
+dev_appserver.py --port=9999 .
+```
+
+If you get the error:
+
+```python
+>>> import google.appengine
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ImportError: No module named appengine
+```
+
+Add the installed library to the PYTHONPATH in your profile:
+
+```bash
+export PYTHONPATH="${PYTHONPATH}:$HOME/installed/google-cloud-sdk/platform/google_appengine"
+```
