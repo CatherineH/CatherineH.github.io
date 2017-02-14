@@ -10,6 +10,10 @@ deploy the project: (make sure to include a versions tag or gcloud will just pic
 gcloud app deploy -v ch
 ```
 
+You can then see your particular version using:
+
+ch-dot-appname.appspot.com
+
 deploy a project locally:
 
 ```
