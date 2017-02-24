@@ -12,6 +12,7 @@ Modules that are patched with *mock*'s *patch* decorator must be re-imported. Th
 Suppose you have two files:
 
 **parent.py**
+
 ```python
 class MyParent(object):
     parent_name = "me"
