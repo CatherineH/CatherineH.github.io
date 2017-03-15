@@ -1,9 +1,15 @@
 from os.path import expanduser, dirname, basename, join
-from sys import argv
+from argparse import ArgumentParser
 
-ranking_changes_filename = expanduser(argv[1])
-ranking_filename = expanduser(argv[2])
-post_content_filename = expanduser(argv[3])
+
+parser = ArgumentParser(description="Generate the musical battle royale table.")
+parser.add_argument('--changes', type=str, help="The filename of the changes")
+parser.add_argument('--ranking', type=str, help="The filename of the current ranking")
+parser.add_argument('--template', type=str, help="The filename of the template")
+args = parser.parse_args()
+ranking_changes_filename = expanduser(args.changes)
+ranking_filename = expanduser(args.ranking)
+post_content_filename = expanduser(args.template)
 
 changes_lines = open(ranking_changes_filename, "r").readlines()
 ranking_lines = open(ranking_filename, "r").readlines()
