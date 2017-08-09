@@ -54,13 +54,13 @@ var myApp = angular.module('myApp');
 or change the line:
 
 ```javascript
-var myApp = angular.module('myApp');
+var myApp2 = angular.module('myApp');
 ```
 
 to:
 
 ```javascript
-var myApp = angular.module('myApp', []);
+var myApp2 = angular.module('myApp', []);
 ```
 
 The example code will no longer work. If you look at the console, you may see the [nomod error](https://docs.angularjs.org/error/$injector/nomod). In the description, it says that adding the empty array of dependencies to *angular.module* defines a new module of name *myApp*, and calling *angular.module* without that argument returns a reference to an existing module of name *myApp*. 
