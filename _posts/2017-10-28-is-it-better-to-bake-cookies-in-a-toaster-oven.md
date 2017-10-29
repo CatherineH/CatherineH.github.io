@@ -111,11 +111,14 @@ result = integrate.quad(lambda x: interp(x, data_array[0], data_array[1]),
 I also subtract off the base usage in each case. After integrating, I estimate that the toaster uses 0.45 kWh to bake a single sheet of cookies, and the oven uses 0.70 kWh. 
 
 The toaster is more efficient at baking a single sheet of cookies, so I'd conclude that the heat transfer coefficient of the toaster is not as bad as expected. However, the oven can handle two sheets at once, and is faster. If you want to shave 8 minutes off of your cook time, it's only an extra 0.15 kWh, which in Florida costs two cents. However, the oven has an advantage over the toaster in that it can cook more than a single sheet at a time, and then the energy cost per cookie favors the oven.
+
+So depending on the situation, we're both right.
+
  
 
 
 <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
-<a name="myfootnote1">1</a>: It is my personal opinion that Z-Wave compatible devices are 2-3 times more expensive than they should be, given the underlying hardware. I think this is because Z-Wave is not open source, so development takes longer and costs more. I would not invest in a Z-Wave system now. It would be nice to be able to turn off my overhead light from a smartphone app so that I don't have to get out of bed, but just putting a long piece of twine on the pull chain seems to be an adequate solution. So depending on the situation, we're both right.
+<a name="myfootnote1">1</a>: It is my personal opinion that Z-Wave compatible devices are 2-3 times more expensive than they should be, given the underlying hardware. I think this is because Z-Wave is not open source, so development takes longer and costs more. I would not invest in a Z-Wave system now. It would be nice to be able to turn off my overhead light from a smartphone app so that I don't have to get out of bed, but just putting a long piece of twine on the pull chain seems to be an adequate solution.
 
