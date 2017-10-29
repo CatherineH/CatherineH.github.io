@@ -12,13 +12,13 @@ I did some back-of-the-envelope calculations to see if there was an obvious conc
 
 \\[ W = D_mVR\triangle T \\]
 
-<p>Where \\(D_m\\) is the molar density of air, \\(V\\) is the volume, \\(R\\) is the ideal gas constant, and \\(\triangle T\\) is the temperature change.</p>
+Where \\(D_m\\) is the molar density of air, \\(V\\) is the volume, \\(R\\) is the ideal gas constant, and \\(\triangle T\\) is the temperature change.
 
 The heat lost through the oven door is:
 
 \\[ Q = kA\triangle Tt \\]
 
-<p>Where \\(k\\) is the heat transfer coefficient, \\(A\\) is the area of the door, and \\(t\\) is the time that the oven is on.</p>
+Where \\(k\\) is the heat transfer coefficient, \\(A\\) is the area of the door, and \\(t\\) is the time that the oven is on.
 
 Since both ovens have the same depth, the ratio of the ovens' volume 2.8, is the same for the door area. Some mechanical engineers estimate that the [\\(k\\) of double-paned oven doors is ~3](http://www.esss.com.br/events/ansys2014/colombia/pdf/02_1540.pdf), whereas the toaster oven's single pane of glass is 5.8. The ratio of these coefficients almost exactly cancels out the difference in volume. Because the heat is constantly being leaked out of the ovens, the work due to lost heat is nearly an order of magnitude larger than work required to heat up the oven, so this contribution can be mostly ignored. Since we don't exactly know \\(k\\) for both ovens, we're going to need to get *experimental*. 
 
