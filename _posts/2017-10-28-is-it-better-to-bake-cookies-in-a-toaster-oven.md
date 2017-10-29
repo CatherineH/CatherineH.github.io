@@ -10,15 +10,15 @@ My husband and I got disagree about whether it's more energy efficient to use ou
 
 I did some back-of-the-envelope calculations to see if there was an obvious conclusion. I estimate that the total power consumed is the work needed to heat up the volume of air inside the oven to the desired temperature, plus the work lost to heat transfer out of the door. It's also possible that the heat is lost through the other sides, but I didn't take that into account. From the ideal gas law, the work to heat up the air inside the oven is:
 
-<span>$$W = D_mVR\triangle T$$</span>
+\\[ W = D_mVR\triangle T \\]
 
-Where $$D_m$$ is the molar density of air, $$V$$ is the volume, $$R$$ is the ideal gas constant, and $$\triangle T$$ is the temperature change.
+<p>Where $$D_m$$ is the molar density of air, $$V$$ is the volume, $$R$$ is the ideal gas constant, and $$\triangle T$$ is the temperature change.</p>
 
 The heat lost through the oven door is:
 
-$$Q = kA\triangle Tt$$
+<span>$$Q = kA\triangle Tt$$</span>
 
-Where $$k$$ is the heat transfer coefficient, $$A$$ is the area of the door, and $$t$$ is the time that the oven is on.
+<p>Where $$k$$ is the heat transfer coefficient, $$A$$ is the area of the door, and $$t$$ is the time that the oven is on.</p>
 
 Since both ovens have the same depth, the ratio of the ovens' volume 2.8, is the same for the door area. Some mechanical engineers estimate that the [$$k$$ of double-paned oven doors is ~3](http://www.esss.com.br/events/ansys2014/colombia/pdf/02_1540.pdf), whereas the toaster oven's single pane of glass is 5.8. The ratio of these coefficients almost exactly cancels out the difference in volume. Because the heat is constantly being leaked out of the ovens, the work due to lost heat is nearly an order of magnitude larger than work required to heat up the oven, so this contribution can be mostly ignored. So to really answer this question, we're going to need to get *experimental*. 
 
@@ -100,7 +100,7 @@ The toaster took longer to pre-heat, so it had a longer data collection time. It
 
 I can integrate the data I collected using scipy's integrate and numpy's interpolate functions:
 
-```
+```python
 from scipy import integrate
 from numpy import interp
 
