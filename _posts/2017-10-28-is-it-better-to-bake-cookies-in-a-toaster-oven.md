@@ -114,9 +114,8 @@ The toaster is more efficient at baking a single sheet of cookies, so I'd conclu
  
 
 
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 
 <a name="myfootnote1">1</a>: It is my personal opinion that Z-Wave compatible devices are 2-3 times more expensive than they should be, given the underlying hardware. I think this is because Z-Wave is not open source, so development takes longer and costs more. I would not invest in a Z-Wave system now. It would be nice to be able to turn off my overhead light from a smartphone app so that I don't have to get out of bed, but just putting a long piece of twine on the pull chain seems to be an adequate solution.
 
