@@ -10,7 +10,7 @@ My husband and I got disagree about whether it's more energy efficient to use ou
 
 I did some back-of-the-envelope calculations to see if there was an obvious conclusion. I estimate that the total power consumed is the work needed to heat up the volume of air inside the oven to the desired temperature, plus the work lost to heat transfer out of the door. It's also possible that the heat is lost through the other sides, but I didn't take that into account. From the ideal gas law, the work to heat up the air inside the oven is:
 
-$$W = D_mVR\triangle T$$
+<span>$$W = D_mVR\triangle T$$</span>
 
 Where $$D_m$$ is the molar density of air, $$V$$ is the volume, $$R$$ is the ideal gas constant, and $$\triangle T$$ is the temperature change.
 
@@ -91,6 +91,27 @@ fig.savefig("power_meter_%s.png" % manager.start_time)
 ```
 
 I believe that *instance 1* is the power on the first probe, which is attached to the *hot* wire of my house's main power. Since probe 2 is attached to the *neutral* wire, I believe it's possible to cancel out most of the noise by subtracting the power on instance 2 from the power on instance 1. I have no idea how these map to European/Austrian three phase systems. 
+
+With the script running, I collected three sets of data: one while the toaster cooked a sheet of cookies, one while the oven cooked a sheet of cookies, and one with neither oven running, just the house lights, routers, and refridgerator. The data, from the start of pre-heating to when the cookies came out, looks like this:
+
+![energy usage for various apartments](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/oven_comparison.png)
+
+The toaster took longer to pre-heat, so it had a longer data collection time. It looks like both ovens and the refridgerator (in the base usage) are driven by square forcing functions that turn off when a desired temperature is reached. The oven's forcing function is a bit more sophisticated than the toaster, it looks like it can heat at two different wattage levels. I think the long period of the oven been off while cooking is proof that the oven does have a lower heat transfer coefficient than the toaster oven.
+
+I can integrate the data I collected using scipy's integrate and numpy's interpolate functions:
+
+```
+from scipy import integrate
+from numpy import interp
+
+result = integrate.quad(lambda x: interp(x, data_array[0], data_array[1]),
+                        min(data_array[0]), max(data_array[0]))[0] 
+```
+
+I also subtract off the base usage in each case. After integrating, I estimate that the toaster uses 0.45 kWh to bake a single sheet of cookies, and the oven uses 0.70 kWh. 
+
+The toaster is more efficient at baking a single sheet of cookies, so I'd conclude that the heat transfer coefficient of the toaster is not as bad as expected. However, the oven can handle two sheets at once, and is faster. If you want to shave 8 minutes off of your cook time, it's only an extra 0.15 kWh, which in Florida costs two cents. However, the oven has an advantage over the toaster in that it can cook more than a single sheet at a time, and then the energy cost per cookie favors the oven.
+ 
 
 
 <script type="text/javascript" async
