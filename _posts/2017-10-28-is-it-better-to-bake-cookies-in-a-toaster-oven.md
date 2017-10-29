@@ -6,7 +6,7 @@ category: programming
 tags: [open-zwave, python, zwave]
 ---
 {% include JB/setup %}
-My husband and I got disagree about whether it's more energy efficient to use our toaster oven or our regular oven for baking. He believes the toaster oven consumes less energy, since the volume is much smaller than the oven. I believe the oven is better to use the oven, since the insulation is much better.
+My husband and I disagree about whether it's more energy efficient to use our toaster oven or our regular oven for baking. He believes the toaster oven consumes less energy, since the volume is much smaller than the oven. I believe the oven is better to use the oven, since the insulation is much better.
 
 I did some back-of-the-envelope calculations to see if there was an obvious conclusion. I estimate that the total power consumed is the work needed to heat up the volume of air inside the oven to the desired temperature, plus the work lost to heat transfer out of the door. It's also possible that the heat is lost through the other sides, but I didn't take that into account. From the ideal gas law, the work to heat up the air inside the oven is:
 
