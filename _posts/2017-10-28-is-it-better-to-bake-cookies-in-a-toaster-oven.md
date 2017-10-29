@@ -20,7 +20,7 @@ The heat lost through the oven door is:
 
 Where \\(k\\) is the heat transfer coefficient, \\(A\\) is the area of the door, and \\(t\\) is the time that the oven is on.
 
-Since both ovens have the same depth, the ratio of the ovens' volume 2.8, is the same for the door area. Some mechanical engineers estimate that the [\\(k\\) of double-paned oven doors is ~3](http://www.esss.com.br/events/ansys2014/colombia/pdf/02_1540.pdf), whereas the toaster oven's single pane of glass is 5.8. The ratio of these coefficients almost exactly cancels out the difference in volume. Because the heat is constantly being leaked out of the ovens, the work due to lost heat is nearly an order of magnitude larger than work required to heat up the oven, so this contribution can be mostly ignored. Since we don't exactly know \\(k\\) for both ovens, we're going to need to get *experimental*. 
+Since both ovens have the same depth, the ratio of the ovens' volume, 2.8, is the same for the door area. Some mechanical engineers estimate that the [\\(k\\) of double-paned oven doors is ~3](http://www.esss.com.br/events/ansys2014/colombia/pdf/02_1540.pdf), whereas the toaster oven's single pane of glass is 5.8. The ratio of these coefficients almost exactly cancels out the difference in volume. Because the heat is constantly being leaked out of the ovens, the work due to lost heat is nearly an order of magnitude larger than work required to heat up the oven, so this contribution can be mostly ignored. Since we don't exactly know \\(k\\) for both ovens, we're going to need to get *experimental*. 
 
 I bought an [Aeotek Smart Energy Meter](https://www.amazon.com/Aeon-Labs-AEDSB09104ZWUS-Aeotec-Monitor/dp/B00DIBSKFU/) (currently on Amazon for 32 USD) and an [Aeotek Z-stick](https://www.amazon.com/Aeotec-Z-Stick-Z-Wave-create-gateway/dp/B00X0AWA6E/) (currently on Amazon for 45 USD)<sup>[1](#myfootnote1)</sup>. The Z-Stick is compatible with [open-zwave](http://www.openzwave.com/) which has a [python interface](https://github.com/OpenZWave/python-openzwave).
 
@@ -90,7 +90,7 @@ ax.set_ylabel("Meter Value (%s)" % manager.units)
 fig.savefig("power_meter_%s.png" % manager.start_time)
 ```
 
-I believe that *instance 1* is the power on the first probe, which is attached to the *hot* wire of my house's main power. Since probe 2 is attached to the *neutral* wire, I believe it's possible to cancel out most of the noise by subtracting the power on instance 2 from the power on instance 1. I have no idea how these map to European/Austrian three phase systems. 
+I believe that *instance 1* is the power on the first probe, which is attached to the *hot* wire of my house's main power. Since probe 2 is attached to the *neutral* wire, I believe it's possible to cancel out most of the noise by subtracting the power on instance 2 from the power on instance 1. I have no idea how these map to European/Australian three phase systems. 
 
 With the script running, I collected three sets of data: one while the toaster cooked a sheet of cookies, one while the oven cooked a sheet of cookies, and one with neither oven running, just the house lights, routers, and refridgerator. The data, from the start of pre-heating to when the cookies came out, looks like this:
 
