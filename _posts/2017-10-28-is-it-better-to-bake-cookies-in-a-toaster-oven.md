@@ -6,7 +6,7 @@ category: programming
 tags: [open-zwave, python, zwave]
 ---
 {% include JB/setup %}
-My husband and I disagree about whether it's more energy efficient to use our toaster oven or our regular oven for baking. He believes the toaster oven consumes less energy, since the volume is much smaller than the oven. I believe the oven is better to use the oven, since the insulation is much better.
+My husband and I disagree about whether it's more energy efficient to use the toaster oven or regular oven for baking. He believes the toaster oven consumes less energy, since the internal volume is much smaller. I believe the oven consumes less because it is better insulated.
 
 I did some back-of-the-envelope calculations to see if there was an obvious conclusion. I estimate that the total power consumed is the work needed to heat up the volume of air inside the oven to the desired temperature, plus the work lost to heat transfer out of the door. It's also possible that the heat is lost through the other sides, but I didn't take that into account. From the ideal gas law, the work to heat up the air inside the oven is:
 
@@ -20,7 +20,7 @@ The heat lost through the oven door is:
 
 <p>Where \\(k\\) is the heat transfer coefficient, \\(A\\) is the area of the door, and \\(t\\) is the time that the oven is on.</p>
 
-Since both ovens have the same depth, the ratio of the ovens' volume 2.8, is the same for the door area. Some mechanical engineers estimate that the [\\(k\\) of double-paned oven doors is ~3](http://www.esss.com.br/events/ansys2014/colombia/pdf/02_1540.pdf), whereas the toaster oven's single pane of glass is 5.8. The ratio of these coefficients almost exactly cancels out the difference in volume. Because the heat is constantly being leaked out of the ovens, the work due to lost heat is nearly an order of magnitude larger than work required to heat up the oven, so this contribution can be mostly ignored. So to really answer this question, we're going to need to get *experimental*. 
+Since both ovens have the same depth, the ratio of the ovens' volume 2.8, is the same for the door area. Some mechanical engineers estimate that the [\\(k\\) of double-paned oven doors is ~3](http://www.esss.com.br/events/ansys2014/colombia/pdf/02_1540.pdf), whereas the toaster oven's single pane of glass is 5.8. The ratio of these coefficients almost exactly cancels out the difference in volume. Because the heat is constantly being leaked out of the ovens, the work due to lost heat is nearly an order of magnitude larger than work required to heat up the oven, so this contribution can be mostly ignored. Since we don't exactly know \\(k\\) for both ovens, we're going to need to get *experimental*. 
 
 I bought an [Aeotek Smart Energy Meter](https://www.amazon.com/Aeon-Labs-AEDSB09104ZWUS-Aeotec-Monitor/dp/B00DIBSKFU/) (currently on Amazon for 32 USD) and an [Aeotek Z-stick](https://www.amazon.com/Aeotec-Z-Stick-Z-Wave-create-gateway/dp/B00X0AWA6E/) (currently on Amazon for 45 USD)<sup>[1](#myfootnote1)</sup>. The Z-Stick is compatible with [open-zwave](http://www.openzwave.com/) which has a [python interface](https://github.com/OpenZWave/python-openzwave).
 
@@ -96,7 +96,7 @@ With the script running, I collected three sets of data: one while the toaster c
 
 ![energy usage for various apartments](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/oven_comparison.png)
 
-The toaster took longer to pre-heat, so it had a longer data collection time. It looks like both ovens and the refridgerator (in the base usage) are driven by square forcing functions that turn off when a desired temperature is reached. The oven's forcing function is a bit more sophisticated than the toaster, it looks like it can heat at two different wattage levels. I think the long period of the oven been off while cooking is proof that the oven does have a lower heat transfer coefficient than the toaster oven.
+The toaster took longer to pre-heat, so it had a longer data collection time. It looks like both ovens and the refridgerator (in the base usage) are driven by square forcing functions that turn off when a desired temperature is reached. The oven's forcing function is a bit more sophisticated than the toaster; it looks like it can heat at two different wattage levels. I think the long period of the oven been off while cooking is proof that the oven does have a lower heat transfer coefficient than the toaster oven.
 
 I can integrate the data I collected using scipy's integrate and numpy's interpolate functions:
 
@@ -117,5 +117,5 @@ The toaster is more efficient at baking a single sheet of cookies, so I'd conclu
 <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
-<a name="myfootnote1">1</a>: It is my personal opinion that Z-Wave compatible devices are 2-3 times more expensive than they should be, given the underlying hardware. I think this is because Z-Wave is not open source, so development takes longer and costs more. I would not invest in a Z-Wave system now. It would be nice to be able to turn off my overhead light from a smartphone app so that I don't have to get out of bed, but just putting a long piece of twine on the pull chain seems to be an adequate solution.
+<a name="myfootnote1">1</a>: It is my personal opinion that Z-Wave compatible devices are 2-3 times more expensive than they should be, given the underlying hardware. I think this is because Z-Wave is not open source, so development takes longer and costs more. I would not invest in a Z-Wave system now. It would be nice to be able to turn off my overhead light from a smartphone app so that I don't have to get out of bed, but just putting a long piece of twine on the pull chain seems to be an adequate solution. So depending on the situation, we're both right.
 
