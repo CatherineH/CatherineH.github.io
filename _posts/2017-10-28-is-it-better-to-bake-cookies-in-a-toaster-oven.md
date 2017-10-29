@@ -10,17 +10,17 @@ My husband and I got disagree about whether it's more energy efficient to use ou
 
 I did some back-of-the-envelope calculations to see if there was an obvious conclusion. I estimate that the total power consumed is the work needed to heat up the volume of air inside the oven to the desired temperature, plus the work lost to heat transfer out of the door. It's also possible that the heat is lost through the other sides, but I didn't take that into account. From the ideal gas law, the work to heat up the air inside the oven is:
 
-$W = D_mVR\triangle T$
+$$W = D_mVR\triangle T$$
 
-Where $D_m$ is the molar density of air, $V$ is the volume, $R$ is the ideal gas constant, and $\triangle T$ is the temperature change.
+Where $$D_m$$ is the molar density of air, $$V$$ is the volume, $$R$$ is the ideal gas constant, and $$\triangle T$$ is the temperature change.
 
 The heat lost through the oven door is:
 
-$Q = kA\triangle Tt$
+$$Q = kA\triangle Tt$$
 
-Where $k$ is the heat transfer coefficient, $A$ is the area of the door, and $t$ is the time that the oven is on.
+Where $$k$$ is the heat transfer coefficient, $$A$$ is the area of the door, and $$t$$ is the time that the oven is on.
 
-Since both ovens have the same depth, the ratio of the ovens' volume 2.8, is the same for the door area. Some mechanical engineers estimate that the [$k$ of double-paned oven doors is ~3](http://www.esss.com.br/events/ansys2014/colombia/pdf/02_1540.pdf), whereas the toaster oven's single pane of glass is 5.8. The ratio of these coefficients almost exactly cancels out the difference in volume. Because the heat is constantly being leaked out of the ovens, the work due to lost heat is nearly an order of magnitude larger than work required to heat up the oven, so this contribution can be mostly ignored. So to really answer this question, we're going to need to get *experimental*. 
+Since both ovens have the same depth, the ratio of the ovens' volume 2.8, is the same for the door area. Some mechanical engineers estimate that the [$$k$$ of double-paned oven doors is ~3](http://www.esss.com.br/events/ansys2014/colombia/pdf/02_1540.pdf), whereas the toaster oven's single pane of glass is 5.8. The ratio of these coefficients almost exactly cancels out the difference in volume. Because the heat is constantly being leaked out of the ovens, the work due to lost heat is nearly an order of magnitude larger than work required to heat up the oven, so this contribution can be mostly ignored. So to really answer this question, we're going to need to get *experimental*. 
 
 I bought an [Aeotek Smart Energy Meter](https://www.amazon.com/Aeon-Labs-AEDSB09104ZWUS-Aeotec-Monitor/dp/B00DIBSKFU/) (currently on Amazon for 32 USD) and an [Aeotek Z-stick](https://www.amazon.com/Aeotec-Z-Stick-Z-Wave-create-gateway/dp/B00X0AWA6E/) (currently on Amazon for 45 USD)<sup>[1](#myfootnote1)</sup>. The Z-Stick is compatible with [open-zwave](http://www.openzwave.com/) which has a [python interface](https://github.com/OpenZWave/python-openzwave).
 
