@@ -12,15 +12,15 @@ I did some back-of-the-envelope calculations to see if there was an obvious conc
 
 \\[ W = D_mVR\triangle T \\]
 
-<p>Where $$D_m$$ is the molar density of air, $$V$$ is the volume, $$R$$ is the ideal gas constant, and $$\triangle T$$ is the temperature change.</p>
+<p>Where \\(D_m\\) is the molar density of air, \\(V\\) is the volume, \\(R\\) is the ideal gas constant, and \\(\triangle T\\) is the temperature change.</p>
 
 The heat lost through the oven door is:
 
-<span>$$Q = kA\triangle Tt$$</span>
+\\[ Q = kA\triangle Tt \\]
 
-<p>Where $$k$$ is the heat transfer coefficient, $$A$$ is the area of the door, and $$t$$ is the time that the oven is on.</p>
+<p>Where \\(k\\) is the heat transfer coefficient, \\(A\\) is the area of the door, and \\(t\\) is the time that the oven is on.</p>
 
-Since both ovens have the same depth, the ratio of the ovens' volume 2.8, is the same for the door area. Some mechanical engineers estimate that the [$$k$$ of double-paned oven doors is ~3](http://www.esss.com.br/events/ansys2014/colombia/pdf/02_1540.pdf), whereas the toaster oven's single pane of glass is 5.8. The ratio of these coefficients almost exactly cancels out the difference in volume. Because the heat is constantly being leaked out of the ovens, the work due to lost heat is nearly an order of magnitude larger than work required to heat up the oven, so this contribution can be mostly ignored. So to really answer this question, we're going to need to get *experimental*. 
+Since both ovens have the same depth, the ratio of the ovens' volume 2.8, is the same for the door area. Some mechanical engineers estimate that the [\\(k\\) of double-paned oven doors is ~3](http://www.esss.com.br/events/ansys2014/colombia/pdf/02_1540.pdf), whereas the toaster oven's single pane of glass is 5.8. The ratio of these coefficients almost exactly cancels out the difference in volume. Because the heat is constantly being leaked out of the ovens, the work due to lost heat is nearly an order of magnitude larger than work required to heat up the oven, so this contribution can be mostly ignored. So to really answer this question, we're going to need to get *experimental*. 
 
 I bought an [Aeotek Smart Energy Meter](https://www.amazon.com/Aeon-Labs-AEDSB09104ZWUS-Aeotec-Monitor/dp/B00DIBSKFU/) (currently on Amazon for 32 USD) and an [Aeotek Z-stick](https://www.amazon.com/Aeotec-Z-Stick-Z-Wave-create-gateway/dp/B00X0AWA6E/) (currently on Amazon for 45 USD)<sup>[1](#myfootnote1)</sup>. The Z-Stick is compatible with [open-zwave](http://www.openzwave.com/) which has a [python interface](https://github.com/OpenZWave/python-openzwave).
 
