@@ -9,7 +9,7 @@ tags: [python, hardware, usb]
 
 I recently purchased a [Computerized Sewing Machine](https://www.amazon.com/Brother-LB6800PRW-Computerized-Embroidery-Sewing/dp/B003EPLBMO/). Designs can be uploaded to internal storage via USB, which ubuntu automatically recognizes and mounts:
 
-![](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/brother_sewing.png)
+![my ubuntu ultrabook and my brother sewing machine](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/brother_sewing.jpg)
 
 This compatibility with linux out of the box is fantastic; unfortunately designs must be in Brother's undocumented binary file format, and the sewing machine gives no feedback regarding parsing errors. This means that I've been creating binaries for embroidery patterns with a lot of trial and error. In order to script some of the process, I'd like to upload and test new designs without human intervention.
 
