@@ -20,15 +20,15 @@ I made a model of an individual LED strip in Inkscape and experimented with a fe
 
 I chose this design because it had relatively few angles, which meant I could free-hand layout the LEDs without needing to project the design onto the fabric:
 
-![photo of snowflakes made out of LEDs](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/christmas_garbage/freehand_place.png)
+![photo of snowflakes made out of LEDs](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/christmas_garbage/freehand_place.jpg)
  
 I soldered the 12V and Blue Grounds on each snowflake, and then hot-glued some of the longer wires down to the fabric:
 
-![photo of snowflakes with lines soldered down](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/christmas_garbage/soldering_step.png)
+![photo of snowflakes with lines soldered down](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/christmas_garbage/soldering_step.jpg)
 
 This is the end result:
 
-![photo of snowflake lights in window from the outside](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/christmas_garbage/finished.png)
+![photo of snowflake lights in window from the outside](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/christmas_garbage/finished.jpg)
 
 
 
