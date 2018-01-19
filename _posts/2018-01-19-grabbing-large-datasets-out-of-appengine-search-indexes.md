@@ -115,15 +115,15 @@ Darn. Because of these limitations, we're going to need a concept from Databases
 You can set as a parameter to the query options:
 
 ```python
-        search_query = search.Query(
-            query_string='',
-            options=search.QueryOptions(
-                limit=self.limit,
-                sort_options=self.sort_opts,
-                cursor=search.Cursor(per_result=False),
-                ids_only=False,
-            )
-        )
+search_query = search.Query(
+    query_string='',
+    options=search.QueryOptions(
+        limit=self.limit,
+        sort_options=self.sort_opts,
+        cursor=search.Cursor(per_result=False),
+        ids_only=False,
+    )
+)
 ```
 
 you can access the cursor for this search query after getting the results:
@@ -157,93 +157,93 @@ AttributeError: 'NoneType' object has no attribute 'web_safe_string'
 Here's the implementation:
 
 ```python
-        current_offset = self.limit
-        search_query = search.Query(query_string='',
-            options=search.QueryOptions(
-                limit=self.limit,
-                sort_options=self.sort_opts,
-                cursor=search.Cursor(per_result=False),
-                ids_only=False,
-            )
-        )
+current_offset = self.limit
+search_query = search.Query(query_string='',
+    options=search.QueryOptions(
+        limit=self.limit,
+        sort_options=self.sort_opts,
+        cursor=search.Cursor(per_result=False),
+        ids_only=False,
+    )
+)
 
-        search_results = self.index.search(search_query)
-        if self.offset >= search_results.number_found:
-            return self.render_search_doc([])
-        while current_offset < self.offset:
-            current_offset += self.limit
-            search_query = search.Query(query_string='',
-                options=search.QueryOptions(
-                    limit=self.limit,
-                    sort_options=self.sort_opts,
-                    cursor=search_results.cursor
-                )
-            )
-            search_results = self.index.search(search_query)
-        self.render_search_doc(search_results)
+search_results = self.index.search(search_query)
+if self.offset >= search_results.number_found:
+    return self.render_search_doc([])
+while current_offset < self.offset:
+    current_offset += self.limit
+    search_query = search.Query(query_string='',
+        options=search.QueryOptions(
+            limit=self.limit,
+            sort_options=self.sort_opts,
+            cursor=search_results.cursor
+        )
+    )
+    search_results = self.index.search(search_query)
+self.render_search_doc(search_results)
 ```
 
 Now, if we're going to be querying an offset of up to 100000, it will take a while to do 1000 queries. So, it would be better if we could cache these cursors. We can stick the web_safe_string in memcache:
 
 ```python
-        cursor_cache = {}
-        current_offset = self.limit
-        search_query = search.Query(query_string='',
-            options=search.QueryOptions(
-                limit=self.limit,
-                sort_options=self.sort_opts,
-                cursor=search.Cursor(per_result=False),
-                ids_only=False,
-            )
-        )
+cursor_cache = {}
+current_offset = self.limit
+search_query = search.Query(query_string='',
+    options=search.QueryOptions(
+        limit=self.limit,
+        sort_options=self.sort_opts,
+        cursor=search.Cursor(per_result=False),
+        ids_only=False,
+    )
+)
 
-        search_results = self.index.search(search_query)
-        cursor_cache[current_offset] = search_results.cursor.web_safe_string
-        if self.offset >= search_results.number_found:
-            return self.render_search_doc([])
-        while current_offset < self.offset:
-            current_offset += self.limit
-            search_query = search.Query(query_string='',
-                options=search.QueryOptions(
-                    limit=self.limit,
-                    sort_options=self.sort_opts,
-                    cursor=search_results.cursor
-                )
-            )
-            search_results = self.index.search(search_query)
-            cursor_cache[current_offset] = search_results.cursor.web_safe_string
-        memcache.set(cursor_cache_key, json.dumps(cursor_cache))
-        self.render_search_doc(search_results)
+search_results = self.index.search(search_query)
+cursor_cache[current_offset] = search_results.cursor.web_safe_string
+if self.offset >= search_results.number_found:
+    return self.render_search_doc([])
+while current_offset < self.offset:
+    current_offset += self.limit
+    search_query = search.Query(query_string='',
+        options=search.QueryOptions(
+            limit=self.limit,
+            sort_options=self.sort_opts,
+            cursor=search_results.cursor
+        )
+    )
+    search_results = self.index.search(search_query)
+    cursor_cache[current_offset] = search_results.cursor.web_safe_string
+memcache.set(cursor_cache_key, json.dumps(cursor_cache))
+self.render_search_doc(search_results)
 ```
 
 And then the next time, we can pull out the cursor for that offset:
 
 ```python
-        cursor_cache_key = 'cursors'
-        cursor_cache = memcache.get(cursor_cache_key)
-        if cursor_cache:
-            cursor_cache = json.loads(cursor_cache)
-            offset_key = str(self.offset)
-            if offset_key in cursor_cache:
-                cursor_cache = cursor_cache[offset_key]
-            else:
-                logging.info("%s not in %s" %(offset_key, cursor_cache))
-                cursor_cache = None
+cursor_cache_key = 'cursors'
+cursor_cache = memcache.get(cursor_cache_key)
+if cursor_cache:
+    cursor_cache = json.loads(cursor_cache)
+    offset_key = str(self.offset)
+    if offset_key in cursor_cache:
+        cursor_cache = cursor_cache[offset_key]
+    else:
+        logging.info("%s not in %s" %(offset_key, cursor_cache))
+        cursor_cache = None
 
-        if cursor_cache:
-            logging.info("found cursor cache string %s " % cursor_cache)
+if cursor_cache:
+    logging.info("found cursor cache string %s " % cursor_cache)
 
-            # construct the sort options
-            search_query = search.Query(
-                query_string='',
-                options=search.QueryOptions(
-                    limit=self.limit,
-                    sort_options=self.sort_opts,
-                    cursor=search.Cursor(per_result=False, web_safe_string=cursor_cache),
-                    ids_only=False,
-                )
-            )
-            return self.render_search_doc(self.index.search(search_query))
+    # construct the sort options
+    search_query = search.Query(
+        query_string='',
+        options=search.QueryOptions(
+            limit=self.limit,
+            sort_options=self.sort_opts,
+            cursor=search.Cursor(per_result=False, web_safe_string=cursor_cache),
+            ids_only=False,
+        )
+    )
+    return self.render_search_doc(self.index.search(search_query))
 ```
 
 A next step would be to find the nearest cursor offset, and start from there. But that would be another blog post. 
