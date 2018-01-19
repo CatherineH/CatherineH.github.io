@@ -7,7 +7,11 @@ group: navigation
 {% include JB/setup %}
 <svg id="svg" width="630" height="430"></svg>
 
-I'm a physicist currently working as a hardware engineer at a quantum computing startup in San Diego, California. 
+I'm a ex-physicist currently working remotely as a full-stack web developer at GradientOne, where I also do basic machine learning and write linux drivers. I have previously worked at:
+
+- Qubitekk, a quantum computing startup
+- Clearpath Robotics, a vehicular robotics company
+- The Institute for Quantum Computing, a research institute out of the University of Waterloo
 
 Some of the things I love are:
 
