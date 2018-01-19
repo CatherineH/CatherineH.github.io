@@ -52,7 +52,7 @@ class Search(webapp2.RedirectHandler):
 
 This works well for values under 1000, but if you try to run the query /search?limit=3000, you'll get the error:
 
-```
+```python
 Traceback (most recent call last):
   File "/home/catherine/installed/google-cloud-sdk/platform/google_appengine/lib/webapp2-2.5.2/webapp2.py", line 1535, in __call__
     rv = self.handle_exception(request, response, e)
@@ -85,7 +85,7 @@ We can't get all 3000 entries in one query, so we'll have to spread the acquisit
 
 The first two queries work, but if you set offset to 2000, you'll get the error:
 
-```
+```python
 Traceback (most recent call last):
   File "/home/catherine/installed/google-cloud-sdk/platform/google_appengine/lib/webapp2-2.5.2/webapp2.py", line 1535, in __call__
     rv = self.handle_exception(request, response, e)
@@ -128,7 +128,7 @@ You can set as a parameter to the query options:
 
 you can access the cursor for this search query after getting the results:
 
-```
+```python
 search_results = self.index.search(search_query)
 cursor = search_results.cursor        
 ```
@@ -142,21 +142,21 @@ The strategy for pulling out the entries is this:
 
 It would be nice if we could start our loop at the maximum offset in order to limit the number of repetitions of step 3, but if you do, you'll get the error:
 
-```
+```python
 ValueError: cannot set cursor and offset together
 ```
 
 Also, make sure that you set the **per_result** value of **search.Cursor** to **False**, or else the cursor will be None:
 
-```
+```python
   File "/home/catherine/python_projects/appengine-large-offset-example/main.py", line 109, in query_with_cursors
     cursor_cache[current_offset] = search_results.cursor.web_safe_string
 AttributeError: 'NoneType' object has no attribute 'web_safe_string'
 ```
 
-so, here's the implementation:
+Here's the implementation:
 
-```
+```python
         current_offset = self.limit
         search_query = search.Query(query_string='',
             options=search.QueryOptions(
@@ -185,7 +185,7 @@ so, here's the implementation:
 
 Now, if we're going to be querying an offset of up to 100000, it will take a while to do 1000 queries. So, it would be better if we could cache these cursors. We can stick the web_safe_string in memcache:
 
-```
+```python
         cursor_cache = {}
         current_offset = self.limit
         search_query = search.Query(query_string='',
@@ -218,7 +218,7 @@ Now, if we're going to be querying an offset of up to 100000, it will take a whi
 
 And then the next time, we can pull out the cursor for that offset:
 
-```
+```python
         cursor_cache_key = 'cursors'
         cursor_cache = memcache.get(cursor_cache_key)
         if cursor_cache:
