@@ -21,6 +21,14 @@ Some of the things I love are:
 - Progressive and pre-80s-style Heavy Metal
 - science-fantasy role-playing computer games
 
+Here are some videos/talks I've given:
+
+[Snooping on Digital Electronics with Machine Learning - Florida PyCon](http://flpy.org/)
+[Simplifying Computer Art - Euro PyCon and SciPy](https://www.youtube.com/watch?v=8GIZW--41oE)
+[Data Mining Robots with ROS and Seaborn](https://www.youtube.com/watch?v=oX294t9UYSw)
+[Quantum Bomb Detector - QCSYS](https://www.youtube.com/watch?v=tTQ1xe5JJKM)
+
+
 
 Here are links to things:
 
