@@ -84,7 +84,7 @@ var svgMain = addSVGs([circle, star]);
 document.getElementById("appendSVG").innerHTML = svgMain.innerHTML;
 ```
 
-The things I found confusing about this method were twofold:
+The things I found confusing about this method were:
 
 - first, unlike other XML parsers, DOMParser does not ignore whitespace. The tabs I put
 in to make my SVG strings more readable get read in as **#text** nodes. These strings will
