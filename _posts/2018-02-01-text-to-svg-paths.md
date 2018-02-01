@@ -7,7 +7,7 @@ tags: [svg, python]
 ---
 {% include JB/setup %}
 
-Most paper cutters, laser engravers, and 3D printers can't handle fonts, and so ignore &lang;text&rang; tags in SVGs. Instead, text elements need to first be converted to paths by a program like Inkscape. This post describes how to automate text to path conversion in python using the [freetype](https://github.com/rougier/freetype-py), [svgpathtools](https://github.com/mathandy/svgpathtools), and [svgwrite](https://github.com/mozman/svgwrite) libraries. 
+Most paper cutters, laser engravers, and 3D printers can't handle fonts, and so ignore &rang;text&lang; tags in SVGs. Instead, text elements need to first be converted to paths by a program like Inkscape. This post describes how to automate text to path conversion in python using the [freetype](https://github.com/rougier/freetype-py), [svgpathtools](https://github.com/mathandy/svgpathtools), and [svgwrite](https://github.com/mozman/svgwrite) libraries. 
 
 I used the freetype [rendering in matplotlib example](https://github.com/rougier/freetype-py/blob/04c62af91c66b3268051921d609c9552d93560aa/examples/glyph-vector-2.py) as a guide.
 
