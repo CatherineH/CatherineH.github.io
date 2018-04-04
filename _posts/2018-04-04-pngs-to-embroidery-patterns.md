@@ -15,17 +15,14 @@ First, I convert the individual pixels in the image into valid thread colors. At
 ```python
 def posturize(_image):
     pixels = defaultdict(list)
-    colors = defaultdict(int)
     for i, pixel in enumerate(_image.getdata()):
         x = i % _image.size[0]
         y = int(i/_image.size[0])
         if len(pixel) > 3:
             if pixel[3] == 255:
                 pixels[nearest_color(pixel)].append((x,y, pixel))
-                colors[nearest_color(pixel)] += 1
         else:
             pixels[nearest_color(pixel)].append((x, y, pixel))
-            colors[nearest_color(pixel)] += 1
     return pixels
 ```
 
@@ -33,13 +30,13 @@ Next, I trace the image. Potrace can only handle two-color images, so I keep tra
 
 ```python
 for color in pixels:
-	data = zeros(_image.size, uint32)
-	for pixel in pixels[color]:
-	    data[pixel[0], pixel[1]] = 1
-	# Create a bitmap from the array
-	bmp = potrace.Bitmap(data)
-	# Trace the bitmap to a path
-	path = bmp.trace()
+    data = zeros(_image.size, uint32)
+    for pixel in pixels[color]:
+        data[pixel[0], pixel[1]] = 1
+    # Create a bitmap from the array
+    bmp = potrace.Bitmap(data)
+    # Trace the bitmap to a path
+    path = bmp.trace()
 ```
 
 Next, I want to convert this traced path into the [svgpathtools](https://github.com/CatherineH/svgpathtools) curve objects, so that they can be used in the rest of the digitizer code as if it was parsed in from an SVG. I also need to keep track of the start locations of each segment, so that I can check whether the segment is a closed loop. If it is, I can add a fill and stroke color.
@@ -71,11 +68,11 @@ for curve in path:
         else:
             print("not sure what to do with: ", segment)
         start_point = segment.end_point
+        # is the path closed?
         if true_start == start_point:
             output_paths.append(Path(*svg_paths))
             color = pixel[2]
             rgb = "#%02x%02x%02x" % (color[0], color[1], color[2])
-            # is the path closed?
             fill = rgb
             attributes.append({"fill": fill, "stroke": rgb})
             true_start = None
