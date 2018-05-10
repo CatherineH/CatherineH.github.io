@@ -7,8 +7,9 @@ group: navigation
 {% include JB/setup %}
 <svg id="svg" width="630" height="430"></svg>
 
-I'm a ex-physicist currently working remotely as a full-stack web developer at GradientOne, where I also do basic machine learning and write linux drivers. I have previously worked at:
+I'm a ex-physicist currently working as a backend engineer at Bloomberg.
 
+- GradientOne, a machine learning hardware startup
 - Qubitekk, a quantum computing startup
 - Clearpath Robotics, a vehicular robotics company
 - The Institute for Quantum Computing, a research institute out of the University of Waterloo
