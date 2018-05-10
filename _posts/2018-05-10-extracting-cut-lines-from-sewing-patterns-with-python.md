@@ -9,7 +9,7 @@ tags: [sewing, svg, python]
 
 The common way to make modifications to sewing patterns is to trace out the cut lines on tracing paper, then cut and tape the pieces of paper together to form a new shape to cut out of fabric. However, as a software developer, every problem is a programming one, so in this post I'm going to show [my code](https://gist.github.com/CatherineH/0eb4770408fa727669294ab29c25e970) for extracting the cut lines from sewing patterns as SVGs, so that you can manipulate them in Inkscape.
 
-The pattern I'm going to use in this demo is the [Cheyenne Tunic by Hey June](https://indiesew.com/products/hey-june-cheyenne-tunic) which I recommend purchasing. I'm not going to post only minimal amounts of that pattern so that you can see the cut line extractor in action. I use the [pdfrw](https://github.com/pmaupin/pdfrw) library for reading in the pattern, and investigating a pdf using this library can really help your understanding of the format.
+The pattern I'm going to use in this demo is the [Cheyenne Tunic by Hey June](https://indiesew.com/products/hey-june-cheyenne-tunic) which I recommend purchasing. I use the [pdfrw](https://github.com/pmaupin/pdfrw) library for reading in the pattern, and investigating a pdf using this library can really help your understanding of the format.
 
 Extracting data from PDFs is quite challenging. If you're unfamiliar with PDFs, I recommend the O'Reilly book [Developing with PDF](https://www.amazon.com/Developing-PDF-Portable-Document-Format-ebook/dp/B00IV3J23O/ref=sr_1_1?ie=UTF8&qid=1525986567&sr=8-1&keywords=developing+pdf+oreilly).
 
