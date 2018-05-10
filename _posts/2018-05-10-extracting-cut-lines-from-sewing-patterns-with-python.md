@@ -29,7 +29,7 @@ parser.add_argument('--filename', type=str, help='The filename of the pdf patter
 parser.add_argument('--size', type=str, help="The size of the pattern to analyze.")
 ```
 
-The content groups are defined both in the PDF document's root, and on each page. The group keys for the content groups are defined under **/Resources -> /Properties**. I
+The content groups are defined both in the PDF document's root, and on each page. The group keys for the content groups are defined under **/Resources -> /Properties**.
 
 ```python
     args = parser.parse_args()
