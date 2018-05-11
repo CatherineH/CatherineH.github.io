@@ -132,9 +132,11 @@ def parse_shape(shape, i, gstates):
         elif operation == 'c':
             # curve
             d += " C " + format_pointstr(parts[0:6])
-        elif operation == 'y' or operation == 'v':
+        elif operation == 'v':
             # append to bezier curve
             d += " S " + format_pointstr(parts[0:4])
+        elif operation == 'y':
+            d += " C " + format_pointstr(parts[0:4])+" "+format_pointstr(parts[2:4])
         elif operation == 'l':
             # line to
             d += " L " + format_pointstr(parts[0:2])
@@ -175,6 +177,7 @@ def parse_shape(shape, i, gstates):
             print("not sure what to do with %s %s" % (operation, line))
     dwg.save()
     return paths
+
 ```
 
 PDF uses the same format as SVG for expressing transformations. Here's my code for applying these transformations, which is copied from my fork of [svgpathtools](https://github.com/CatherineH/svgpathtools)
