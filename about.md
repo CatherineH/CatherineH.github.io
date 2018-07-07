@@ -7,7 +7,9 @@ group: navigation
 {% include JB/setup %}
 <svg id="svg" width="630" height="430"></svg>
 
-I'm a ex-physicist currently working as a backend engineer at Bloomberg.
+Opinions expressed are solely my own and do not express the views or opinions of my employer.
+
+I'm a ex-physicist currently working as a backend engineer at Bloomberg. I have previously worked at:
 
 - GradientOne, a machine learning hardware startup
 - Qubitekk, a quantum computing startup
