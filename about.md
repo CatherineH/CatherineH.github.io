@@ -7,10 +7,9 @@ group: navigation
 {% include JB/setup %}
 <svg id="svg" width="630" height="430"></svg>
 
-Opinions expressed are solely my own and do not express the views or opinions of my employer.
+I'm a ex-physicist currently working as an SRE at a hedge fund. I have previously worked at:
 
-I'm a ex-physicist currently working as a backend engineer at Bloomberg. I have previously worked at:
-
+- Bloomberg, a financial technology company
 - GradientOne, a machine learning hardware startup
 - Qubitekk, a quantum computing startup
 - Clearpath Robotics, a vehicular robotics company
@@ -24,8 +23,9 @@ Some of the things I love are:
 - Progressive and pre-80s-style Heavy Metal
 - science-fantasy role-playing computer games
 
-Here are some videos/talks I've given:
+Here are some videos of talks I've given:
 
+- [Approximation Algorithms for Milling and Lawn Mowing - Papers we Love NYC](https://youtu.be/MAgCjFWNM4c?t=1420)
 - [Snooping on Digital Electronics with Machine Learning - Florida PyCon](http://flpy.org/)
 - [Simplifying Computer Art - Euro PyCon and SciPy](https://www.youtube.com/watch?v=8GIZW--41oE)
 - [Data Mining Robots with ROS and Seaborn](https://www.youtube.com/watch?v=oX294t9UYSw)
