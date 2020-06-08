@@ -58,3 +58,5 @@ Here's somethings I tried to cut down on the execution time:
 Thus, if the grid location two up and one to the right of the current location to be filled is occupied, this sunny-side-up piece can't be placed. This cuts down the search space. I identified at least one grid location to check per piece orientation for the heptominos. This cut down the time to find the first solution to 1 hour. However, identifying and coding these rules is time consuming. It feels like there should be a way for the computer to automatically detect hole-creating placements, but I haven't found this.
 
 My code is available on [github](https://github.com/CatherineH/pypolyomino). Dahlke requested that his pentomino packing code be used only for personal use, thus these scripts are distributed with the Creative Commons Attribution-NonCommercial 3.0 Unported (CC BY-NC 3.0) license.
+
+![hexomino tiling](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/polyomino/hexomino_tiling.png)
