@@ -59,4 +59,4 @@ Thus, if the grid location two up and one to the right of the current location t
 
 My code is available on [github](https://github.com/CatherineH/pypolyomino). Dahlke requested that his pentomino packing code be used only for personal use, thus these scripts are distributed with the Creative Commons Attribution-NonCommercial 3.0 Unported (CC BY-NC 3.0) license.
 
-![hexomino tiling](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/polyomino/hexomino_tiling.png)
+![hexomino tiling](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/polyomino/hexonimo_tiling.png)
