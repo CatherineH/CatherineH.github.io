@@ -13,7 +13,7 @@ The shapes in Tetris are pentominos; they are shapes made up of 5 squares.
 
 Eudora introduced Gardner's column to my mother, Donna, who was also became a fan of recreational mathematics. In November, 1987, she saw this article in Science News:
 
-	**Pieces of a Polyomino Puzzle**
+	Pieces of a Polyomino Puzzle
 
 	Polyominoes, which are the basis for thousands of mathematical puzzles, are shapes that cover connected squares on a checkerboard. One of the most intriguing of such puzzles involves proving that polyominoes of a certain shape can be laid down to form a complete rectangle. Recently. software engineer Karl A. Dahtke of AT&T Bell Laboratoties in Naperville, Ill., combining perseverance with clever computer programming, managed to solve two particularly perplexing versions of this problem — ones that for nearly 20 years had defeated the best efforts of scores of amateur and professional mathematicians. "I was amazed," says mathematician Solomon W. Golomb of the University of Southern California in Los Angeles, who in 1954 introduced the term "polyomino". Golomb has been exploring polyomino properties and proposing polyomino puzzles ever since. "A lot of very bright people have worked on \[the problem\]" he says. "This is a noteworthy accomplishment."
 
@@ -24,6 +24,7 @@ Eudora introduced Gardner's column to my mother, Donna, who was also became a fa
 	"It turns out that the size of the solutions is clearly a little bit beyond what people could easily do by hand," says Golomb, "but fortunately, it's within the range of what you can find on a personal computer"
 
 	"I'm no Einstein," says Dahlke. "Maybe anyone with a micro, some perseverance and a little bit of geometric knowledge could have done it. But I did it, and it's a pretty thing."
+	
 	Dahlke is ready to try more polyomino puzzles, He also dreams of the day when he'll get achance to go back to college to study mathematics at the graduate level.
 	
 
