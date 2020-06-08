@@ -32,7 +32,7 @@ Eudora introduced Gardner's column to my mother, Donna, who was also became a fa
 
 My mom made quilts of these two tilings between 1987 and 1989, which was impressive because I was born between the two quilts. 
 
-![photo of my mom's two quilts](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/polyomino/polyomino_quilts.jpeg =667x)
+![photo of my mom's two quilts](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/polyomino/polyomino_quilts.jpeg)
 
 The quilts hung in the dining room of my childhood home. I spent many hours staring at them instead of practicing piano. When my parents downsized after retirement, they gave me the quilts, and they now hang in my bedroom. My own baby loves looking at the quilts because they are bold colours with sharp edges. As a project while my own baby sleeps in my lap, I have been translating/recreating Dahlke's original C code into Python so that I can generate vectors of the tiling for use with a die cutter, embroiderer, etc.,
 
@@ -53,7 +53,7 @@ Here's somethings I tried to cut down on the execution time:
 
 - **removing holes**: there are some placements that create holes that obviously can't be filled by another shape. For example, if you place this heptomino sunny-side-up will create a hole in the next column that can't be filled in by any piece:
 
-![placement of a piece that creates a hole](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/polyomino/hole.png =395x)
+![placement of a piece that creates a hole](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/polyomino/hole.png)
 
 Thus, if the grid location two up and one to the right of the current location to be filled is occupied, this sunny-side-up piece can't be placed. This cuts down the search space. I identified at least one grid location to check per piece orientation for the heptominos. This cut down the time to find the first solution to 1 hour. However, identifying and coding these rules is time consuming. It feels like there should be a way for the computer to automatically detect hole-creating placements, but I haven't found this.
 
