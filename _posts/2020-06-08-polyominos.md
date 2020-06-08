@@ -34,7 +34,7 @@ My mom made quilts of these two tilings between 1987 and 1989, which was impress
 
 ![photo of my mom's two quilts](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/polyomino/polyomino_quilts.jpeg)
 
-The quilts hung in the dining room of my childhood home. I spent many hours staring at them instead of practicing piano (sorry mom). When my parents downsized after retirement, they gave me the quilts, and they now hang in my bedroom. My own baby loves looking at the quilts because they are bold colours with sharp edges. As a project while my own baby sleeps in my lap, I have been translating/recreating Dahlke's original C code into Python so that I can generate vectors of the tiling for use with a die cutter, embroiderer, etc.,
+The quilts hung in the dining room of my childhood home. I spent many hours staring at them instead of practicing piano (sorry mom). When my parents downsized after retirement, they gave me the quilts, and they now hang in my bedroom. My baby loves looking at the quilts because they are bold colours with sharp edges. As a project while my baby sleeps in my lap, I have been translating/recreating Dahlke's original C code into Python so that I can generate vectors of the tiling for use with a die cutter, embroiderer, etc.,
 
 Dahlke has [hosted his pentomino packing code](https://eklhad.net/polyomino/index.html) on his website, but not, as far as I know, the code that originally generated the heptomino/hexonimo tilings above. I used the packing algorithm in Dahlke's pentomino code but with the 8 orientations of the piece instead of all permutations of the pentominos and their orientations. The packing algorithm is:
 
@@ -47,7 +47,7 @@ Using a single thread of my core i7 7700k, this algorithm takes 3.5 hours to fin
 
 Here's somethings I tried to cut down on the execution time:
 
-- **parallelization**: The problem does not lend itself well to parallelization, especially in Python. Because of the GIL, multiple processes are much faster than multiple threads. The cost to pass memory between processes is much higher than between threads, so the parallelization should minimize the need to transfer information between executions. It's difficult to use a divide-and-conquer approach based on the first piece orientation tried, because this doesn't divide the search space evenly. I could use an evaulation queue where potential solutions, but this would also require passing a lot of information between executions.  
+- **parallelization**: The problem does not lend itself well to parallelization, especially in Python. Because of the GIL, multiple processes are much faster than multiple threads. The cost to pass memory between processes is much higher than between threads, so the parallelization should minimize the need to transfer information between executions. It's difficult to use a divide-and-conquer approach based on the first piece orientation tried, because this doesn't divide the search space evenly. I could use an evaluation queue where potential solutions, but this would also require passing a lot of information between executions.  
 
 - **CSPs**: I tried formulating the problem as a constraint satisfaction problem, to take advantage of numerical optimization techniques that have been developed since the 80s, but this ran for days without finding a solution. I suspect I haven't set up all the necessary constraints.
 
@@ -55,7 +55,7 @@ Here's somethings I tried to cut down on the execution time:
 
 ![placement of a piece that creates a hole](https://raw.githubusercontent.com/CatherineH/CatherineH.github.io/master/_posts/images/polyomino/hole.png)
 
-Thus, if the grid location two up and one to the right of the current location to be filled is occupied, this sunny-side-up piece can't be placed. This cuts down the search space. I identified at least one grid location to check per piece orientation for the heptominos. This cut down the time to find the first solution to 1 hour. However, identifying and coding these rules is time consuming. It feels like there should be a way for the computer to automatically detect hole-creating placements, but I haven't found this.
+Thus, if the grid location two up and one to the right of the current location to be filled is occupied, this sunny-side-up piece can't be placed. This cuts down the search space. I identified at least one grid location to check per piece orientation for the heptominos. This cut down the time to find the first solution to 1 hour. However, identifying and coding these rules is time consuming. It feels like there should be a way for the computer to automatically detect hole-creating placements, but I haven't found how.
 
 My code is available on [github](https://github.com/CatherineH/pypolyomino). Dahlke requested that his pentomino packing code be used only for personal use, thus these scripts are distributed with the Creative Commons Attribution-NonCommercial 3.0 Unported (CC BY-NC 3.0) license.
 
