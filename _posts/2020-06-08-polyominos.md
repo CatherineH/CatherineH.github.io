@@ -47,7 +47,7 @@ Using a single thread of my core i7 7700k, this algorithm takes 3.5 hours to fin
 
 Here's somethings I tried to cut down on the execution time:
 
-- **parallelization**: The problem does not lend itself well to parallelization, especially in Python. Because of the GIL, multiple processes are much faster than multiple threads. The cost to pass memory between processes is much higher than between threads, so the parallelization should minimize the need to transfer information between executions. It's difficult to use a divide-and-conquer approach based on the first piece orientation tried, because this doesn't divide the search space evenly. I could use an evaluation queue where potential solutions, but this would also require passing a lot of information between executions.  
+- **parallelization**: This problem does not have an obvious way to divide the search space evenly, so does not parallelize easily. I could use an evaluation queue for potential solutions, but the time cost of passing information between processes eclipses the time to evaluate each placement.
 
 - **CSPs**: I tried formulating the problem as a constraint satisfaction problem, to take advantage of numerical optimization techniques that have been developed since the 80s, but this ran for days without finding a solution. I suspect I haven't set up all the necessary constraints.
 
