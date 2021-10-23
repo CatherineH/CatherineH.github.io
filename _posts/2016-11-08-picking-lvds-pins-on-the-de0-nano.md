@@ -102,3 +102,4 @@ set_location_assignment PIN_F16 -to "LVDSO[5](n)"
 ```
 
 
+*thanks to Victor for fixing the de0 nano pin diagram*
